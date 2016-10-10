@@ -62,26 +62,26 @@ var createPost = function(title, body){
 }
 //Edit post
 
-var getPostPointer = function(id){
-  var postPointer;
-  POSTS.forEach(function(post){
+var getPostIndex = function(id){
+  var postIndex;
+  POSTS.forEach(function(post,i){
     if(post.id == id){
-      postPointer = post;
+      postIndex = i;
     }
   });
-      return postPointer;
+      return postIndex;
 };
 
 var editHandler = function(field){
   return function(id,update){
-    var post = getPostPointer(id);
+    var postIndex = getPostIndex(id);
     if(field == "title"){
-      post.title = update;
-      post.timestamp = new Date();
+      POSTS[postIndex].title = update;
+      POSTS[postIndex].timestamp = new Date();
     }
     else if(field == "body"){
-      post.body = update;
-      post.timestamp = new Date();
+      POSTS[postIndex].body = update;
+      POSTS[postIndex].timestamp = new Date();
     }
   }
 }
@@ -89,6 +89,10 @@ var editTitle = editHandler("title");
 var editBody = editHandler("body");
 
 //Delete post
+var deletePost = function(id){
+  var postIndex = getPostIndex(id);
+  POSTS.splice(postIndex,1);
+}
 
 //View summary of posts
 var listSinglePost = function(post){
@@ -105,6 +109,8 @@ listAllPosts(POSTS);
 createPost("Manually added post","Hip hip hooray, i have added this post today!");
 listAllPosts(POSTS);
 editTitle(99,"Red and bold");
+listAllPosts(POSTS);
+deletePost(101);
 listAllPosts(POSTS);
 
 
