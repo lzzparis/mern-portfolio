@@ -101,16 +101,11 @@ var createPost = function(subject, body){
 //Edit post
 
 
-var editPost = function(id,update){
+var editPost = function(id,subject,body){
   var postIndex = getPostIndex(id);
-  if(field == "subject"){
-    POSTS[postIndex].subject = update;
-    POSTS[postIndex].timestamp = new Date();
-  }
-  else if(field == "body"){
-    POSTS[postIndex].body = update;
-    POSTS[postIndex].timestamp = new Date();
-  }
+  POSTS[postIndex].subject = subject;
+  POSTS[postIndex].body = body;
+  POSTS[postIndex].timestamp = new Date();
 }
 
 //Delete post
