@@ -69,21 +69,33 @@ var getFullPost = function(id){
   return POSTS[postIndex];
 }
 
-var populatePostForm = function(post){
+var populatePostForm = function(id){
+  var post = getFullPost(id);
   postForm.children(".subject-box").val(post.subject);
   postForm.children(".body-box").val(post.body);
-}
-
-var loadPostForEdit = function(id){
-  var post = getFullPost(id);
-  populatePostForm(post);
   postForm.attr("name",id);
 }
+
+var fullPostBox = $("#full-post");
+
+var displayPost = function(id){
+  var post = getFullPost(id);
+  fullPostBox.children(".subject-header").text(post.subject);
+  fullPostBox.children(".body-content").text(post.body);
+  fullPostBox.css("display","block");
+}
+var closePost = function(){
+  fullPostBox.children(".subject-header").text("");
+  fullPostBox.children(".body-content").text("");
+  fullPostBox.css("display","none");
+
+}
+fullPostBox.children(".close-x").on("click",closePost);
 
 //View summary of posts
 var listSinglePost = function(post){
   var prettyTime = moment(post.timestamp).format("MM-DD-YYYY @ h:mm a");
-  postList.append("<li>"+post.subject+" .... "+prettyTime+"</li>");  
+  postList.append("<li class=\"post-summary\" id=\""+post.id+"\">"+post.subject+" .... "+prettyTime+"</li>");  
 }
 
 var listAllPosts = function(allPosts){
@@ -138,6 +150,12 @@ postForm.on("submit",function(event){
   listAllPosts(POSTS);
 });
 
+//$(".post-summary").on("click",function(){
+$(".post-summary").click(function(){
+  var id = $(this).attr("id");
+  console.log("clicked",id);
+  populatePostForm(id);
+});
 
 listAllPosts(POSTS);
 createPost("Manually added post","Hip hip hooray, i have added this post today!");
@@ -145,7 +163,9 @@ listAllPosts(POSTS);
 listAllPosts(POSTS);
 deletePost(101);
 listAllPosts(POSTS);
-loadPostForEdit(99);
+// loadPostForEdit(99);
+displayPost(99);
+//setTimeout(closePost(),3000);
 
 
 //View one full post
