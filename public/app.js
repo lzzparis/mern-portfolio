@@ -2,13 +2,13 @@
 var POSTS = [
     {
       id:0,
-      title: "Blog post 1",
+      subject: "Blog post 1",
       body: "Here are some words",
       timestamp: "Sun Oct 09 2016 22:18:20 GMT-0700 (MST)"
     },
     {
       id:99,
-      title: "Red and gold",
+      subject: "Red and gold",
       body: "Holding her is dangerous. If word of this gets out, it could generate sympathy for the Rebellion in the senate. I have traced the Rebel spies to her. Now she is my only link to find their secret base! She'll die before she tells you anything. Leave that to me. Send a distress signal and then inform the senate that all aboard were killed! Lord Vader, the battle station plans are not aboard this ship! And no transmissions were made. An escape pod was jettisoned during the fighting, but no life forms were aboard. She must have hidden the plans in the escape pod. Send a detachment down to retrieve them. See to it personally, Commander. There'll be no one to stop us this time. Yes, sir.\n"+
             "Not after we demonstrate the power of this station. In a way, you have determined the choice of the planet that'll be destroyed first. Since you are reluctant to provide us with the location of the Rebel base, I have chosen to test this station's destructive power... on your home planet of Alderaan. No! Alderaan is peaceful. We have no weapons. You can't possibly... You would prefer another target? A military target? Then name the system! I grow tired of asking this. So it'll be the last time. Where is the Rebel base? Dantooine. They're on Dantooine.\n"+
             "Look at the size of that thing! Cut the chatter, Red Two. Accelerate to attack speed. This is it, boys! Red Leader, this is Gold Leader. I copy, Gold Leader. We're starting for the target shaft now. We're in position. I'm going to cut across the axis and try and draw their fire. Heavy fire, boss! Twenty-degrees. I see it. Stay low. This is Red Five, I'm going in! Luke, pull up! Are you all right? I got a little cooked, but I'm okay.\n"+
@@ -18,7 +18,7 @@ var POSTS = [
     },
     {
       id:42,
-      title: "Trapped",
+      subject: "Trapped",
       body: "Perhaps you refer to the imminent attack of your Rebel fleet. Yes...I assure you we are quite safe from your friends here. Your overconfidence is your weakness. Your faith in your friends is yours. It is pointless to resist, my son. Everything that has transpired has done so according to my design. Your friends up there on the Sanctuary Moon are walking into a trap. As is your Rebel fleet! It was I who allowed the Alliance to know the location of the shield generator. It is quite safe from your pitiful little band. An entire legion of my best troops awaits them. Oh...I'm afraid the deflector shield will be quite operational when your friends arrive.\n"+
             "Oh, General Solo, somebody's coming. Oh! Luke! Where's Leia? What? She didn't come back? I thought she was with you. We got separated. Hey, we better go look for her. Take the squad ahead. We'll meet at the shield generator at 0300. Come on, Artoo. We'll need your scanners. Don't worry, Master Luke. We know what to do. And you said it was pretty here. Ugh!\n"+
             "You cannot hide forever, Luke. I will not fight you. Give yourself to the dark side. It is the only way you can save your friends. Yes, your thoughts betray you. Your feelings for them are strong. Especially for...\n"+
@@ -28,7 +28,7 @@ var POSTS = [
     },
     {
       id:101,
-      title: "Alderaan",
+      subject: "Alderaan",
       body: "We've entered the Alderaan system. Governor Tarkin, I should have expected to find you holding Vader's leash. I recognized your foul stench when I was brought on board. Charming to the last. You don't know how hard I found it signing the order to terminate your life! I surprised you had the courage to take the responsibility yourself! Princess Leia, before your execution I would like you to be my guest at a ceremony that will make this battle station operational. No star system will dare oppose the Emperor now. The more you tighten your grip, Tarkin, the more star systems will slip through your fingers.\n"+
             "A fighter that size couldn't get this deep into space on its own. Well, he ain't going to be around long enough to tell anyone about us. Look at him. He's headed for that small moon. I think I can get him before he gets there...he's almost in range. That's no moon! It's a space station. It's too big to be a space station. I have a very bad feeling about this. Yeah, I think your right. Full reverse! Chewie, lock in the auxiliary power. Why are we still moving towards it? We're caught in a tractor beam! It's pulling us in! But there's gotta be something you can do! There's nothin' I can do about it, kid. I'm in full power. I'm going to have to shut down. But they're not going to get me without a fight! You can't win. But there are alternatives to fighting.\n"+
             "There's nothing you could have done, Luke, had you been there. You'd have been killed, too, and the droids would be in the hands of the Empire. I want to come with you to Alderaan. There's nothing here for me now. I want to learn the ways of the Force and become a Jedi like my father. Mos Eisley Spaceport. You will never find a more wretched hive of scum and villainy. We must be cautious. How long have you had these droids? About three or four seasons. They're for sale if you want them.\n"+
@@ -40,9 +40,9 @@ var POSTS = [
 
 var currentId = 102;
 
-var Post = function(title, body){
+var Post = function(subject, body){
   this.id = currentId;
-  this.title = title;
+  this.subject = subject;
   this.body = body;
   this.timestamp = new Date();
   currentId++;
@@ -51,16 +51,7 @@ var Post = function(title, body){
 
 $(document).ready(function(){
   var postList = $("#post-list");
-
-//Author post
-var postPost = function(post, allPosts){
-  allPosts.push(post);
-}
-var createPost = function(title, body){
-  var post = new Post(title,body);
-  postPost(post, POSTS);
-}
-//Edit post
+  var postForm = $("#post-form");
 
 var getPostIndex = function(id){
   var postIndex;
@@ -72,21 +63,55 @@ var getPostIndex = function(id){
       return postIndex;
 };
 
-var editHandler = function(field){
-  return function(id,update){
-    var postIndex = getPostIndex(id);
-    if(field == "title"){
-      POSTS[postIndex].title = update;
-      POSTS[postIndex].timestamp = new Date();
-    }
-    else if(field == "body"){
-      POSTS[postIndex].body = update;
-      POSTS[postIndex].timestamp = new Date();
-    }
+//get full post
+var getFullPost = function(id){
+  var postIndex = getPostIndex(id);
+  return POSTS[postIndex];
+}
+
+var populatePostForm = function(post){
+  postForm.children(".subject-box").val(post.subject);
+  postForm.children(".body-box").val(post.body);
+}
+
+var loadPostForEdit = function(id){
+  var post = getFullPost(id);
+  populatePostForm(post);
+  postForm.attr("name",id);
+}
+
+//View summary of posts
+var listSinglePost = function(post){
+  var prettyTime = moment(post.timestamp).format("MM-DD-YYYY @ h:mm a");
+  postList.append("<li>"+post.subject+" .... "+prettyTime+"</li>");  
+}
+
+var listAllPosts = function(allPosts){
+  allPosts.forEach(listSinglePost);
+}
+
+//Author post
+var postPost = function(post, allPosts){
+  allPosts.push(post);
+}
+var createPost = function(subject, body){
+  var post = new Post(subject,body);
+  postPost(post, POSTS);
+}
+//Edit post
+
+
+var editPost = function(id,update){
+  var postIndex = getPostIndex(id);
+  if(field == "subject"){
+    POSTS[postIndex].subject = update;
+    POSTS[postIndex].timestamp = new Date();
+  }
+  else if(field == "body"){
+    POSTS[postIndex].body = update;
+    POSTS[postIndex].timestamp = new Date();
   }
 }
-var editTitle = editHandler("title");
-var editBody = editHandler("body");
 
 //Delete post
 var deletePost = function(id){
@@ -94,24 +119,38 @@ var deletePost = function(id){
   POSTS.splice(postIndex,1);
 }
 
-//View summary of posts
-var listSinglePost = function(post){
-  var prettyTime = moment(post.timestamp).format("MM-DD-YYYY @ h:mm a");
-  postList.append("<li>"+post.title+" .... "+prettyTime+"</li>");  
+
+var clearForm = function(){
+  postForm.children(".subject-box").val("");
+  postForm.children(".body-box").val("");
+
 }
 
-var listAllPosts = function(allPosts){
-  allPosts.forEach(listSinglePost);
-}
+postForm.on("submit",function(event){
+  event.preventDefault();
+  var subject = $(this).children(".subject-box").val();
+  var body = $(this).children(".body-box").val();
+
+  var id = $(this).attr("name");
+
+  if(id ==undefined){
+    createPost(subject,body);
+  }
+  else{
+    editPost(id, subject, body);
+  }
+  clearForm();
+  listAllPosts(POSTS);
+});
 
 
 listAllPosts(POSTS);
 createPost("Manually added post","Hip hip hooray, i have added this post today!");
 listAllPosts(POSTS);
-editTitle(99,"Red and bold");
 listAllPosts(POSTS);
 deletePost(101);
 listAllPosts(POSTS);
+loadPostForEdit(99);
 
 
 //View one full post

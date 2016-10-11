@@ -4,12 +4,25 @@
   <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blog tool</title>
+  <link rel="stylesheet" type="text/css" style="" href="css/reset.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
-  <ul id="post-list">
+  <div class="half-width left">
+    <h1>Create Post</h1>
+    <form id="post-form">
+      Title:<br>
+      <input class="form-field subject-box" type="text"><br>
+      <textarea class="form-field body-box"></textarea><br>
+      <input type="submit">
+    </form> 
+  </div>
+  <div class="half-width right">
+    <h1>Post summary</h1>
+    <ul id="post-list">
     
-  </ul>  
-  
+    </ul>  
+  </div>
 	<script src="//code.jquery.com/jquery.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
 	<script src="app.js"></script>
