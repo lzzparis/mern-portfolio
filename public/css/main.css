@@ -59,6 +59,10 @@ p {
   cursor: pointer
 }
 
+.post-info{
+  display:inline-block;
+}
+
 
 #full-post{
   position:absolute;

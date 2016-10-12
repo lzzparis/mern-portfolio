@@ -76,12 +76,6 @@ var populatePostForm = function(id){
   postForm.attr("name",id);
 }
 
-$("#post-list").on("click",".post-summary > .edit",function(){
-  var id = $(this).parent().attr("id");
-  console.log("clicked",id);
-  populatePostForm(id);
-});
-
 var fullPostBox = $("#full-post");
 
 var displayPost = function(id){
@@ -103,7 +97,7 @@ var listSinglePost = function(post){
   var prettyTime = moment(post.timestamp).format("MM-DD-YYYY @ h:mm a");
   var postSummaryTemplate = $(".templates > .post-summary").clone();
   postSummaryTemplate.attr("id",post.id);
-  postSummaryTemplate.append(post.subject+" .... "+prettyTime);
+  postSummaryTemplate.children(".post-info").text(post.subject+" .... "+prettyTime);
   postList.append(postSummaryTemplate);  
 }
 
@@ -160,11 +154,21 @@ postForm.on("submit",function(event){
   listAllPosts(POSTS);
 });
 
+$("#post-list").on("click",".post-summary > .post-info",function(){
+  var id = $(this).parent().attr("id");
+  displayPost(id);
+});
+
+$("#post-list").on("click",".post-summary > .edit",function(){
+  var id = $(this).parent().attr("id");
+  populatePostForm(id);
+});
 $("#post-list").on("click",".post-summary > .delete", function(){
   var id = $(this).parent().attr("id");
   deletePost(id);
   listAllPosts(POSTS);
 });
+
 
 listAllPosts(POSTS);
 createPost("Manually added post","Hip hip hooray, i have added this post today!");
