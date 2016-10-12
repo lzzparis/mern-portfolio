@@ -16,6 +16,16 @@ describe('App name', function(){
       done();
     });
   });
+  it('should return a post on get with id', function(done){
+    chai.request(app)
+    .get('/42')
+    .end(function(err,res){
+      res.should.have.status(200);
+      res.body.subject.should.equal("Trapped");
+      res.body.id.should.equal(42);
+      done();
+    });
+  });
 });
 
 
