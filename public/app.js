@@ -171,18 +171,6 @@ $("#post-list").on("click",".post-summary > .delete", function(){
 
 
 listAllPosts(POSTS);
-createPost("Manually added post","Hip hip hooray, i have added this post today!");
-listAllPosts(POSTS);
-listAllPosts(POSTS);
-// deletePost(101);
-listAllPosts(POSTS);
-// loadPostForEdit(99);
-//displayPost(99);
-//setTimeout(closePost(),3000);
-
-
-//View one full post
-//Login (if time permits)
 
 
 });
