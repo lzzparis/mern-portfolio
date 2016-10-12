@@ -76,6 +76,12 @@ var populatePostForm = function(id){
   postForm.attr("name",id);
 }
 
+$("#post-list").on("click",".post-summary > .edit",function(){
+  var id = $(this).parent().attr("id");
+  console.log("clicked",id);
+  populatePostForm(id);
+});
+
 var fullPostBox = $("#full-post");
 
 var displayPost = function(id){
@@ -95,11 +101,15 @@ fullPostBox.children(".close-x").on("click",closePost);
 //View summary of posts
 var listSinglePost = function(post){
   var prettyTime = moment(post.timestamp).format("MM-DD-YYYY @ h:mm a");
-  postList.append("<li class=\"post-summary\" id=\""+post.id+"\">"+post.subject+" .... "+prettyTime+"</li>");  
+  var postSummaryTemplate = $(".templates > .post-summary").clone();
+  postSummaryTemplate.attr("id",post.id);
+  postSummaryTemplate.append(post.subject+" .... "+prettyTime);
+  postList.append(postSummaryTemplate);  
 }
 
 var listAllPosts = function(allPosts){
   allPosts.forEach(listSinglePost);
+  postList.append("<br>");
 }
 
 //Author post
@@ -150,21 +160,20 @@ postForm.on("submit",function(event){
   listAllPosts(POSTS);
 });
 
-//$(".post-summary").on("click",function(){
-$(".post-summary").click(function(){
-  var id = $(this).attr("id");
-  console.log("clicked",id);
-  populatePostForm(id);
+$("#post-list").on("click",".post-summary > .delete", function(){
+  var id = $(this).parent().attr("id");
+  deletePost(id);
+  listAllPosts(POSTS);
 });
 
 listAllPosts(POSTS);
 createPost("Manually added post","Hip hip hooray, i have added this post today!");
 listAllPosts(POSTS);
 listAllPosts(POSTS);
-deletePost(101);
+// deletePost(101);
 listAllPosts(POSTS);
 // loadPostForEdit(99);
-displayPost(99);
+//displayPost(99);
 //setTimeout(closePost(),3000);
 
 

@@ -39,12 +39,26 @@ p {
 .form-field{
   width:98%;
   margin:1%;
+  font-size:1.25rem;
+  font-family:Georgia;
+}
+.body-box{
+  height:60vh;
+}
+
+.post-summary {
+  font-size:1rem;
+}
+
+.post-summary button{
+  font-size:1.25rem;
+  margin:0.25rem;
 }
 
 .post-summary:hover{
   cursor: pointer
-
 }
+
 
 #full-post{
   position:absolute;
@@ -56,8 +70,6 @@ p {
   display:none;
 
 }
-
-
 
 .close-x{
   margin:1%;
