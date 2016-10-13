@@ -13,7 +13,7 @@ app.use(express.static('public'));
 app.get("/:id",function(req,res){
   var id = req.params.id;
   Post.findOne({_id:id}, function(err, post){
-    if(err || !item){
+    if(err || !post){
       res.status(500).json({message:"Internal server error"}); 
     }
     res.status(200).json(post);

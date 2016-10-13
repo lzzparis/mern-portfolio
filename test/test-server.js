@@ -30,13 +30,16 @@ describe('App name', function(){
     });
   });
   it('should return a post on get with id', function(done){
-    chai.request(app)
-    .get('/42')
-    .end(function(err,res){
-      res.should.have.status(200);
-      res.body.subject.should.equal("Trapped");
-      res.body.id.should.equal(42);
-      done();
+    Post.findOne({subject:"Trapped"},function(err,post){
+      var testId = post._id;
+      chai.request(app)
+      .get("/"+testId)
+      .end(function(err,res){
+        res.should.have.status(200);
+        res.body.subject.should.equal("Trapped");
+        res.body._id.should.equal(""+testId);
+        done();
+      });
     });
   });
   it('should create a post on post', function(done){
