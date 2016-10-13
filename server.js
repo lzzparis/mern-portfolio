@@ -1,3 +1,9 @@
+var express = require('express');
+var mongoose = require("mongoose");
+var bodyParser = require("body-parser");
+var config = require("./config");
+var Post = require("./models/post");
+
 var POSTS = [
     {
       id:0,
@@ -37,13 +43,11 @@ var POSTS = [
     }
   ];
 
-var express = require('express');
 var app = express();
 
+app.use(bodyParser.json());
 app.use(express.static('public'));
-app.listen(process.env.PORT || 8080);
 
-exports.app = app;
 
 
 var getPostIndex = function(id){
@@ -66,3 +70,28 @@ app.get("/:id",function(req,res){
   var post = getFullPost(id);
   res.status(200).json(post);
 });
+
+var runServer = function(callback){
+  mongoose.connect(config.DATABASE_URL, function(err){
+    if(err && callback){
+      return callback(err);
+    }
+    app.listen(config.PORT, function(){
+      console.log("Listenting on localhost:" + config.PORT);
+      if (callback){
+        callback();
+      }
+    });
+  });
+};
+
+if (require.main === module){
+  runServer(function(err){
+    if(err){
+      console.error(err);
+    }
+  });
+}
+
+exports.app = app;
+exports.runServer = runServer;
