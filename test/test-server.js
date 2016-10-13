@@ -39,6 +39,17 @@ describe('App name', function(){
       done();
     });
   });
+  it('should create a post on post', function(done){
+    chai.request(app)
+    .post("/")
+    .send({subject:"Mocha post", body:"Holy cow, how delicious is this coffee!!!"})
+    .end(function(err,res){
+      res.should.have.status(201);
+      res.body.subject.should.equal("Mocha post");
+      res.body._id.should.be.a("string");
+      done();
+    });
+  });
 });
 
 

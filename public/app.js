@@ -70,10 +70,12 @@ var getFullPost = function(id){
 }
 
 var populatePostForm = function(id){
-  var post = getFullPost(id);
-  postForm.children(".subject-box").val(post.subject);
-  postForm.children(".body-box").val(post.body);
-  postForm.attr("name",id);
+  //var post = getFullPost(id);
+  $.getJSON("/"+id,{"_id":id},function(post){
+    postForm.children(".subject-box").val(post.subject);
+    postForm.children(".body-box").val(post.body);
+    postForm.attr("name",id);
+  });
 }
 
 var fullPostBox = $("#full-post");
