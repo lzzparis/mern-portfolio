@@ -24,7 +24,8 @@ app.get("/:id",function(req,res){
 app.post("/", function(req,res){
   var newPost = {
     subject: req.body.subject,
-    body: req.body.body
+    body: req.body.body,
+    timestamp: new Date()
   };
   Post.create(newPost, function(err, post){
     if(err || !post){
@@ -32,6 +33,22 @@ app.post("/", function(req,res){
       return;
     }
     res.status(201).json(post);
+  });
+});
+
+app.put("/:id", function(req,res){
+  var id = req.params.id;
+  var updatedPost = {
+    subject: req.body.subject,
+    body: req.body.body,
+    timestamp: new Date()
+  };
+  Post.findOneAndUpdate({_id:id},updatedPost,function(err, post){
+    if(err || !post){
+      res.status(500).json({message:"Internal server error"});
+      return;
+    }
+    res.status(200).json(post);
   });
 });
 

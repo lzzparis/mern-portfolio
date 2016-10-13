@@ -53,13 +53,33 @@ describe('App name', function(){
       done();
     });
   });
+  it('should update a post on PUT with id', function(done){
+    Post.findOne({subject:"Alderaan"},function(err,post){
+      var testId = post._id;
+      chai.request(app)
+      .put("/"+testId)
+      .send({subject:"Biscuit recipe", body:"In a large bowl combine flour, sugar, baking powder and salt together. Cut butter into mixture until it begins to look like cornmeal. Make a well with flour mixture and slowly add milk into the middle. Knead dough with your fingers and add milk when necessary. Roll out dough onto a lightly floured surface and roll out to desired thickness. Cut with small biscuit cutter. Butter bottom of skillet and place biscuits in pan. Cover and place on top of hot coals in the fireplace. Carefully place some hot coals on top of the skillet cover. Bake for 12 minutes or until golden brown. Recipe courtesy of Paula Deen, 2008"})
+      .end(function(err,res){
+        res.should.have.status(200);
+        res.body._id.should.equal(""+testId);
+        chai.request(app)
+        .get("/"+testId)
+        .end(function(err,res){
+          res.body.subject.should.equal("Biscuit recipe");
+          res.body.body.should.equal("In a large bowl combine flour, sugar, baking powder and salt together. Cut butter into mixture until it begins to look like cornmeal. Make a well with flour mixture and slowly add milk into the middle. Knead dough with your fingers and add milk when necessary. Roll out dough onto a lightly floured surface and roll out to desired thickness. Cut with small biscuit cutter. Butter bottom of skillet and place biscuits in pan. Cover and place on top of hot coals in the fireplace. Carefully place some hot coals on top of the skillet cover. Bake for 12 minutes or until golden brown. Recipe courtesy of Paula Deen, 2008");
+          res.body.timestamp.should.not.equal("Thu Oct 06 2016 17:18:20 GMT-0700 (MST)");
+          done();
+        });
+      });
+    });
+  });
   it('should delete a post on DELETE with id', function(done){
     Post.findOne({subject:"Trapped"},function(err,post){
       var testId = post._id;
       chai.request(app)
       .delete("/"+testId)
       .end(function(err,res){
-        // res.should.have.status(200);
+        res.should.have.status(200);
         chai.request(app)
         .get("/"+testId)
         .end(function(err,res){
