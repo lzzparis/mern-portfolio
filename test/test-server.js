@@ -29,7 +29,7 @@ describe('App name', function(){
       done();
     });
   });
-  it('should return a post on get with id', function(done){
+  it('should return a post on GET with id', function(done){
     Post.findOne({subject:"Trapped"},function(err,post){
       var testId = post._id;
       chai.request(app)
@@ -42,7 +42,7 @@ describe('App name', function(){
       });
     });
   });
-  it('should create a post on post', function(done){
+  it('should create a post on POST', function(done){
     chai.request(app)
     .post("/")
     .send({subject:"Mocha post", body:"Holy cow, how delicious is this coffee!!!"})
@@ -53,6 +53,23 @@ describe('App name', function(){
       done();
     });
   });
+  it('should delete a post on DELETE with id', function(done){
+    Post.findOne({subject:"Trapped"},function(err,post){
+      var testId = post._id;
+      chai.request(app)
+      .delete("/"+testId)
+      .end(function(err,res){
+        // res.should.have.status(200);
+        chai.request(app)
+        .get("/"+testId)
+        .end(function(err,res){
+          res.should.have.status(500);
+          done();
+        });
+      });
+    });
+  });
+
 });
 
 

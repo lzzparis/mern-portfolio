@@ -15,6 +15,7 @@ app.get("/:id",function(req,res){
   Post.findOne({_id:id}, function(err, post){
     if(err || !post){
       res.status(500).json({message:"Internal server error"}); 
+      return;
     }
     res.status(200).json(post);
   });
@@ -28,9 +29,21 @@ app.post("/", function(req,res){
   Post.create(newPost, function(err, post){
     if(err || !post){
       res.status(500).json({message:"Internal server error"});
+      return;
     }
     res.status(201).json(post);
   });
+});
+
+app.delete("/:id", function(req,res){
+  var id = req.params.id;
+  Post.findOneAndRemove({_id:id},function(err,post){
+    if(err || !post){
+      res.status(500).json({message:"Internal server error"});
+      return;
+    }
+    res.status(200).json(post);
+  })
 });
 
 var runServer = function(callback){
