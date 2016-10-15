@@ -130,11 +130,18 @@ var createPost = function(subject, body){
 //Edit post
 
 
-var editPost = function(id,subject,body){
-  var postIndex = getPostIndex(id);
-  POSTS[postIndex].subject = subject;
-  POSTS[postIndex].body = body;
-  POSTS[postIndex].timestamp = new Date();
+var updatePost = function(id,subject,body){
+  var post = {
+    subject:subject,
+    body:body
+  }
+  $.ajax("/"+id,{
+    type:"PUT",
+    data: JSON.stringify(post),
+    dataType: "json",
+    contentType: "application/json"
+  })
+  .done(listAllPosts);
 }
 
 //Delete post
@@ -161,7 +168,7 @@ postForm.on("submit",function(event){
     createPost(subject,body);
   }
   else{
-    editPost(id, subject, body);
+    updatePost(id, subject, body);
   }
   clearForm();
   listAllPosts(POSTS);
