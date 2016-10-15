@@ -89,6 +89,11 @@ describe('App name', function(){
       });
     });
   });
+  after(function(done) {
+    Post.remove(function() {
+      done();
+    });
+  });
 
 });
 

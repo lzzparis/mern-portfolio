@@ -90,18 +90,42 @@ var listSinglePost = function(post){
   postList.append(postSummaryTemplate);  
 }
 
-var listAllPosts = function(allPosts){
-  allPosts.forEach(listSinglePost);
-  postList.append("<br>");
+var listAllPosts = function(){
+  $.ajax("/all",{
+    type:"GET",
+    dataType: "json",
+    contentType: "application/json"
+  })
+  .done(function(allPosts){
+    postList.html("");
+    allPosts.forEach(listSinglePost);
+  });
 }
 
 //Author post
 var postPost = function(post, allPosts){
   allPosts.push(post);
 }
+
+var errorHandler = function(jqXHR, error){
+  console.log(jqXHR);
+  console.log(error);
+}
+
 var createPost = function(subject, body){
-  var post = new Post(subject,body);
-  postPost(post, POSTS);
+  var post = {
+    subject:subject, 
+    body:body
+  };
+
+  $.ajax("/",{
+    type:"POST",
+    data: JSON.stringify(post),
+    dataType: "json",
+    contentType: "application/json"
+  })
+  .done(listAllPosts);
+
 }
 //Edit post
 
@@ -158,8 +182,7 @@ $("#post-list").on("click",".post-summary > .delete", function(){
   listAllPosts(POSTS);
 });
 
-
-listAllPosts(POSTS);
+listAllPosts();
 
 
 });

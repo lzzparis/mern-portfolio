@@ -9,6 +9,16 @@ var app = express();
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
+app.get("/all",function(req,res){
+  Post.find(function(err, posts){
+    if(err || !posts){
+      res.status(500).json({message:"Internal server error"}); 
+      return;
+    }
+    res.status(200).json(posts);
+  });
+});
+
 
 app.get("/:id",function(req,res){
   var id = req.params.id;
