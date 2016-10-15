@@ -46,12 +46,15 @@ When the user loads the page, the list of existing posts from the database is po
 ###Client
 * jQuery
 * Moment.JS v2.15.1
+
 ###Server
 * Express v4.14.9 
 * Body Parser v1.15.2
+
 ###Database
 * MongoDB v2.2.10 
 * Mongoose v4.6.3
+
 ###Test
 * Mocha v3.1.0
 * Chai v3.5.0
