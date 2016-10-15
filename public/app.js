@@ -146,8 +146,12 @@ var updatePost = function(id,subject,body){
 
 //Delete post
 var deletePost = function(id){
-  var postIndex = getPostIndex(id);
-  POSTS.splice(postIndex,1);
+  $.ajax("/"+id,{
+    type:"DELETE",
+    dataType: "json",
+    contentType: "application/json"
+  })
+  .done(listAllPosts);
 }
 
 
