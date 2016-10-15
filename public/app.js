@@ -51,24 +51,24 @@ var getPostIndex = function(id){
 };
 
 //get full post
-var getFullPost = function(id){
-  var postIndex = getPostIndex(id);
-  return POSTS[postIndex];
+var getFullPost = function(id,successHandle){
+  $.ajax("/"+id,{
+    type:"GET",
+    dataType: "json",
+    contentType: "application/json"
+  })
+  .done(successHandle);
 }
 
-var populatePostForm = function(id){
-  //var post = getFullPost(id);
-  $.getJSON("/"+id,{"_id":id},function(post){
-    postForm.children(".subject-box").val(post.subject);
-    postForm.children(".body-box").val(post.body);
-    postForm.attr("name",id);
-  });
+var populatePostForm = function(post){
+  postForm.children(".subject-box").val(post.subject);
+  postForm.children(".body-box").val(post.body);
+  postForm.attr("name",post._id);
 }
 
 var fullPostBox = $("#full-post");
 
-var displayPost = function(id){
-  var post = getFullPost(id);
+var displayPost = function(post){
   fullPostBox.children(".subject-header").text(post.subject);
   fullPostBox.children(".body-content").text(post.body);
   fullPostBox.css("display","block");
@@ -180,12 +180,12 @@ postForm.on("submit",function(event){
 
 $("#post-list").on("click",".post-summary > .post-info",function(){
   var id = $(this).parent().attr("id");
-  displayPost(id);
+  getFullPost(id,displayPost);
 });
 
 $("#post-list").on("click",".post-summary > .edit",function(){
   var id = $(this).parent().attr("id");
-  populatePostForm(id);
+  getFullPost(id, populatePostForm);
 });
 $("#post-list").on("click",".post-summary > .delete", function(){
   var id = $(this).parent().attr("id");
