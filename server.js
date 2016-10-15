@@ -19,7 +19,6 @@ app.get("/all",function(req,res){
   });
 });
 
-
 app.get("/:id",function(req,res){
   var id = req.params.id;
   Post.findOne({_id:id}, function(err, post){
