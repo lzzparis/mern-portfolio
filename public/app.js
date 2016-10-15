@@ -116,7 +116,7 @@ var clearForm = function(){
 
 $(".clear-btn").on("click", clearForm);
 
-postForm.on("submit",function(event){
+$(".submit-btn").on("click",function(event){
   event.preventDefault();
   var subject = $(this).children(".subject-box").val();
   var body = $(this).children(".body-box").val();
