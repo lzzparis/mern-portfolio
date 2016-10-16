@@ -106,8 +106,8 @@ $(document).ready(function(){
   
   $(".submit-btn").on("click",function(event){
     event.preventDefault();
-    var subject = $(this).children(".subject-box").val();
-    var body = $(this).children(".body-box").val();
+    var subject = $(this).parent().children(".subject-box").val();
+    var body = $(this).parent().children(".body-box").val();
   
     var id = $(this).attr("name");
   
