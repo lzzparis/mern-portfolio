@@ -99,25 +99,35 @@ $(document).ready(function(){
   var clearForm = function(){
     postForm.children(".subject-box").val("");
     postForm.children(".body-box").val("");
+    postForm.attr("name","");
+    $(".subject-warning").text("");
   
   }
   
-  $(".clear-btn").on("click", clearForm);
+  $(".clear-btn").on("click", function(event){
+    event.preventDefault();
+    clearForm();
+  });
   
   $(".submit-btn").on("click",function(event){
     event.preventDefault();
     var subject = $(this).parent().children(".subject-box").val();
     var body = $(this).parent().children(".body-box").val();
   
-    var id = $(this).attr("name");
+    var id = $(this).parent().attr("name");
   
-    if(id ==undefined){
-      createPost(subject,body);
+    if(subject == ""){
+      $(".subject-warning").text("* required field");
     }
     else{
-      updatePost(id, subject, body);
+      if(id == ""){
+        createPost(subject,body);
+      }
+      else{
+        updatePost(id, subject, body);
+      }
+      clearForm();
     }
-    clearForm();
   });
   
   $("#post-list").on("click",".post-summary > .post-info",function(){
