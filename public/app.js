@@ -102,7 +102,10 @@ $(document).ready(function(){
   
   }
   
-  $(".clear-btn").on("click", clearForm);
+  $(".clear-btn").on("click", function(event){
+    event.preventDefault();
+    clearForm();
+  });
   
   $(".submit-btn").on("click",function(event){
     event.preventDefault();
