@@ -99,6 +99,7 @@ $(document).ready(function(){
   var clearForm = function(){
     postForm.children(".subject-box").val("");
     postForm.children(".body-box").val("");
+    $(".subject-warning").text("");
   
   }
   
@@ -114,13 +115,18 @@ $(document).ready(function(){
   
     var id = $(this).attr("name");
   
-    if(id ==undefined){
-      createPost(subject,body);
+    if(subject == ""){
+      $(".subject-warning").text("* required field");
     }
     else{
-      updatePost(id, subject, body);
+      if(id ==undefined){
+        createPost(subject,body);
+      }
+      else{
+        updatePost(id, subject, body);
+      }
+      clearForm();
     }
-    clearForm();
   });
   
   $("#post-list").on("click",".post-summary > .post-info",function(){

@@ -45,6 +45,10 @@ p {
 .body-box{
   height:60vh;
 }
+.subject-warning{
+  color:red;
+  font-style: italic;
+}
 
 .post-summary {
   font-size:1rem;
