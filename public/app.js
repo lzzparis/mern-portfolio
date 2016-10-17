@@ -99,6 +99,7 @@ $(document).ready(function(){
   var clearForm = function(){
     postForm.children(".subject-box").val("");
     postForm.children(".body-box").val("");
+    postForm.attr("name","");
     $(".subject-warning").text("");
   
   }
@@ -113,13 +114,13 @@ $(document).ready(function(){
     var subject = $(this).parent().children(".subject-box").val();
     var body = $(this).parent().children(".body-box").val();
   
-    var id = $(this).attr("name");
+    var id = $(this).parent().attr("name");
   
     if(subject == ""){
       $(".subject-warning").text("* required field");
     }
     else{
-      if(id ==undefined){
+      if(id == ""){
         createPost(subject,body);
       }
       else{
