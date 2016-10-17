@@ -69,13 +69,15 @@ p {
 
 
 #full-post{
-  position:absolute;
+  position:fixed;
   top:2%;
   left:15%;
   width:70%;
+  height:96vh;
   z-index: 999;
   background-color: aliceblue;
   display:none;
+  border:1px solid #ddd;
 
 }
 
