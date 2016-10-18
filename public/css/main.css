@@ -78,6 +78,7 @@ p {
   background-color: aliceblue;
   display:none;
   border:1px solid #ddd;
+  overflow: auto;
 
 }
 
