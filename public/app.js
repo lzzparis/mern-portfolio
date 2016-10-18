@@ -21,7 +21,7 @@ $(document).ready(function(){
   
   var displayPost = function(post){
     fullPostBox.children(".subject-header").text(post.subject);
-    fullPostBox.children(".body-content").text(post.body);
+    fullPostBox.children(".body-content").html(post.body);
     fullPostBox.css("display","block");
   }
   var closePost = function(){
@@ -112,7 +112,7 @@ $(document).ready(function(){
   $(".submit-btn").on("click",function(event){
     event.preventDefault();
     var subject = $(this).parent().children(".subject-box").val();
-    var body = $(this).parent().children(".body-box").val();
+    var body = $(this).parent().children(".body-box").val().replace(/\r\n|\r|\n/g,"<br />");
   
     var id = $(this).parent().attr("name");
   
