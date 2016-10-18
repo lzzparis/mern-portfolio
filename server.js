@@ -34,6 +34,7 @@ app.post("/", function(req,res){
   var newPost = {
     subject: req.body.subject,
     body: req.body.body,
+    img: req.body.img,
     timestamp: new Date()
   };
   Post.create(newPost, function(err, post){
@@ -50,6 +51,7 @@ app.put("/:id", function(req,res){
   var updatedPost = {
     subject: req.body.subject,
     body: req.body.body,
+    img: req.body.img,
     timestamp: new Date()
   };
   Post.findOneAndUpdate({_id:id},updatedPost,function(err, post){
