@@ -59,3 +59,14 @@ When the user loads the page, the list of existing posts from the database is po
 * Mocha v3.1.0
 * Chai v3.5.0
 * ChaiHTTP v3.0.0
+
+##Next Steps
+* Create owner view and guest view
+* Protect blog manager (owner view) with Passport authentication and limit access to a single primary user (owner)
+* Include HTML or Markdown editor in form
+* Allow primary user to embed one or multiple images in post body
+* Allow any user to sort posts in the post summary
+* Allow guests to comment on posts
+* Allow primary user to reject/accept comments
+* Allow primary user to upload picture file to file system and choose from existing uploads to embed in post (media manager)
+ 
