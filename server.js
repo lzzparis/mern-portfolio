@@ -3,6 +3,7 @@ var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var config = require("./config");
 var Post = require("./models/post");
+var markdown = require("markdown").markdown;
 
 var app = express();
 
@@ -26,6 +27,7 @@ app.get("/:id",function(req,res){
       res.status(500).json({message:"Internal server error"}); 
       return;
     }
+    post.body = markdown.toHTML(post.body);
     res.status(200).json(post);
   });
 });
