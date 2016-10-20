@@ -112,7 +112,7 @@ $(document).ready(function(){
   $(".submit-btn").on("click",function(event){
     event.preventDefault();
     var subject = $(this).parent().children(".subject-box").val();
-    var body = $(this).parent().children(".body-box").val().replace(/\r\n|\r|\n/g,"<br />");
+    var body = $(this).parent().children(".body-box").val();
   
     var id = $(this).parent().attr("name");
   

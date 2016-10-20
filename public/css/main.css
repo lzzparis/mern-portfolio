@@ -52,6 +52,7 @@ p {
 
 .post-summary {
   font-size:1rem;
+  list-style: none;
 }
 
 .post-summary button{
