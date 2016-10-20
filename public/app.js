@@ -16,12 +16,14 @@ $(document).ready(function(){
   var populatePostForm = function(post){
     postForm.children(".subject-box").val(post.subject);
     postForm.children(".body-box").val(post.body);
+    postForm.children(".img-box").val(post.img);
     postForm.attr("name",post._id);
   }
   
   var displayPost = function(post){
     fullPostBox.children(".subject-header").text(post.subject);
     fullPostBox.children(".body-content").html(post.body);
+    fullPostBox.children(".image-content").attr("src",post.img);
     fullPostBox.css("display","block");
   }
   var closePost = function(){
@@ -57,10 +59,11 @@ $(document).ready(function(){
     console.log(error);
   }
   
-  var createPost = function(subject, body){
+  var createPost = function(subject, body, img){
     var post = {
       subject:subject, 
-      body:body
+      body:body,
+      img:img
     };
   
     $.ajax("/",{
@@ -73,10 +76,11 @@ $(document).ready(function(){
   
   }
   
-  var updatePost = function(id,subject,body){
+  var updatePost = function(id,subject,body,img){
     var post = {
       subject:subject,
-      body:body
+      body:body,
+      img:img
     }
     $.ajax("/"+id,{
       type:"PUT",
@@ -99,6 +103,7 @@ $(document).ready(function(){
   var clearForm = function(){
     postForm.children(".subject-box").val("");
     postForm.children(".body-box").val("");
+    postForm.children(".img-box").val("");
     postForm.attr("name","");
     $(".subject-warning").text("");
   
@@ -113,6 +118,7 @@ $(document).ready(function(){
     event.preventDefault();
     var subject = $(this).parent().children(".subject-box").val();
     var body = $(this).parent().children(".body-box").val().replace(/\r\n|\r|\n/g,"<br />");
+    var img = $(this).parent().children(".img-box").val();
   
     var id = $(this).parent().attr("name");
   
@@ -121,10 +127,10 @@ $(document).ready(function(){
     }
     else{
       if(id == ""){
-        createPost(subject,body);
+        createPost(subject,body,img);
       }
       else{
-        updatePost(id, subject, body);
+        updatePost(id, subject, body, img);
       }
       clearForm();
     }

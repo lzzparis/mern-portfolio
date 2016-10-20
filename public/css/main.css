@@ -43,7 +43,7 @@ p {
   font-family:Georgia;
 }
 .body-box{
-  height:60vh;
+  height:50vh;
 }
 .subject-warning{
   color:red;
@@ -80,6 +80,13 @@ p {
   border:1px solid #ddd;
   overflow: auto;
 
+}
+
+.image-content{
+  margin:1% auto;
+  max-height: 40vh;
+  max-width: 98%;
+  display:block;
 }
 
 .close-x{
