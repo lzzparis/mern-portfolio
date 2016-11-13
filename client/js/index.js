@@ -76,7 +76,6 @@ $(document).ready(function(){
       return response.json();
     })
     .then(function(allPosts){
-      console.log(allPosts);
       postList.html("");
       allPosts.forEach(listSinglePost);
     });  
@@ -94,15 +93,26 @@ $(document).ready(function(){
       body:body,
       img:img
     };
+    var data = JSON.stringify(post);
   
-    $.ajax("/",{
-      type:"POST",
-      data: JSON.stringify(post),
-      dataType: "json",
-      contentType: "application/json"
+    // $.ajax("/",{
+    //   type:"POST",
+    //   data: JSON.stringify(post),
+    //   dataType: "json",
+    //   contentType: "application/json"
+    // })
+    // .done(listAllPosts);
+    var url = "/";
+    var headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+
+    fetch(url, {method: "POST", headers: headers, body:data})
+    .then(function(response){
+      return response.json();
     })
-    .done(listAllPosts);
-  
+    .then(listAllPosts); 
   }
   
   var updatePost = function(id,subject,body,img){
