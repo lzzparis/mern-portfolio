@@ -1,3 +1,4 @@
+var fetch = require("isomorphic-fetch");
 
 $(document).ready(function(){
   var postList = $("#post-list");
@@ -5,12 +6,17 @@ $(document).ready(function(){
   var fullPostBox = $("#full-post");
 
   var getFullPost = function(id,successHandle){
-    $.ajax("/"+id,{
-      type:"GET",
-      dataType: "json",
-      contentType: "application/json"
+    var url = "/"+id;
+    var headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+
+    fetch(url, {method: "GET", headers: headers})
+    .then(function(response){
+      return response.json();
     })
-    .done(successHandle);
+    .then(successHandle);
   }
   
   var populatePostForm = function(post){
@@ -43,15 +49,22 @@ $(document).ready(function(){
   }
   
   var listAllPosts = function(){
-    $.ajax("/all",{
-      type:"GET",
-      dataType: "json",
-      contentType: "application/json"
+
+    var url = "/all";
+    var headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+
+    fetch(url, {method: "GET", headers: headers})
+    .then(function(response){
+      return response.json();
     })
-    .done(function(allPosts){
+    .then(function(allPosts){
       postList.html("");
       allPosts.forEach(listSinglePost);
-    });
+    });  
+
   }
   
   var errorHandler = function(jqXHR, error){
@@ -65,15 +78,19 @@ $(document).ready(function(){
       body:body,
       img:img
     };
+    var data = JSON.stringify(post);
   
-    $.ajax("/",{
-      type:"POST",
-      data: JSON.stringify(post),
-      dataType: "json",
-      contentType: "application/json"
+    var url = "/";
+    var headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+
+    fetch(url, {method: "POST", headers: headers, body:data})
+    .then(function(response){
+      return response.json();
     })
-    .done(listAllPosts);
-  
+    .then(listAllPosts); 
   }
   
   var updatePost = function(id,subject,body,img){
@@ -82,22 +99,33 @@ $(document).ready(function(){
       body:body,
       img:img
     }
-    $.ajax("/"+id,{
-      type:"PUT",
-      data: JSON.stringify(post),
-      dataType: "json",
-      contentType: "application/json"
+    
+    var data = JSON.stringify(post);
+    var url = "/"+id;
+    var headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+
+    fetch(url, {method: "PUT", headers: headers, body:data})
+    .then(function(response){
+      return response.json();
     })
-    .done(listAllPosts);
+    .then(listAllPosts); 
   }
   
   var deletePost = function(id){
-    $.ajax("/"+id,{
-      type:"DELETE",
-      dataType: "json",
-      contentType: "application/json"
+    var url = "/"+id;
+    var headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+
+    fetch(url, {method: "DELETE", headers: headers})
+    .then(function(response){
+      return response.json();
     })
-    .done(listAllPosts);
+    .then(listAllPosts); 
   }
   
   var clearForm = function(){
