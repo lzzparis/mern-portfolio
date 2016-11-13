@@ -121,13 +121,26 @@ $(document).ready(function(){
       body:body,
       img:img
     }
-    $.ajax("/"+id,{
-      type:"PUT",
-      data: JSON.stringify(post),
-      dataType: "json",
-      contentType: "application/json"
+    // $.ajax("/"+id,{
+    //   type:"PUT",
+    //   data: JSON.stringify(post),
+    //   dataType: "json",
+    //   contentType: "application/json"
+    // })
+    // .done(listAllPosts);
+    var data = JSON.stringify(post);
+    var url = "/"+id;
+    var headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+
+    fetch(url, {method: "PUT", headers: headers, body:data})
+    .then(function(response){
+      console.log("inside update fetch");
+      return response.json();
     })
-    .done(listAllPosts);
+    .then(listAllPosts); 
   }
   
   var deletePost = function(id){
