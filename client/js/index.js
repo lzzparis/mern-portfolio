@@ -6,12 +6,6 @@ $(document).ready(function(){
   var fullPostBox = $("#full-post");
 
   var getFullPost = function(id,successHandle){
-    // $.ajax("/"+id,{
-    //   type:"GET",
-    //   dataType: "json",
-    //   contentType: "application/json"
-    // })
-    // .done(successHandle);
     var url = "/"+id;
     var headers = {
       'Accept': 'application/json',
@@ -55,15 +49,6 @@ $(document).ready(function(){
   }
   
   var listAllPosts = function(){
-    // $.ajax("/all",{
-    //   type:"GET",
-    //   dataType: "json",
-    //   contentType: "application/json"
-    // })
-    // .done(function(allPosts){
-    //   postList.html("");
-    //   allPosts.forEach(listSinglePost);
-    // });
 
     var url = "/all";
     var headers = {
@@ -95,13 +80,6 @@ $(document).ready(function(){
     };
     var data = JSON.stringify(post);
   
-    // $.ajax("/",{
-    //   type:"POST",
-    //   data: JSON.stringify(post),
-    //   dataType: "json",
-    //   contentType: "application/json"
-    // })
-    // .done(listAllPosts);
     var url = "/";
     var headers = {
       'Accept': 'application/json',
@@ -121,13 +99,7 @@ $(document).ready(function(){
       body:body,
       img:img
     }
-    // $.ajax("/"+id,{
-    //   type:"PUT",
-    //   data: JSON.stringify(post),
-    //   dataType: "json",
-    //   contentType: "application/json"
-    // })
-    // .done(listAllPosts);
+    
     var data = JSON.stringify(post);
     var url = "/"+id;
     var headers = {
@@ -143,12 +115,6 @@ $(document).ready(function(){
   }
   
   var deletePost = function(id){
-    // $.ajax("/"+id,{
-    //   type:"DELETE",
-    //   dataType: "json",
-    //   contentType: "application/json"
-    // })
-    // .done(listAllPosts);
     var url = "/"+id;
     var headers = {
       'Accept': 'application/json',
