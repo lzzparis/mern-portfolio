@@ -1,8 +1,8 @@
 var chai = require('chai');
 var chaiHttp = require('chai-http');
 
-var server = require('../server.js');
-var Post = require('../models/post');
+var server = require('../../server/index');
+var Post = require('../../server/models/post');
 
 var should = chai.should();
 var app = server.app;

@@ -8,7 +8,8 @@ var markdown = require("markdown").markdown;
 var app = express();
 
 app.use(bodyParser.json());
-app.use(express.static('public'));
+
+app.use(express.static(process.env.CLIENT_PATH || "build/dev/client/"));
 
 app.get("/all",function(req,res){
   Post.find(function(err, posts){
