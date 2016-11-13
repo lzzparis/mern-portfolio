@@ -1,3 +1,4 @@
+var fetch = require("isomorphic-fetch");
 
 $(document).ready(function(){
   var postList = $("#post-list");
@@ -5,12 +6,23 @@ $(document).ready(function(){
   var fullPostBox = $("#full-post");
 
   var getFullPost = function(id,successHandle){
-    $.ajax("/"+id,{
-      type:"GET",
-      dataType: "json",
-      contentType: "application/json"
+    // $.ajax("/"+id,{
+    //   type:"GET",
+    //   dataType: "json",
+    //   contentType: "application/json"
+    // })
+    // .done(successHandle);
+    var url = "/"+id;
+    var headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+
+    fetch(url, {method: "GET", headers: headers})
+    .then(function(response){
+      return response.json();
     })
-    .done(successHandle);
+    .then(successHandle);
   }
   
   var populatePostForm = function(post){
@@ -43,15 +55,32 @@ $(document).ready(function(){
   }
   
   var listAllPosts = function(){
-    $.ajax("/all",{
-      type:"GET",
-      dataType: "json",
-      contentType: "application/json"
+    // $.ajax("/all",{
+    //   type:"GET",
+    //   dataType: "json",
+    //   contentType: "application/json"
+    // })
+    // .done(function(allPosts){
+    //   postList.html("");
+    //   allPosts.forEach(listSinglePost);
+    // });
+
+    var url = "/all";
+    var headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+
+    fetch(url, {method: "GET", headers: headers})
+    .then(function(response){
+      return response.json();
     })
-    .done(function(allPosts){
+    .then(function(allPosts){
+      console.log(allPosts);
       postList.html("");
       allPosts.forEach(listSinglePost);
-    });
+    });  
+
   }
   
   var errorHandler = function(jqXHR, error){
