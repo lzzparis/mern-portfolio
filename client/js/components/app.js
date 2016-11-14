@@ -1,8 +1,10 @@
 var React = require("react");
 
+var PostForm = require("./post-form");
+
 var App = function(){
   return(
-    <p>Rendering App!</p>
+    <PostForm />
   )
 };
 
