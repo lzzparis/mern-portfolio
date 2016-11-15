@@ -77,7 +77,7 @@ p {
   height:96vh;
   z-index: 999;
   background-color: aliceblue;
-  display:none;
+  /*display:none;*/
   border:1px solid #ddd;
   overflow: auto;
 
@@ -98,5 +98,13 @@ p {
 
 .close-x:hover{
   cursor: pointer;
-
 }
+
+.display-it {
+  display: block;
+}
+
+.hide-it {
+  display: none;
+}
+

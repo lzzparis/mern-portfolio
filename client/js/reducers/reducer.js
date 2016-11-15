@@ -6,6 +6,8 @@ var initialState = {
     bodyBox: "",
     imgBox: ""
   },
+  displayPost:{},
+  fullPostClass:"hide-it",
   posts:{}
 };
 
@@ -16,11 +18,12 @@ var reducer = function(state, action){
   console.log(action);
   switch(action.type){
     case actions.CLEAR_FORM:
-      console.log("FORM CLEAR REDUCED!!");
       return Object.assign({}, state, {formData: initialState.formData});
     case actions.FETCH_ALL_POSTS_SUCCESS:
-      console.log(action.posts);
       return Object.assign({}, state, {posts: action.posts});
+    case actions.FETCH_FULL_POST_SUCCESS:
+      return Object.assign( {}, state, {displayPost: action.post}, 
+                            {fullPostClass: "display-it"});
     default: 
       return state;
   }
