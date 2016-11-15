@@ -5,7 +5,7 @@ var actions = require("../actions/actions");
 
 var FullPost = require("./full-post");
 var PostFormContainer = require("./post-form-container");
-var PostList = require("./post-list");
+var PostListContainer = require("./post-list-container");
 
 var App = React.createClass({
   componentDidMount:function(){
@@ -16,7 +16,7 @@ var App = React.createClass({
       <div>
         <FullPost />
         <PostFormContainer />
-        <PostList />
+        <PostListContainer />
       </div>
     );
   }
