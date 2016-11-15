@@ -6,7 +6,7 @@ var PostList = React.createClass({
   render: function(){
     var list = [];
     for(var i=0; i < this.props.posts.length; i++){
-      list.push(<PostSummary post={this.props.posts[i]} />);
+      list.push(<PostSummary post={this.props.posts[i]} key={i}/>);
     }
     return(
       <div className="half-width right">

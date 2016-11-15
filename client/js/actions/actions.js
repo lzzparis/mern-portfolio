@@ -36,7 +36,31 @@ var fetchAllPosts = function(){
   }
 }
 
+var createPost = function(post){
+  return function(dispatch){
+    var body = JSON.stringify(post);
+
+    var url = "/";
+    var headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+
+    fetch(url, {method: "POST", headers: headers, body:body})
+    .then(function(response){
+
+      return response.json();
+    })
+    .then(function(data){
+      console.log(data);
+      return dispatch(fetchAllPosts()); 
+    }); 
+  }
+}
+
+
 exports.CLEAR_FORM = CLEAR_FORM;
 exports.clearForm = clearForm; 
 exports.fetchAllPosts = fetchAllPosts;
 exports.FETCH_ALL_POSTS_SUCCESS = FETCH_ALL_POSTS_SUCCESS;
+exports.createPost = createPost;

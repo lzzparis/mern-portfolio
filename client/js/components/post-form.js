@@ -18,13 +18,22 @@ var PostForm = React.createClass({
     })
   },
   formClear: function(e){
-    e.preventDefault;
+    e.preventDefault();
     this.props.dispatch(actions.clearForm());
     this.setState({
       formSubject:"",
       formBody:"",
       formImg:""
     });
+  },
+  formSubmit: function(e){
+    e.preventDefault();
+    var post = {
+      subject: this.state.formSubject, 
+      body: this.state.formBody,
+      img: this.state.formImg
+    };
+    this.props.dispatch(actions.createPost(post));
   },
   render:function(){
     return(
@@ -37,7 +46,7 @@ var PostForm = React.createClass({
           <textarea className="form-field body-box" ref="body" value={this.state.formBody}></textarea><br />
           Image<br />
           <input className="form-field img-box" ref="img" value={this.state.formImg} /><br />
-          <input type="submit" className="btn submit-btn" />
+          <input type="submit" className="btn submit-btn" onClick={this.formSubmit} />
           <button className="btn clear-btn" onClick={this.formClear}>Clear</button>
         </form> 
       </div>
