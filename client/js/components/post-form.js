@@ -10,6 +10,13 @@ var PostForm = React.createClass({
       formImg:""
     }
   },
+  componentWillReceiveProps: function(nextProps){
+    this.setState({
+      formSubject: nextProps.formSubject,
+      formBody: nextProps.formBody,
+      formImg: nextProps.formImg,
+    });
+  },
   updateForm: function(){
     this.setState({
       formSubject: this.refs.subject.value,
