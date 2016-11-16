@@ -5,9 +5,10 @@ var actions = require("../actions/actions");
 var PostForm = React.createClass({
   getInitialState: function(){
     return {
-      formSubject:"",
-      formBody:"",
-      formImg:""
+      formSubject: "",
+      formBody: "",
+      formImg: "",
+      postId: null
     }
   },
   componentWillReceiveProps: function(nextProps){
@@ -15,6 +16,7 @@ var PostForm = React.createClass({
       formSubject: nextProps.formSubject,
       formBody: nextProps.formBody,
       formImg: nextProps.formImg,
+      postId: nextProps.postId
     });
   },
   updateForm: function(){
@@ -27,9 +29,10 @@ var PostForm = React.createClass({
   formReset: function(){
     this.props.dispatch(actions.resetForm());
     this.setState({
-      formSubject:"",
-      formBody:"",
-      formImg:""
+      formSubject: "",
+      formBody: "",
+      formImg: "",
+      postId: null
     });
   },
   formClear: function(e){
@@ -43,7 +46,13 @@ var PostForm = React.createClass({
       body: this.state.formBody,
       img: this.state.formImg
     };
-    this.props.dispatch(actions.createPost(post));
+    if(this.props.editMode){
+      post._id = this.state.postId;
+      this.props.dispatch(actions.updatePost(post));
+    }
+    else {
+      this.props.dispatch(actions.createPost(post));
+    }
     this.formReset();
   },
   render:function(){

@@ -7,7 +7,9 @@ var mapStateToProps = function(state, props){
   return {
     formSubject: state.formData.subject,
     formBody: state.formData.body,
-    formImg: state.formData.img
+    formImg: state.formData.img,
+    postId: state.formData._id,
+    editMode: state.editMode
   }
 }
 
