@@ -86,6 +86,23 @@ var fetchFullPost = function(id){
   }
 }
 
+var deletePost = function(id){
+  return function(dispatch){
+    var url = "/"+id;
+    var headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+
+    fetch(url, {method: "DELETE", headers: headers})
+    .then(function(response){
+      return response.json();
+    })
+    .then(function(){
+      return dispatch(fetchAllPosts());
+    }); 
+  };
+};
 
 exports.RESET_FORM = RESET_FORM;
 exports.resetForm = resetForm; 
@@ -94,3 +111,4 @@ exports.FETCH_ALL_POSTS_SUCCESS = FETCH_ALL_POSTS_SUCCESS;
 exports.createPost = createPost;
 exports.fetchFullPost = fetchFullPost;
 exports.FETCH_FULL_POST_SUCCESS = FETCH_FULL_POST_SUCCESS;
+exports.deletePost = deletePost;
