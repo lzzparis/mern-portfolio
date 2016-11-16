@@ -15,7 +15,7 @@ var actions = require("../actions/actions");
 var reducer = function(state, action){
   state = state || initialState;
   switch(action.type){
-    case actions.CLEAR_FORM:
+    case actions.RESET_FORM:
       return Object.assign({}, state, {formData: initialState.formData});
     case actions.FETCH_ALL_POSTS_SUCCESS:
       return Object.assign({}, state, {posts: action.posts});

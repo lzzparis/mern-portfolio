@@ -1,9 +1,9 @@
 var fetch = require("isomorphic-fetch");
 
-var CLEAR_FORM = "CLEAR_FORM";
-var clearForm = function(){
+var RESET_FORM = "RESET_FORM";
+var resetForm = function(){
   return {
-    type: CLEAR_FORM
+    type: RESET_FORM
   }
 };
 
@@ -31,7 +31,7 @@ var fetchAllPosts = function(){
       return dispatch(fetchAllPostsSuccess(allPosts));
     })
     .catch(function(error){
-      console.log(error);
+      console.error(error);
     });  
   }
 }
@@ -52,7 +52,6 @@ var createPost = function(post){
       return response.json();
     })
     .then(function(data){
-      console.log(data);
       return dispatch(fetchAllPosts()); 
     }); 
   }
@@ -88,8 +87,8 @@ var fetchFullPost = function(id){
 }
 
 
-exports.CLEAR_FORM = CLEAR_FORM;
-exports.clearForm = clearForm; 
+exports.RESET_FORM = RESET_FORM;
+exports.resetForm = resetForm; 
 exports.fetchAllPosts = fetchAllPosts;
 exports.FETCH_ALL_POSTS_SUCCESS = FETCH_ALL_POSTS_SUCCESS;
 exports.createPost = createPost;

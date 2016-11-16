@@ -17,14 +17,17 @@ var PostForm = React.createClass({
       formImg: this.refs.img.value
     })
   },
-  formClear: function(e){
-    e.preventDefault();
-    this.props.dispatch(actions.clearForm());
+  formReset: function(){
+    this.props.dispatch(actions.resetForm());
     this.setState({
       formSubject:"",
       formBody:"",
       formImg:""
     });
+  },
+  formClear: function(e){
+    e.preventDefault();
+    this.formReset();
   },
   formSubmit: function(e){
     e.preventDefault();
@@ -34,6 +37,7 @@ var PostForm = React.createClass({
       img: this.state.formImg
     };
     this.props.dispatch(actions.createPost(post));
+    this.formReset();
   },
   render:function(){
     return(
