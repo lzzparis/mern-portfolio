@@ -5,9 +5,9 @@ var PostForm = require("./post-form");
 
 var mapStateToProps = function(state, props){
   return {
-    formSubject: state.formData.subjectBox,
-    formBody: state.formData.bodyBox,
-    formImg: state.formData.imgBox
+    formSubject: state.formData.subject,
+    formBody: state.formData.body,
+    formImg: state.formData.img
   }
 }
 

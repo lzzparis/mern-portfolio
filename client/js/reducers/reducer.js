@@ -1,11 +1,17 @@
 var React = require("react");
 
+var EmptyPost = function(){
+  return {
+    _id: null,
+    subject: "",
+    body: "",
+    img: "",
+    timestamp: new Date()
+  };
+};
+
 var initialState = {
-  formData: {
-    subjectBox: "",
-    bodyBox: "",
-    imgBox: ""
-  },
+  formData: new EmptyPost(),
   displayPost:{},
   posts:{}
 };
@@ -19,8 +25,10 @@ var reducer = function(state, action){
       return Object.assign({}, state, {formData: initialState.formData});
     case actions.FETCH_ALL_POSTS_SUCCESS:
       return Object.assign({}, state, {posts: action.posts});
-    case actions.FETCH_FULL_POST_SUCCESS:
+    case actions.FETCH_FULL_POST_DISPLAY:
       return Object.assign( {}, state, {displayPost: action.post}); 
+    case actions.FETCH_FULL_POST_EDIT:
+      return Object.assign( {}, state, {formData: action.post}); 
     default: 
       return state;
   }

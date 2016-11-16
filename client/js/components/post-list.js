@@ -5,7 +5,10 @@ var PostSummary = require("./post-summary");
 
 var PostList = React.createClass({
   displayPost: function(id){
-    this.props.dispatch(actions.fetchFullPost(id));
+    this.props.dispatch(actions.fetchFullPost(id, actions.FETCH_FULL_POST_DISPLAY));
+  },
+  editPost: function(id){
+    this.props.dispatch(actions.fetchFullPost(id, actions.FETCH_FULL_POST_EDIT));
   },
   deletePost: function(id){
     this.props.dispatch(actions.deletePost(id));
@@ -14,6 +17,7 @@ var PostList = React.createClass({
     var list = [];
     for(var i=0; i < this.props.posts.length; i++){
       list.push(<PostSummary displayHandler={this.displayPost} 
+                  editHandler={this.editPost}
                   deleteHandler={this.deletePost} 
                   post={this.props.posts[i]} key={i}/>);
     }

@@ -1,22 +1,22 @@
 var fetch = require("isomorphic-fetch");
 
 var RESET_FORM = "RESET_FORM";
-var resetForm = function(){
+var resetForm = function() {
   return {
     type: RESET_FORM
   }
 };
 
 var FETCH_ALL_POSTS_SUCCESS = "FETCH_ALL_POSTS";
-var fetchAllPostsSuccess = function(posts){
+var fetchAllPostsSuccess = function(posts) {
   return {
     type: FETCH_ALL_POSTS_SUCCESS,
     posts: posts 
   }
 }
 
-var fetchAllPosts = function(){
-  return function(dispatch){
+var fetchAllPosts = function() {
+  return function(dispatch) {
     var url = "/all";
     var headers = {
       'Accept': 'application/json',
@@ -24,20 +24,20 @@ var fetchAllPosts = function(){
     };
 
     fetch(url, {method: "GET", headers: headers})
-    .then(function(response){
+    .then(function(response) {
       return response.json();
     })
-    .then(function(allPosts){
+    .then(function(allPosts) {
       return dispatch(fetchAllPostsSuccess(allPosts));
     })
-    .catch(function(error){
+    .catch(function(error) {
       console.error(error);
     });  
   }
 }
 
-var createPost = function(post){
-  return function(dispatch){
+var createPost = function(post) {
+  return function(dispatch) {
     var body = JSON.stringify(post);
 
     var url = "/";
@@ -47,26 +47,34 @@ var createPost = function(post){
     };
 
     fetch(url, {method: "POST", headers: headers, body:body})
-    .then(function(response){
+    .then(function(response) {
 
       return response.json();
     })
-    .then(function(data){
+    .then(function(data) {
       return dispatch(fetchAllPosts()); 
     }); 
   }
 };
 
-var FETCH_FULL_POST_SUCCESS = "FETCH_FULL_POST_SUCCESS";
-var fetchFullPostSuccess = function(post){
+var FETCH_FULL_POST_DISPLAY = "FETCH_FULL_POST_DISPLAY";
+var fetchFullPostDisplay = function(post) {
   return {
-    type: FETCH_FULL_POST_SUCCESS,
+    type: FETCH_FULL_POST_DISPLAY,
     post: post
   }
 }
 
-var fetchFullPost = function(id){
-  return function(dispatch){
+var FETCH_FULL_POST_EDIT = "FETCH_FULL_POST_EDIT";
+var fetchFullPostEdit = function(post) {
+  return {
+    type: FETCH_FULL_POST_EDIT,
+    post: post
+  }
+}
+
+var fetchFullPost = function(id, type) {
+  return function(dispatch) {
     var url = "/"+id;
     var headers = {
       'Accept': 'application/json',
@@ -74,20 +82,26 @@ var fetchFullPost = function(id){
     };
 
     fetch(url, {method: "GET", headers: headers})
-    .then(function(response){
+    .then(function(response) {
       return response.json();
     })
-    .then(function(data){
-      return dispatch(fetchFullPostSuccess(data));
+    .then(function(data) {
+      if(type === FETCH_FULL_POST_EDIT) {
+        return dispatch(fetchFullPostEdit(data));
+      } else if (type === FETCH_FULL_POST_DISPLAY) {
+        return dispatch(fetchFullPostDisplay(data));
+      } else {
+        throw "Error: Invalid fetch type";
+      }
     })
-    .catch(function(error){
+    .catch(function(error) {
       console.error(error);
     });
   }
 }
 
-var deletePost = function(id){
-  return function(dispatch){
+var deletePost = function(id) {
+  return function(dispatch) {
     var url = "/"+id;
     var headers = {
       'Accept': 'application/json',
@@ -95,10 +109,10 @@ var deletePost = function(id){
     };
 
     fetch(url, {method: "DELETE", headers: headers})
-    .then(function(response){
+    .then(function(response) {
       return response.json();
     })
-    .then(function(){
+    .then(function() {
       return dispatch(fetchAllPosts());
     }); 
   };
@@ -110,5 +124,7 @@ exports.fetchAllPosts = fetchAllPosts;
 exports.FETCH_ALL_POSTS_SUCCESS = FETCH_ALL_POSTS_SUCCESS;
 exports.createPost = createPost;
 exports.fetchFullPost = fetchFullPost;
-exports.FETCH_FULL_POST_SUCCESS = FETCH_FULL_POST_SUCCESS;
+exports.FETCH_FULL_POST_DISPLAY = FETCH_FULL_POST_DISPLAY;
+exports.FETCH_FULL_POST_EDIT = FETCH_FULL_POST_EDIT;
 exports.deletePost = deletePost;
+
