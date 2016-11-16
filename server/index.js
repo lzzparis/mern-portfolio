@@ -28,7 +28,8 @@ app.get("/:id",function(req,res){
       res.status(500).json({message:"Internal server error"}); 
       return;
     }
-    post.body = markdown.toHTML(post.body);
+// TODO - find markdown solution that works with React
+//    post.body = markdown.toHTML(post.body);   
     res.status(200).json(post);
   });
 });
