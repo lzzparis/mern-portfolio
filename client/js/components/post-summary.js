@@ -1,12 +1,15 @@
 var React = require("react");
 var moment = require("moment");
 
+var router = require("react-router");
+var hashHistory = router.hashHistory;
+
 var actions = require("../actions/actions");
 
 var PostSummary = React.createClass({
   displayPost: function(){
     this.props.handler(this.props.post._id);
-    // this.props.dispatch(fetchFullPost(id))
+    hashHistory.push("/full");
   },
   render: function(){
     var prettyTime = moment(this.props.post.timestamp).format("MM-DD-YYYY @ h:mm a");

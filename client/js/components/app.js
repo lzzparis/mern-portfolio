@@ -14,7 +14,7 @@ var App = React.createClass({
   render: function(){
     return(
       <div>
-        <FullPostContainer />
+        {this.props.children}
         <PostFormContainer />
         <PostListContainer />
       </div>
