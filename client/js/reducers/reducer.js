@@ -25,8 +25,8 @@ var initialState = {
 var reducer = function(state, action){
   state = state || initialState;
   switch(action.type){
-    case actions.AUTHENTICATE_USER:
-      hashHistory.goBack();
+    case actions.AUTHENTICATE_USER_SUCCESS:
+//      hashHistory.goBack();
       return Object.assign({}, state, {isAuthenticated: true});
     case actions.RESET_FORM:
       return Object.assign({}, state, {formData: new EmptyPost()});

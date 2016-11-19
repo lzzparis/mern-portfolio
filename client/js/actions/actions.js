@@ -1,13 +1,69 @@
 var fetch = require("isomorphic-fetch");
 
-var AUTHENTICATE_USER = "AUTHENTICATE_USER";
-var authenticateUser = function(value){
+
+var INIT_USER_SUCCESS = "INIT_USER_SUCCESS";
+var initUserSuccess = function() {
   return {
-    type: AUTHENTICATE_USER,
-    value: value
+    type: INIT_USER_SUCCESS
+  }
+};
+
+var initUser = function() {
+  return function(dispatch) {
+    var url = "/init";
+    var headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+
+    fetch(url, {method:"POST", headers: headers})
+    .then(function(response){
+      if(response.status < 200 || response.status >=300){
+        throw error;
+      }
+      console.log(response.message);
+      return;
+    })
+  }
+}
+
+var AUTHENTICATE_USER_SUCCESS = "AUTHENTICATE_USER_SUCCESS";
+var authenticateUserSuccess = function() {
+  return {
+    type: AUTHENTICATE_USER_SUCCESS
   };
 };
 
+var AUTHENTICATE_USER_ERROR = "AUTHENTICATE_USER_ERROR";
+var authenticateUserError = function() {
+  return {
+    type: AUTHENTICATE_USER_ERROR
+  };
+};
+
+var authenticateUser = function(username, password) {
+  return function(dispatch){
+    var url = "/auth";
+    var headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+    var data = {
+      username: username, 
+      password: password
+    };
+    var body = JSON.stringify(data);
+
+//TODO - is this the right method to use??
+    fetch(url, {method: "PUT", headers: headers, body: body, credentials: "include"})
+    .then(function(response){
+      if(response.status == 401){
+        return dispatch(authenticateUserError());
+      }
+      return dispatch(authenticateUserSuccess());
+    });
+  };
+};
 
 var RESET_FORM = "RESET_FORM";
 var resetForm = function() {
@@ -146,7 +202,8 @@ var deletePost = function(id) {
   };
 };
 
-exports.AUTHENTICATE_USER = AUTHENTICATE_USER;
+exports.initUser = initUser;
+exports.AUTHENTICATE_USER_SUCCESS = AUTHENTICATE_USER_SUCCESS;
 exports.authenticateUser = authenticateUser;
 exports.RESET_FORM = RESET_FORM;
 exports.resetForm = resetForm; 
