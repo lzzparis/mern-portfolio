@@ -1,5 +1,14 @@
 var fetch = require("isomorphic-fetch");
 
+var AUTHENTICATE_USER = "AUTHENTICATE_USER";
+var authenticateUser = function(value){
+  return {
+    type: AUTHENTICATE_USER,
+    value: value
+  };
+};
+
+
 var RESET_FORM = "RESET_FORM";
 var resetForm = function() {
   return {
@@ -137,6 +146,8 @@ var deletePost = function(id) {
   };
 };
 
+exports.AUTHENTICATE_USER = AUTHENTICATE_USER;
+exports.authenticateUser = authenticateUser;
 exports.RESET_FORM = RESET_FORM;
 exports.resetForm = resetForm; 
 exports.fetchAllPosts = fetchAllPosts;
