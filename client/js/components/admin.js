@@ -7,17 +7,22 @@ var FullPostContainer = require("./full-post-container");
 var PostFormContainer = require("./post-form-container");
 var PostListContainer = require("./post-list-container");
 
-var App = React.createClass({
+var Admin = React.createClass({
+  componentDidMount:function(){
+    this.props.dispatch(actions.fetchAllPosts());
+  },
   render: function(){
     return(
       <div>
         {this.props.children}
+        <PostFormContainer />
+        <PostListContainer />
       </div>
     );
   }
 });
 
 
-var AppContainer = connect()(App);
+var AdminContainer = connect()(Admin);
 
-module.exports = AppContainer;
+module.exports = AdminContainer;

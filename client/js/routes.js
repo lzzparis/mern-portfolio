@@ -5,12 +5,15 @@ var Route = router.Route;
 var hashHistory = router.hashHistory;
 
 var App = require("./components/app");
+var Admin = require("./components/admin");
 var FullPostContainer = require("./components/full-post-container");
 
 var routes = (
   <Router history={hashHistory}>
     <Route path="/" component={App}>
-      <Route path="full" component={FullPostContainer} />
+      <Route path="admin" component={Admin}>
+        <Route path="full" component={FullPostContainer} />
+      </Route>
     </Route>
   </Router>
 );
