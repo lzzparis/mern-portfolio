@@ -11,6 +11,7 @@ var EmptyPost = function(){
 };
 
 var initialState = {
+  isAuthenticated: false,
   formData: new EmptyPost(),
   displayPost:{},
   posts:{},
