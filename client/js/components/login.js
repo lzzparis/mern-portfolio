@@ -28,12 +28,4 @@ var Login = React.createClass({
   }
 });
 
-var mapStateToProps = function(state, props){
-  return {
-    isAuthenticated: state.isAuthenticated
-  };
-};
-
-var LoginContainer = connect(mapStateToProps)(Login);
-
-module.exports = LoginContainer;
+module.exports = Login;
