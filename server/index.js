@@ -51,19 +51,19 @@ passport.use(strategy);
 app.use(passport.initialize());
 
 app.post("/init", function(req, res){
-  var user = {
+  var initUser = {
     username: "user",
     password: "pass"
   }
 
-  bcrypt.hash(user.password, 10, function(err, hash){
-    user.password = hash;
-    User.findOneAndUpdate({username: user.username}, user, function(err, user){
+  bcrypt.hash(initUser.password, 10, function(err, hash){
+    initUser.password = hash;
+    User.findOneAndUpdate({username: initUser.username}, initUser, function(err, user){
       if(err) {
         res.status(500).json({message:"Internal server error"}); 
         return;
       } else if (!user) {
-        User.create(user, function(err, user){
+        User.create(initUser, function(err, user){
           if(err || !user){
             console.error(err);
             res.status(500).json({message:"Internal server error"});
@@ -76,6 +76,21 @@ app.post("/init", function(req, res){
       }
     });
   })
+});
+
+//TODO - SECURE THIS!!!
+app.delete("/user/:id", function(req, res){
+  var user = {
+    username: req.params.id
+  };
+
+  User.findOneAndRemove(user, function(err, user){
+      if(err || !user){
+      res.status(500).json({message:"Internal server error"});
+      return;
+    }
+    res.status(200).json(user);
+  });
 });
 
 app.put("/auth", passport.authenticate("basic", {session: false}), function(req, res) {
