@@ -7,23 +7,23 @@ var hashHistory = router.hashHistory;
 var Link = router.Link;
 
 var App = require("./components/app");
+var Blog = require("./components/blog");
+var LatestPosts = require("./components/latest-posts");
+var FullPost = require("./components/full-post"); 
 var LoginContainer = require("./components/login-container");
 var Admin = require("./components/admin");
-var FullPostContainer = require("./components/full-post-container");
-
-var AdminLink = function() { 
-  return (
-    <Link className="admin-link" to="/login">Admin page</Link>
-  );
-};
+var PreviewPostContainer = require("./components/preview-post-container");
 
 var routes = (
   <Router history={hashHistory}>
     <Route path="/" component={App}>
-      <IndexRoute component={AdminLink} />
+      <Route path="blog" component={Blog}>
+        <Route path="latest" component={LatestPosts} />
+        <Route path="full/:id" component={FullPost} />
+      </Route>
       <Route path="login" component={LoginContainer} />
       <Route path="admin" component={Admin}>
-        <Route path="full" component={FullPostContainer} />
+        <Route path="preview" component={PreviewPostContainer} />
       </Route>
     </Route>
   </Router>
