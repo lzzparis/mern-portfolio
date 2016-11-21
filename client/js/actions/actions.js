@@ -1,4 +1,6 @@
 var fetch = require("isomorphic-fetch");
+var router = require("react-router");
+var hashHistory = router.hashHistory; 
 
 
 var INIT_USER_SUCCESS = "INIT_USER_SUCCESS";
@@ -8,15 +10,65 @@ var initUserSuccess = function() {
   }
 };
 
-var initUser = function() {
+var FETCH_USER_STATUS_SUCCESS = "FETCH_USER_STATUS_SUCCESS";
+var fetchUserStatusSuccess = function(value){
+  return {
+    type: FETCH_USER_STATUS_SUCCESS,
+    value: value
+  }
+};
+var FETCH_USER_STATUS_ERROR = "FETCH_USER_STATUS_ERROR";
+var fetchUserStatusError = function(){
+  return {
+    type: FETCH_USER_STATUS_ERROR
+  }
+};
+
+var fetchUserStatus = function(){
+  return function(dispatch) {
+    var url = "/user";
+    var headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+
+    fetch(url, {method:"GET", headers: headers})
+    .then(function(response){
+      if(response.status < 200 || response.status >=300){
+        throw error;
+      }
+      return response;
+    })
+    .then(function(response){
+      return response.json();
+    })
+    .then(function(data){
+      if(data.message == "true"){
+        return dispatch(fetchUserStatusSuccess(true));
+      } else {
+        return dispatch(fetchUserStatusSuccess(false));
+      }
+    })
+    .catch(function(error){
+      console.error(error);
+    })
+  }
+}
+
+var initUser = function(username, password) {
   return function(dispatch) {
     var url = "/init";
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     };
+    var data = {
+      username: username,
+      password: password
+    }
+    var body = JSON.stringify(data);
 
-    fetch(url, {method:"POST", headers: headers})
+    fetch(url, {method:"POST", headers: headers, body: body})
     .then(function(response){
       if(response.status < 200 || response.status >=300){
         throw error;
@@ -202,6 +254,8 @@ var deletePost = function(id) {
   };
 };
 
+exports.FETCH_USER_STATUS_SUCCESS = FETCH_USER_STATUS_SUCCESS;
+exports.fetchUserStatus = fetchUserStatus;
 exports.initUser = initUser;
 exports.AUTHENTICATE_USER_SUCCESS = AUTHENTICATE_USER_SUCCESS;
 exports.authenticateUser = authenticateUser;

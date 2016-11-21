@@ -7,7 +7,7 @@ var actions = require("../actions/actions");
 
 var Login = React.createClass({
   componentDidMount: function(){
-     this.props.dispatch(actions.initUser());
+    this.props.dispatch(actions.fetchUserStatus());
   },
   componentWillReceiveProps: function(nextProps){
     if(nextProps.isAuthenticated){
@@ -15,19 +15,29 @@ var Login = React.createClass({
     }
   },
   authenticate: function(event) {
+    event.preventDefault();
     var username = this.refs.username.value;
     var password = this.refs.password.value;
-    this.props.dispatch(actions.authenticateUser(username, password));
+    if(this.props.userInitialized){
+      this.props.dispatch(actions.authenticateUser(username, password));
+    } else {
+      this.props.dispatch(actions.initUser(username, password));
+    }
     console.log(event);
   },
   render: function() {
+    if(this.props.userInitialized){
+      var headerText = "Login";  
+    } else {
+      var headerText = "Create User";
+    }
+
     return (
       <div>
-        <h1>WHOA</h1>
-        <h3>ur not going anywhere till you authenticate, fool.</h3>
+        <h1>{headerText}</h1>
         <form className="login-form" onSubmit={this.authenticate}>
           <input type="text" ref="username" placeholder="Username" /><br />
-          <input type="text" ref="password" placeholder="Password" /><br />
+          <input type="password" ref="password" placeholder="Password" /><br />
           <input type="submit" value="Submit" /> 
         </form>
       </div>

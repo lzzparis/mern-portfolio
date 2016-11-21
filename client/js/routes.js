@@ -13,7 +13,7 @@ var FullPostContainer = require("./components/full-post-container");
 
 var AdminLink = function() { 
   return (
-    <Link className="admin-link" to="/admin">Admin page</Link>
+    <Link className="admin-link" to="/login">Admin page</Link>
   );
 };
 

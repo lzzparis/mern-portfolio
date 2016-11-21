@@ -18,6 +18,7 @@ app.use(bodyParser.json());
 app.use(express.static(process.env.CLIENT_PATH || "build/dev/client/"));
 
 var strategy = new BasicStrategy(function(username, password, callback) {
+  console.log("receiving: ",username, password);
   User.findOne({
     username: username
   }, function (err, user) {
@@ -50,30 +51,34 @@ var strategy = new BasicStrategy(function(username, password, callback) {
 passport.use(strategy);
 app.use(passport.initialize());
 
+app.get("/user", function(req, res){
+  User.find(function(err, users){
+    if(err || !users){
+      res.status(500).json({message:"Internal server error"});
+      return;
+    } else if (users.length == 0) {
+      res.status(200).json({message: "false"});
+    } else {
+      res.status(200).json({message: "true"});
+    }
+  });
+});
+
 app.post("/init", function(req, res){
   var initUser = {
-    username: "user",
-    password: "pass"
-  }
+    username: req.body.username,
+    password: req.body.password
+  };
 
   bcrypt.hash(initUser.password, 10, function(err, hash){
     initUser.password = hash;
-    User.findOneAndUpdate({username: initUser.username}, initUser, function(err, user){
-      if(err) {
-        res.status(500).json({message:"Internal server error"}); 
+    User.create(initUser, function(err, user){
+      if(err || !user){
+        console.error(err);
+        res.status(500).json({message:"Internal server error"});
         return;
-      } else if (!user) {
-        User.create(initUser, function(err, user){
-          if(err || !user){
-            console.error(err);
-            res.status(500).json({message:"Internal server error"});
-            return;
-          }
-          res.status(201).json({message: "User ["+user.username+"] created successfully"});
-        });
-      } else {
-        res.status(201).json({message:"Password updated"});
       }
+      res.status(201).json({message: "User ["+user.username+"] created successfully"});
     });
   })
 });

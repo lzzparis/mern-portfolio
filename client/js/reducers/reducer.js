@@ -15,6 +15,7 @@ var EmptyPost = function(){
 };
 
 var initialState = {
+  userInitialized: false,
   isAuthenticated: false,
   formData: new EmptyPost(),
   displayPost:{},
@@ -23,8 +24,11 @@ var initialState = {
 };
 
 var reducer = function(state, action){
+  console.log(action);
   state = state || initialState;
   switch(action.type){
+    case actions.FETCH_USER_STATUS_SUCCESS:
+      return Object.assign({}, state, {userInitialized: action.value});
     case actions.AUTHENTICATE_USER_SUCCESS:
 //      hashHistory.goBack();
       return Object.assign({}, state, {isAuthenticated: true});
