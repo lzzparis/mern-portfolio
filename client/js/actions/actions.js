@@ -95,7 +95,7 @@ var authenticateUserError = function() {
 
 var authenticateUser = function(username, password) {
   return function(dispatch){
-    var url = "/auth";
+    var url = "/login";
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -107,7 +107,7 @@ var authenticateUser = function(username, password) {
     var body = JSON.stringify(data);
 
 //TODO - is this the right method to use??
-    fetch(url, {method: "PUT", headers: headers, body: body, credentials: "include"})
+    fetch(url, {method: "POST", headers: headers, body: body})
     .then(function(response){
       if(response.status == 401){
         return dispatch(authenticateUserError());

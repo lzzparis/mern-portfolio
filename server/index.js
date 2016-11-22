@@ -3,7 +3,7 @@ var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var bcrypt = require("bcryptjs");
 var passport = require("passport");
-var BasicStrategy = require("passport-http").BasicStrategy;
+var LocalStrategy = require("passport-local").Strategy;
 var markdown = require("markdown").markdown;
 
 var config = require("./config");
@@ -17,8 +17,7 @@ app.use(bodyParser.json());
 
 app.use(express.static(process.env.CLIENT_PATH || "build/dev/client/"));
 
-var strategy = new BasicStrategy(function(username, password, callback) {
-  console.log("receiving: ",username, password);
+var strategy = new LocalStrategy(function(username, password, callback) {
   User.findOne({
     username: username
   }, function (err, user) {
@@ -98,7 +97,7 @@ app.delete("/user/:id", function(req, res){
   });
 });
 
-app.put("/auth", passport.authenticate("basic", {session: false}), function(req, res) {
+app.post("/login", passport.authenticate("local", {session: false}), function(req, res) {
   res.status(200).json({message:"Hooray, you have authenticated!"});  
 });
 
@@ -175,7 +174,7 @@ var runServer = function(callback){
       return callback(err);
     }
     app.listen(config.PORT, function(){
-      console.log("Listenting on localhost:" + config.PORT);
+      console.log("Listening on localhost:" + config.PORT);
       if (callback){
         callback();
       }
