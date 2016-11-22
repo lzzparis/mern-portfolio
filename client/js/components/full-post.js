@@ -4,11 +4,11 @@ var POSTS = require("../../../test/server/sample-data");
 
 var FullPost = function(props) {
   var postToRender = null;
-  if (props.params.id){
-    postToRender = POSTS[props.params.id];
-  } else {
+  // if (props.params.id){
+    // postToRender = POSTS[props.params.id];
+  // } else {
     postToRender = props.post;
-  }
+  // }
   return (
     <div className="full-post">
       <h2 className="subject-header">{postToRender.subject}</h2>

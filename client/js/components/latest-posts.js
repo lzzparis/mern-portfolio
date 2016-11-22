@@ -2,17 +2,18 @@ var React = require("react");
 
 var FullPost = require("./full-post");
 
-var POSTS = require("../../../test/server/sample-data");
-
-var LatestPosts = function() {
-  return (
-    <div className="latest-posts">
-      <FullPost post={POSTS[0]} />
-      <FullPost post={POSTS[1]} />
-      <FullPost post={POSTS[2]} />
-      <FullPost post={POSTS[3]} />
-    </div>
-  );
-};
+var LatestPosts = React.createClass({
+  render: function() {
+    var list = [];
+    for (var i=0 ; i < this.props.posts.length ; i++){
+      list.push(<FullPost post={this.props.posts[i]} key={i} />);
+    }
+    return (
+      <div className="latest-posts">
+        {list}
+      </div>
+    );
+  }
+});
 
 module.exports = LatestPosts;
