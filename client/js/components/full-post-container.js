@@ -5,7 +5,8 @@ var FullPost = require("./full-post");
 
 var mapStateToProps = function(state, props){
   return {
-    post: state.displayPost
+    post: state.displayPost,
+    id: props.params.id
   }
 }
 

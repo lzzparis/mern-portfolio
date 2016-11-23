@@ -11,7 +11,7 @@ var PreviewPost = React.createClass({
     return(
       <div id="post-preview">
         <span className="close-x right" onClick={this.closePost}>&times;</span>
-        <FullPostContainer />
+        {this.props.children}
       </div>
     );
   }

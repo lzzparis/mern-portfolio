@@ -23,7 +23,9 @@ var routes = (
       </Route>
       <Route path="login" component={LoginContainer} />
       <Route path="admin" component={Admin}>
-        <Route path="preview/:id" component={PreviewPost} />
+        <Route path="preview/:id" component={PreviewPost}>
+          <IndexRoute component={FullPostContainer} />
+        </Route>
       </Route>
     </Route>
   </Router>
