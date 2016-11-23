@@ -63,7 +63,7 @@ app.get("/user", function(req, res){
   });
 });
 
-app.post("/init", function(req, res){
+app.post("/user", function(req, res){
   var initUser = {
     username: req.body.username,
     password: req.body.password
@@ -101,7 +101,7 @@ app.post("/login", passport.authenticate("local", {session: false}), function(re
   res.status(200).json({message:"Hooray, you have authenticated!"});  
 });
 
-app.get("/all", function(req,res){
+app.get("/post/all", function(req,res){
   Post.find(function(err, posts){
     if(err || !posts){
       res.status(500).json({message:"Internal server error"}); 
@@ -111,7 +111,7 @@ app.get("/all", function(req,res){
   });
 });
 
-app.get("/:id", function(req,res){
+app.get("/post/:id", function(req,res){
   var id = req.params.id;
   Post.findOne({_id:id}, function(err, post){
     if(err || !post){
@@ -124,7 +124,7 @@ app.get("/:id", function(req,res){
   });
 });
 
-app.post("/", function(req,res){
+app.post("/post", function(req,res){
   var newPost = {
     subject: req.body.subject,
     body: req.body.body,
@@ -140,7 +140,7 @@ app.post("/", function(req,res){
   });
 });
 
-app.put("/:id", function(req,res){
+app.put("/post/:id", function(req,res){
   var id = req.params.id;
   var updatedPost = {
     subject: req.body.subject,
@@ -157,7 +157,7 @@ app.put("/:id", function(req,res){
   });
 });
 
-app.delete("/:id", function(req,res){
+app.delete("/post/:id", function(req,res){
   var id = req.params.id;
   Post.findOneAndRemove({_id:id},function(err,post){
     if(err || !post){

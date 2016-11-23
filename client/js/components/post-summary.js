@@ -9,7 +9,7 @@ var actions = require("../actions/actions");
 var PostSummary = React.createClass({
   displayPost: function(){
     this.props.displayHandler(this.props.post._id);
-    hashHistory.push("/full");
+    hashHistory.push("/admin/preview/"+this.props.post._id);
   },
   editPost: function(){
     this.props.editHandler(this.props.post._id);

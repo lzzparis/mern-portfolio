@@ -23,7 +23,7 @@ var routes = (
       <IndexRoute component={AdminLink} />
       <Route path="login" component={LoginContainer} />
       <Route path="admin" component={Admin}>
-        <Route path="full" component={FullPostContainer} />
+        <Route path="preview/:id" component={FullPostContainer} />
       </Route>
     </Route>
   </Router>

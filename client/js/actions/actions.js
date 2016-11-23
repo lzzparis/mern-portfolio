@@ -57,7 +57,7 @@ var fetchUserStatus = function(){
 
 var initUser = function(username, password) {
   return function(dispatch) {
-    var url = "/init";
+    var url = "/user";
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -145,7 +145,7 @@ var fetchAllPostsSuccess = function(posts) {
 
 var fetchAllPosts = function() {
   return function(dispatch) {
-    var url = "/all";
+    var url = "/post/all";
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -168,7 +168,7 @@ var createPost = function(post) {
   return function(dispatch) {
     var body = JSON.stringify(post);
 
-    var url = "/";
+    var url = "/post";
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -203,7 +203,7 @@ var fetchFullPostEdit = function(post) {
 
 var fetchFullPost = function(id, type) {
   return function(dispatch) {
-    var url = "/"+id;
+    var url = "/post/"+id;
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -231,7 +231,7 @@ var fetchFullPost = function(id, type) {
 var updatePost = function(post) {
   return function(dispatch){
     var data = JSON.stringify(post);
-    var url = "/"+post._id;
+    var url = "/post/"+post._id;
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -249,7 +249,7 @@ var updatePost = function(post) {
 
 var deletePost = function(id) {
   return function(dispatch) {
-    var url = "/"+id;
+    var url = "/post/"+id;
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
