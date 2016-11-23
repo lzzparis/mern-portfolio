@@ -60,7 +60,7 @@ var PostForm = React.createClass({
       <div className="half-width left">
         <h1>Create Post</h1>
         <form id="post-form" name="" onChange={this.updateForm}>
-          Title<span className="subject-warning"></span><br />
+          Title<span className="error-message"></span><br />
           <input className="form-field subject-box" type="text" ref="subject" value={this.state.formSubject} /><br />
           Body<br />
           <textarea className="form-field body-box" ref="body" value={this.state.formBody}></textarea><br />

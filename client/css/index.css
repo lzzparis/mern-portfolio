@@ -45,7 +45,7 @@ p {
 .body-box{
   height:50vh;
 }
-.subject-warning{
+.error-message{
   color:red;
   font-style: italic;
 }

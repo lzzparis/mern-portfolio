@@ -86,6 +86,14 @@ var authenticateUserSuccess = function() {
   };
 };
 
+var AUTHENTICATE_USER_FAILURE = "AUTHENTICATE_USER_FAILURE";
+var authenticateUserFailure = function() {
+  return {
+    type: AUTHENTICATE_USER_FAILURE
+  };
+};
+
+
 var AUTHENTICATE_USER_ERROR = "AUTHENTICATE_USER_ERROR";
 var authenticateUserError = function() {
   return {
@@ -109,10 +117,13 @@ var authenticateUser = function(username, password) {
 //TODO - is this the right method to use??
     fetch(url, {method: "POST", headers: headers, body: body})
     .then(function(response){
-      if(response.status == 401){
+      if (response.status == 401){
+        return dispatch(authenticateUserFailure());
+      } else if (response.status == 200) {
+        return dispatch(authenticateUserSuccess());
+      } else {
         return dispatch(authenticateUserError());
       }
-      return dispatch(authenticateUserSuccess());
     });
   };
 };
@@ -258,6 +269,7 @@ exports.FETCH_USER_STATUS_SUCCESS = FETCH_USER_STATUS_SUCCESS;
 exports.fetchUserStatus = fetchUserStatus;
 exports.initUser = initUser;
 exports.AUTHENTICATE_USER_SUCCESS = AUTHENTICATE_USER_SUCCESS;
+exports.AUTHENTICATE_USER_FAILURE = AUTHENTICATE_USER_FAILURE;
 exports.authenticateUser = authenticateUser;
 exports.RESET_FORM = RESET_FORM;
 exports.resetForm = resetForm; 

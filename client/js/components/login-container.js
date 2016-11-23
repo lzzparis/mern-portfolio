@@ -10,7 +10,8 @@ var Login = require("./login");
 var mapStateToProps = function(state, props){
   return {
     userInitialized: state.userInitialized,
-    isAuthenticated: state.isAuthenticated
+    isAuthenticated: state.isAuthenticated,
+    failedAuthentication: state.failedAuthentication
   };
 };
 
