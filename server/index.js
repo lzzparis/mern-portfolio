@@ -1,9 +1,15 @@
 var express = require('express');
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
-var config = require("./config");
-var Post = require("./models/post");
+var bcrypt = require("bcryptjs");
+var passport = require("passport");
+var LocalStrategy = require("passport-local").Strategy;
 var markdown = require("markdown").markdown;
+
+var config = require("./config");
+
+var Post = require("./models/post");
+var User = require("./models/user");
 
 var app = express();
 
@@ -11,7 +17,91 @@ app.use(bodyParser.json());
 
 app.use(express.static(process.env.CLIENT_PATH || "build/dev/client/"));
 
-app.get("/all",function(req,res){
+var strategy = new LocalStrategy(function(username, password, callback) {
+  User.findOne({
+    username: username
+  }, function (err, user) {
+    if (err) {
+      callback(err);
+      return;
+    }
+
+    if (!user) {
+      return callback(null, false, {
+        message: 'Incorrect username.'
+      });
+    }
+
+    user.validatePassword(password, function(err, isValid) {
+      if (err) {
+        return callback(err);
+      }
+
+      if (!isValid) {
+        return callback(null, false, {
+          message: 'Incorrect password.'
+        });
+      }
+      return callback(null, user);
+    });
+  });
+});
+
+passport.use(strategy);
+app.use(passport.initialize());
+
+app.get("/user", function(req, res){
+  User.find(function(err, users){
+    if(err || !users){
+      res.status(500).json({message:"Internal server error"});
+      return;
+    } else if (users.length == 0) {
+      res.status(200).json({message: "false"});
+    } else {
+      res.status(200).json({message: "true"});
+    }
+  });
+});
+
+app.post("/user", function(req, res){
+  var initUser = {
+    username: req.body.username,
+    password: req.body.password
+  };
+
+  bcrypt.hash(initUser.password, 10, function(err, hash){
+    initUser.password = hash;
+    User.create(initUser, function(err, user){
+      if(err || !user){
+        console.error(err);
+        res.status(500).json({message:"Internal server error"});
+        return;
+      }
+      res.status(201).json({message: "User ["+user.username+"] created successfully"});
+    });
+  })
+});
+
+//TODO - SECURE THIS!!!
+app.delete("/user/:id", function(req, res){
+  var user = {
+    username: req.params.id
+  };
+
+  User.findOneAndRemove(user, function(err, user){
+      if(err || !user){
+      res.status(500).json({message:"Internal server error"});
+      return;
+    }
+    res.status(200).json(user);
+  });
+});
+
+app.post("/login", passport.authenticate("local", {session: false}), function(req, res) {
+  res.status(200).json({message:"Hooray, you have authenticated!"});  
+});
+
+app.get("/post/all", function(req,res){
   Post.find(function(err, posts){
     if(err || !posts){
       res.status(500).json({message:"Internal server error"}); 
@@ -21,7 +111,7 @@ app.get("/all",function(req,res){
   });
 });
 
-app.get("/:id",function(req,res){
+app.get("/post/:id", function(req,res){
   var id = req.params.id;
   Post.findOne({_id:id}, function(err, post){
     if(err || !post){
@@ -34,7 +124,7 @@ app.get("/:id",function(req,res){
   });
 });
 
-app.post("/", function(req,res){
+app.post("/post", function(req,res){
   var newPost = {
     subject: req.body.subject,
     body: req.body.body,
@@ -50,7 +140,7 @@ app.post("/", function(req,res){
   });
 });
 
-app.put("/:id", function(req,res){
+app.put("/post/:id", function(req,res){
   var id = req.params.id;
   var updatedPost = {
     subject: req.body.subject,
@@ -67,7 +157,7 @@ app.put("/:id", function(req,res){
   });
 });
 
-app.delete("/:id", function(req,res){
+app.delete("/post/:id", function(req,res){
   var id = req.params.id;
   Post.findOneAndRemove({_id:id},function(err,post){
     if(err || !post){
@@ -84,7 +174,7 @@ var runServer = function(callback){
       return callback(err);
     }
     app.listen(config.PORT, function(){
-      console.log("Listenting on localhost:" + config.PORT);
+      console.log("Listening on localhost:" + config.PORT);
       if (callback){
         callback();
       }

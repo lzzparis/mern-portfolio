@@ -1,4 +1,132 @@
 var fetch = require("isomorphic-fetch");
+var router = require("react-router");
+var hashHistory = router.hashHistory; 
+
+
+var INIT_USER_SUCCESS = "INIT_USER_SUCCESS";
+var initUserSuccess = function() {
+  return {
+    type: INIT_USER_SUCCESS
+  }
+};
+
+var FETCH_USER_STATUS_SUCCESS = "FETCH_USER_STATUS_SUCCESS";
+var fetchUserStatusSuccess = function(value){
+  return {
+    type: FETCH_USER_STATUS_SUCCESS,
+    value: value
+  }
+};
+var FETCH_USER_STATUS_ERROR = "FETCH_USER_STATUS_ERROR";
+var fetchUserStatusError = function(){
+  return {
+    type: FETCH_USER_STATUS_ERROR
+  }
+};
+
+var fetchUserStatus = function(){
+  return function(dispatch) {
+    var url = "/user";
+    var headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+
+    fetch(url, {method:"GET", headers: headers})
+    .then(function(response){
+      if(response.status < 200 || response.status >=300){
+        throw error;
+      }
+      return response;
+    })
+    .then(function(response){
+      return response.json();
+    })
+    .then(function(data){
+      if(data.message == "true"){
+        return dispatch(fetchUserStatusSuccess(true));
+      } else {
+        return dispatch(fetchUserStatusSuccess(false));
+      }
+    })
+    .catch(function(error){
+      console.error(error);
+    })
+  }
+}
+
+var initUser = function(username, password) {
+  return function(dispatch) {
+    var url = "/user";
+    var headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+    var data = {
+      username: username,
+      password: password
+    }
+    var body = JSON.stringify(data);
+
+    fetch(url, {method:"POST", headers: headers, body: body})
+    .then(function(response){
+      if(response.status < 200 || response.status >=300){
+        throw error;
+      }
+      console.log(response.message);
+      return;
+    })
+  }
+}
+
+var AUTHENTICATE_USER_SUCCESS = "AUTHENTICATE_USER_SUCCESS";
+var authenticateUserSuccess = function() {
+  return {
+    type: AUTHENTICATE_USER_SUCCESS
+  };
+};
+
+var AUTHENTICATE_USER_FAILURE = "AUTHENTICATE_USER_FAILURE";
+var authenticateUserFailure = function() {
+  return {
+    type: AUTHENTICATE_USER_FAILURE
+  };
+};
+
+
+var AUTHENTICATE_USER_ERROR = "AUTHENTICATE_USER_ERROR";
+var authenticateUserError = function() {
+  return {
+    type: AUTHENTICATE_USER_ERROR
+  };
+};
+
+var authenticateUser = function(username, password) {
+  return function(dispatch){
+    var url = "/login";
+    var headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+    var data = {
+      username: username, 
+      password: password
+    };
+    var body = JSON.stringify(data);
+
+//TODO - is this the right method to use??
+    fetch(url, {method: "POST", headers: headers, body: body})
+    .then(function(response){
+      if (response.status == 401){
+        return dispatch(authenticateUserFailure());
+      } else if (response.status == 200) {
+        return dispatch(authenticateUserSuccess());
+      } else {
+        return dispatch(authenticateUserError());
+      }
+    });
+  };
+};
 
 var RESET_FORM = "RESET_FORM";
 var resetForm = function() {
@@ -17,7 +145,7 @@ var fetchAllPostsSuccess = function(posts) {
 
 var fetchAllPosts = function() {
   return function(dispatch) {
-    var url = "/all";
+    var url = "/post/all";
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -40,7 +168,7 @@ var createPost = function(post) {
   return function(dispatch) {
     var body = JSON.stringify(post);
 
-    var url = "/";
+    var url = "/post";
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -75,7 +203,7 @@ var fetchFullPostEdit = function(post) {
 
 var fetchFullPost = function(id, type) {
   return function(dispatch) {
-    var url = "/"+id;
+    var url = "/post/"+id;
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -103,7 +231,7 @@ var fetchFullPost = function(id, type) {
 var updatePost = function(post) {
   return function(dispatch){
     var data = JSON.stringify(post);
-    var url = "/"+post._id;
+    var url = "/post/"+post._id;
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -121,7 +249,7 @@ var updatePost = function(post) {
 
 var deletePost = function(id) {
   return function(dispatch) {
-    var url = "/"+id;
+    var url = "/post/"+id;
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -137,6 +265,12 @@ var deletePost = function(id) {
   };
 };
 
+exports.FETCH_USER_STATUS_SUCCESS = FETCH_USER_STATUS_SUCCESS;
+exports.fetchUserStatus = fetchUserStatus;
+exports.initUser = initUser;
+exports.AUTHENTICATE_USER_SUCCESS = AUTHENTICATE_USER_SUCCESS;
+exports.AUTHENTICATE_USER_FAILURE = AUTHENTICATE_USER_FAILURE;
+exports.authenticateUser = authenticateUser;
 exports.RESET_FORM = RESET_FORM;
 exports.resetForm = resetForm; 
 exports.fetchAllPosts = fetchAllPosts;
