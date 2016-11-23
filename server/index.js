@@ -3,7 +3,7 @@ var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var bcrypt = require("bcryptjs");
 var passport = require("passport");
-var BasicStrategy = require("passport-http").BasicStrategy;
+var LocalStrategy = require("passport-local").Strategy;
 var markdown = require("markdown").markdown;
 
 var config = require("./config");
@@ -25,8 +25,8 @@ var POSTS = [
   {subject: "Cutest kitty", body: "Look at this cat isn't it the cutest cat i love cats they are the best animals evar", img:"http://placekitten.com/600/600", timestamp: "Thu Oct 06 2016 17:18:20 GMT-0700 (MST)"}
 ];
 
-var strategy = new BasicStrategy(function(username, password, callback) {
-  console.log("receiving: ",username, password);
+var strategy = new LocalStrategy(function(username, password, callback) {
+
   User.findOne({
     username: username
   }, function (err, user) {
@@ -72,7 +72,7 @@ app.get("/user", function(req, res){
   });
 });
 
-app.post("/init", function(req, res){
+app.post("/user", function(req, res){
   var initUser = {
     username: req.body.username,
     password: req.body.password
@@ -106,11 +106,11 @@ app.delete("/user/:id", function(req, res){
   });
 });
 
-app.put("/auth", passport.authenticate("basic", {session: false}), function(req, res) {
+app.post("/login", passport.authenticate("local", {session: false}), function(req, res) {
   res.status(200).json({message:"Hooray, you have authenticated!"});  
 });
 
-app.get("/all", function(req,res) {
+app.get("/post/all", function(req,res){
   Post.find(function(err, posts) {
     if(err || !posts) {
       res.status(500).json({message:"Internal server error"}); 
@@ -135,7 +135,7 @@ app.post("/all", function(req,res) {
 });
 
 
-app.get("/:id", function(req,res){
+app.get("/post/:id", function(req,res){
   var id = req.params.id;
   Post.findOne({_id:id}, function(err, post){
     if(err || !post){
@@ -148,7 +148,7 @@ app.get("/:id", function(req,res){
   });
 });
 
-app.post("/", function(req,res){
+app.post("/post", function(req,res){
   var newPost = {
     subject: req.body.subject,
     body: req.body.body,
@@ -164,7 +164,7 @@ app.post("/", function(req,res){
   });
 });
 
-app.put("/:id", function(req,res){
+app.put("/post/:id", function(req,res){
   var id = req.params.id;
   var updatedPost = {
     subject: req.body.subject,
@@ -181,7 +181,7 @@ app.put("/:id", function(req,res){
   });
 });
 
-app.delete("/:id", function(req,res){
+app.delete("/post/:id", function(req,res){
   var id = req.params.id;
   Post.findOneAndRemove({_id:id},function(err,post){
     if(err || !post){
@@ -198,7 +198,7 @@ var runServer = function(callback){
       return callback(err);
     }
     app.listen(config.PORT, function(){
-      console.log("Listenting on localhost:" + config.PORT);
+      console.log("Listening on localhost:" + config.PORT);
       if (callback){
         callback();
       }

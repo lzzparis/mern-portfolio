@@ -57,7 +57,7 @@ var fetchUserStatus = function(){
 
 var initUser = function(username, password) {
   return function(dispatch) {
-    var url = "/init";
+    var url = "/user";
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -86,6 +86,14 @@ var authenticateUserSuccess = function() {
   };
 };
 
+var AUTHENTICATE_USER_FAILURE = "AUTHENTICATE_USER_FAILURE";
+var authenticateUserFailure = function() {
+  return {
+    type: AUTHENTICATE_USER_FAILURE
+  };
+};
+
+
 var AUTHENTICATE_USER_ERROR = "AUTHENTICATE_USER_ERROR";
 var authenticateUserError = function() {
   return {
@@ -95,7 +103,7 @@ var authenticateUserError = function() {
 
 var authenticateUser = function(username, password) {
   return function(dispatch){
-    var url = "/auth";
+    var url = "/login";
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -107,12 +115,15 @@ var authenticateUser = function(username, password) {
     var body = JSON.stringify(data);
 
 //TODO - is this the right method to use??
-    fetch(url, {method: "PUT", headers: headers, body: body, credentials: "include"})
+    fetch(url, {method: "POST", headers: headers, body: body})
     .then(function(response){
-      if(response.status == 401){
+      if (response.status == 401){
+        return dispatch(authenticateUserFailure());
+      } else if (response.status == 200) {
+        return dispatch(authenticateUserSuccess());
+      } else {
         return dispatch(authenticateUserError());
       }
-      return dispatch(authenticateUserSuccess());
     });
   };
 };
@@ -134,7 +145,7 @@ var fetchAllPostsSuccess = function(posts) {
 
 var fetchAllPosts = function() {
   return function(dispatch) {
-    var url = "/all";
+    var url = "/post/all";
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -157,7 +168,7 @@ var createPost = function(post) {
   return function(dispatch) {
     var body = JSON.stringify(post);
 
-    var url = "/";
+    var url = "/post";
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -192,7 +203,7 @@ var fetchFullPostEdit = function(post) {
 
 var fetchFullPost = function(id, type) {
   return function(dispatch) {
-    var url = "/"+id;
+    var url = "/post/"+id;
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -220,7 +231,7 @@ var fetchFullPost = function(id, type) {
 var updatePost = function(post) {
   return function(dispatch){
     var data = JSON.stringify(post);
-    var url = "/"+post._id;
+    var url = "/post/"+post._id;
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -238,7 +249,7 @@ var updatePost = function(post) {
 
 var deletePost = function(id) {
   return function(dispatch) {
-    var url = "/"+id;
+    var url = "/post/"+id;
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -258,6 +269,7 @@ exports.FETCH_USER_STATUS_SUCCESS = FETCH_USER_STATUS_SUCCESS;
 exports.fetchUserStatus = fetchUserStatus;
 exports.initUser = initUser;
 exports.AUTHENTICATE_USER_SUCCESS = AUTHENTICATE_USER_SUCCESS;
+exports.AUTHENTICATE_USER_FAILURE = AUTHENTICATE_USER_FAILURE;
 exports.authenticateUser = authenticateUser;
 exports.RESET_FORM = RESET_FORM;
 exports.resetForm = resetForm; 

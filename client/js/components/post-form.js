@@ -8,7 +8,8 @@ var PostForm = React.createClass({
       formSubject: "",
       formBody: "",
       formImg: "",
-      postId: null
+      postId: null,
+      errorMessage: ""
     }
   },
   componentWillReceiveProps: function(nextProps){
@@ -46,21 +47,26 @@ var PostForm = React.createClass({
       body: this.state.formBody,
       img: this.state.formImg
     };
-    if(this.props.editMode){
-      post._id = this.state.postId;
-      this.props.dispatch(actions.updatePost(post));
+    if (post.subject == "") {
+      this.setState({
+        errorMessage: "* required"
+      });
+    } else {
+      if (this.props.editMode) {
+        post._id = this.state.postId;
+        this.props.dispatch(actions.updatePost(post));
+      } else {
+        this.props.dispatch(actions.createPost(post));
+      }
+      this.formReset();
     }
-    else {
-      this.props.dispatch(actions.createPost(post));
-    }
-    this.formReset();
   },
   render:function(){
     return(
       <div className="half-width left">
         <h1>Create Post</h1>
         <form id="post-form" name="" onChange={this.updateForm}>
-          Title<span className="subject-warning"></span><br />
+          Title<span className="error-message">{this.state.errorMessage}</span><br />
           <input className="form-field subject-box" type="text" ref="subject" value={this.state.formSubject} /><br />
           Body<br />
           <textarea className="form-field body-box" ref="body" value={this.state.formBody}></textarea><br />

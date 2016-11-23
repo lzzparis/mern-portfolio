@@ -6,7 +6,7 @@ var hashHistory = router.hashHistory;
 var actions = require("../actions/actions");
 
 var Login = React.createClass({
-  componentDidMount: function(){
+  componentWillMount: function(){
     this.props.dispatch(actions.fetchUserStatus());
   },
   componentWillReceiveProps: function(nextProps){
@@ -26,16 +26,25 @@ var Login = React.createClass({
     console.log(event);
   },
   render: function() {
+    var headerText = null;
+    var authError = null;
     if(this.props.userInitialized){
-      var headerText = "Login";  
+      headerText = "Login";  
     } else {
-      var headerText = "Create User";
+      headerText = "Create User";
+    }
+
+    if(this.props.failedAuthentication) {
+      authError = (
+        <p className="error-message">Sorry, that username/password combination is not recognized.</p>
+      );
     }
 
     return (
       <div>
         <h1>{headerText}</h1>
         <form className="login-form" onSubmit={this.authenticate}>
+          {authError}
           <input type="text" ref="username" placeholder="Username" /><br />
           <input type="password" ref="password" placeholder="Password" /><br />
           <input type="submit" value="Submit" /> 

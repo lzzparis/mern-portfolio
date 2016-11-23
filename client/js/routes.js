@@ -23,7 +23,7 @@ var routes = (
       </Route>
       <Route path="login" component={LoginContainer} />
       <Route path="admin" component={Admin}>
-        <Route path="preview" component={PreviewPostContainer} />
+        <Route path="preview/:id" component={PreviewPostContainer} />
       </Route>
     </Route>
   </Router>
