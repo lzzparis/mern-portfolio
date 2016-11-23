@@ -6,24 +6,24 @@ var Route = router.Route;
 var hashHistory = router.hashHistory;
 var Link = router.Link;
 
-var App = require("./components/app");
+var AppContainer = require("./components/app");
 var Blog = require("./components/blog");
 var LatestPostsContainer = require("./components/latest-posts-container");
-var FullPost = require("./components/full-post"); 
+var FullPostContainer = require("./components/full-post-container"); 
 var LoginContainer = require("./components/login-container");
 var Admin = require("./components/admin");
-var PreviewPostContainer = require("./components/preview-post-container");
+var PreviewPost = require("./components/preview-post");
 
 var routes = (
   <Router history={hashHistory}>
-    <Route path="/" component={App}>
+    <Route path="/" component={AppContainer}>
       <Route path="blog" component={Blog}>
         <Route path="latest" component={LatestPostsContainer} />
-        <Route path="full/:id" component={FullPost} />
+        <Route path="full/:id" component={FullPostContainer} />
       </Route>
       <Route path="login" component={LoginContainer} />
       <Route path="admin" component={Admin}>
-        <Route path="preview/:id" component={PreviewPostContainer} />
+        <Route path="preview/:id" component={PreviewPost} />
       </Route>
     </Route>
   </Router>

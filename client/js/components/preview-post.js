@@ -2,16 +2,16 @@ var React = require("react");
 var router = require("react-router");
 var hashHistory = router.hashHistory;
 
-var FullPost = require("./full-post");
+var FullPostContainer = require("./full-post-container");
 var PreviewPost = React.createClass({
   closePost: function(){
     hashHistory.goBack(); 
   },
   render: function(){
     return(
-      <div id="post-preview" className={this.props.previewPostClass}>
+      <div id="post-preview">
         <span className="close-x right" onClick={this.closePost}>&times;</span>
-        <FullPost post={this.props.post} />
+        <FullPostContainer />
       </div>
     );
   }
