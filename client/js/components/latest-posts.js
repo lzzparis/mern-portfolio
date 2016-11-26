@@ -1,7 +1,7 @@
 var React = require("react");
 
 var actions = require("../actions/actions");
-var FullPost = require("./full-post");
+var FullPostContainer = require("./full-post-container");
 
 var LatestPosts = React.createClass({
   componentWillMount: function() {
@@ -10,7 +10,7 @@ var LatestPosts = React.createClass({
   render: function() {
     var list = [];
     for (var i=0 ; i < this.props.posts.length ; i++){
-      list.push(<FullPost post={this.props.posts[i]} key={i} />);
+      list.push(<FullPostContainer post={this.props.posts[i]} key={i} />);
     }
     return (
       <div className="latest-posts">
