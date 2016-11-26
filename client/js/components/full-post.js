@@ -1,21 +1,33 @@
 var React = require("react");
 var router = require("react-router");
-var hashHistory = router.hashHistory;
+var Link = router.Link;
+
+var actions = require("../actions/actions");
 
 var FullPost = React.createClass({
-  closePost: function(){
-    hashHistory.goBack(); 
+  componentWillMount: function() {
+    if(!this.props.multiPostView){
+      this.props.dispatch(actions.fetchFullPost(this.props.id, actions.FETCH_FULL_POST_DISPLAY));
+    }
   },
-  render: function(){
-    return(
-      <div id="full-post" className={this.props.fullPostClass}>
-        <span className="close-x right" onClick={this.closePost}>&times;</span>
-        <h2 className="subject-header">{this.props.post.subject}</h2>
-        <img className="image-content" src={this.props.post.img} />
-        <p className="body-content">{this.props.post.body}</p>
+  render: function(props) {
+    var postToRender = this.props.post;
+    var header = null;
+    if(this.props.multiPostView) {
+      //multi-post view 
+      header = (<h2 className="subject-header"><Link to={"/blog/full/"+postToRender._id}>{postToRender.subject}</Link></h2>);
+    } else {
+      //admin view - don't link to full blog view
+      header = (<h2 className="subject-header">{postToRender.subject}</h2>);
+    }
+    return (
+      <div className="full-post">
+        {header}
+        <img className="image-content" src={postToRender.img} />
+        <p className="body-content">{postToRender.body}</p>
       </div>
     );
   }
 });
 
-module.exports = FullPost; 
+module.exports = FullPost;

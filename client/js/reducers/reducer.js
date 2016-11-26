@@ -20,7 +20,8 @@ var initialState = {
   failedAuthentication: false,
   formData: new EmptyPost(),
   displayPost:{},
-  posts:{},
+  posts:[
+  ],
   editMode: false
 };
 

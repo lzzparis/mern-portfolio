@@ -5,7 +5,6 @@ var hashHistory = router.hashHistory;
 
 var actions = require("../actions/actions");
 
-var FullPostContainer = require("./full-post-container");
 var PostFormContainer = require("./post-form-container");
 var PostListContainer = require("./post-list-container");
 

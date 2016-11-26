@@ -1,11 +1,13 @@
 var React = require("react");
-var actions = require("../actions/actions");
+var router = require("react-router");
+var hashHistory = router.hashHistory;
 
+var actions = require("../actions/actions");
 var PostSummary = require("./post-summary");
 
 var PostList = React.createClass({
   displayPost: function(id){
-    this.props.dispatch(actions.fetchFullPost(id, actions.FETCH_FULL_POST_DISPLAY));
+    hashHistory.push("/admin/preview/"+id);
   },
   editPost: function(id){
     this.props.dispatch(actions.fetchFullPost(id, actions.FETCH_FULL_POST_EDIT));
