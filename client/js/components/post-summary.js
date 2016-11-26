@@ -1,15 +1,11 @@
 var React = require("react");
 var moment = require("moment");
 
-var router = require("react-router");
-var hashHistory = router.hashHistory;
-
 var actions = require("../actions/actions");
 
 var PostSummary = React.createClass({
   displayPost: function(){
-    // this.props.displayHandler(this.props.post._id);
-    hashHistory.push("/admin/preview/"+this.props.post._id);
+    this.props.displayHandler(this.props.post._id);
   },
   editPost: function(){
     this.props.editHandler(this.props.post._id);
