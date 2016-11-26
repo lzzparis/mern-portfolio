@@ -8,10 +8,4 @@ addons:
     - mongodb-3.2-precise
     packages:
     - mongodb-org-server
-deploy:
-  provider: heroku
-  api_key:
-    secure: Fuio999/GEVeBJPAqEl32a1PejOYkPcmvZm3+I1PJ3w+Yv34IJdVLYnJR7jJvxUvqCCyp52yZxY2etA7kSkcWOukLmKovYytf7Jc/txUVo4eZo+5GDQpPeUxd4dHREGgEs9MV4WCBUtX0qWRgIKCkLcxszWgGJy83jWtKlRfnAYNkFdQw0zuNybjwYyTX6my6LACivC6QIXru99P7d3pVewU9G6i4g1URQlKLOUY43/FvsA+oRfqVMh7DrSlOrg94L0aJtBH0530KRYh5EA/fRDI9oSrZq7t6cUFsftoVVBI8dfR7EtJiSWUhT1zN0JPk8+U0sT9tIB/RnBn9GCnxIqD6bS8VLNn4syroZ9udbyGUylXm7UB8xj3Pm5pP50n2IC2gyoHRcwaPIcUqVM71GpMPtaiY7gqSL3ZEIq0hS86BoY+sa7bkCEf+61vemvB1BqrRmWzxbdcGcdtVDr7UAY2iX5i+hmthyTJ91ICOgLY7J+4jj5AqFmJFVHJDGCCbfZGBz6iqrrn6Dw2suxMTlYCF6rHfAhV1Jvi0FAx9WZwDQ35vze4G6TZfRBBs41HZgEW+D9UmYOb6joSgq3BaE+7oOp6GVANF3E+s4kxVEh7CrLDElyP5imimmFKivaPJupz2Iuqi3nRG604l2ZQ/DxXI8xa0sFqazapTuiOxPY=
-  app: hidden-crag-51505
-  on:
-    repo: lzzparis/blog-tool
+
