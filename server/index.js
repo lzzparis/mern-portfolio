@@ -25,36 +25,7 @@ var POSTS = [
   {subject: "Cutest kitty", body: "Look at this cat isn't it the cutest cat i love cats they are the best animals evar", img:"http://placekitten.com/600/600", timestamp: "Thu Oct 06 2016 17:18:20 GMT-0700 (MST)"}
 ];
 
-var strategy = new LocalStrategy(function(username, password, callback) {
-
-  User.findOne({
-    username: username
-  }, function (err, user) {
-    if (err) {
-      callback(err);
-      return;
-    }
-
-    if (!user) {
-      return callback(null, false, {
-        message: 'Incorrect username.'
-      });
-    }
-
-    user.validatePassword(password, function(err, isValid) {
-      if (err) {
-        return callback(err);
-      }
-
-      if (!isValid) {
-        return callback(null, false, {
-          message: 'Incorrect password.'
-        });
-      }
-      return callback(null, user);
-    });
-  });
-});
+var strategy = require("./strategy"); 
 
 passport.use(strategy);
 app.use(passport.initialize());
