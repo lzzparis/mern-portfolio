@@ -6,9 +6,9 @@ var hashHistory = router.hashHistory;
 var actions = require("../actions/actions");
 
 var App = React.createClass({
-  // componentDidMount: function(){
-  //   this.props.dispatch(actions.fetchUserStatus());
-  // }, 
+  componentDidMount: function(){
+    this.props.dispatch(actions.fetchUserStatus());
+  }, 
   render: function(){
     return(
       <div>

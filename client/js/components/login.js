@@ -6,9 +6,6 @@ var hashHistory = router.hashHistory;
 var actions = require("../actions/actions");
 
 var Login = React.createClass({
-  componentWillMount: function(){
-    this.props.dispatch(actions.fetchUserStatus());
-  },
   componentWillReceiveProps: function(nextProps){
     if(nextProps.isAuthenticated){
       hashHistory.push("/admin");
