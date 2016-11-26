@@ -2,6 +2,7 @@ var React = require("react");
 var connect = require("react-redux").connect;
 var router = require("react-router");
 var hashHistory = router.hashHistory;
+var Link = router.Link;
 
 var actions = require("../actions/actions");
 
@@ -21,6 +22,8 @@ var Admin = React.createClass({
         {this.props.children}
         <PostFormContainer />
         <PostListContainer />
+        <div className="clear-fix"></div>
+        <Link className="subtle-link" to="/">&#8606; home</Link> 
       </div>
     );
   }

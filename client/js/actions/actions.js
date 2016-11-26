@@ -1,6 +1,7 @@
 var fetch = require("isomorphic-fetch");
 var router = require("react-router");
 var hashHistory = router.hashHistory; 
+var markdown = require("markdown").markdown;
 
 
 var INIT_USER_SUCCESS = "INIT_USER_SUCCESS";
@@ -187,6 +188,7 @@ var createPost = function(post) {
 
 var FETCH_FULL_POST_DISPLAY = "FETCH_FULL_POST_DISPLAY";
 var fetchFullPostDisplay = function(post) {
+  post.body = markdown.toHTML(post.body);   
   return {
     type: FETCH_FULL_POST_DISPLAY,
     post: post
