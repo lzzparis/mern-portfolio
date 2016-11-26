@@ -91,7 +91,7 @@ app.get("/post/all", function(req,res){
   });
 });
 
-app.post("/all", function(req,res) {
+app.post("/post/all", function(req,res) {
   var posts = [];
   for (var i = 0; i < POSTS.length; i++){
     Post.create(POSTS[i], function(err, post) {
