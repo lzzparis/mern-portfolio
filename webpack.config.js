@@ -49,6 +49,10 @@ module.exports = {
           exclude: /(node_modules)/,
           loader: 'babel',
         },
+        {
+            test: /\.json$/,
+            loader: 'json'
+        }
       ]
     },
     plugins: plugins

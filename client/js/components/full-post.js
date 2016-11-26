@@ -1,6 +1,7 @@
 var React = require("react");
 var router = require("react-router");
 var Link = router.Link;
+var ReactMarkdown = require("react-markdown");
 
 var actions = require("../actions/actions");
 
@@ -24,7 +25,7 @@ var FullPost = React.createClass({
       <div className="full-post">
         {header}
         <img className="image-content" src={postToRender.img} />
-        <p className="body-content">{postToRender.body}</p>
+        <ReactMarkdown className="body-content" source={postToRender.body}/>
       </div>
     );
   }
