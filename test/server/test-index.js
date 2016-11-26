@@ -1,3 +1,5 @@
+global.DATABASE_URL = 'mongodb://localhost/blog-tool-test';
+
 var chai = require('chai');
 var chaiHttp = require('chai-http');
 

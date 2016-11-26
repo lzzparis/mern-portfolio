@@ -2,6 +2,7 @@ var React = require("react");
 var connect = require("react-redux").connect;
 var router = require("react-router");
 var hashHistory = router.hashHistory; 
+var Link = router.Link;
 
 var actions = require("../actions/actions");
 
@@ -38,13 +39,14 @@ var Login = React.createClass({
     }
 
     return (
-      <div>
+      <div className="login">
         <h1>{headerText}</h1>
         <form className="login-form" onSubmit={this.authenticate}>
           {authError}
           <input type="text" ref="username" placeholder="Username" /><br />
           <input type="password" ref="password" placeholder="Password" /><br />
-          <input type="submit" value="Submit" /> 
+          <input type="submit" value="Submit" /><br />
+          <Link className="subtle-link" to="/">cancel</Link> 
         </form>
       </div>
     );
