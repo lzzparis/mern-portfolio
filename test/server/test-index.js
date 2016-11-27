@@ -21,14 +21,6 @@ describe('App name', function(){
       });
     });
   });
-  it('should respond with status 200', function(done){
-    chai.request(app)
-    .get('/')
-    .end( function(err, res){
-      res.should.have.status(200);
-      done();
-    });
-  });
   it('should return a post on GET with id', function(done){
     Post.findOne({subject:"Trapped"},function(err,post){
       var testId = post._id;
