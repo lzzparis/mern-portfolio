@@ -8,4 +8,10 @@ addons:
     - mongodb-3.2-precise
     packages:
     - mongodb-org-server
-
+deploy:
+  provider: heroku
+  api_key:
+    secure: c41LqA41+c8t8RTbcWOKxhCbTrMHYygRIukZrWoljjHWtLTShZ/trMn0qa+mmi7xraiiAeQgbKh+NWGkXEbM97scvOLBw+59mBuVfTiMMj77EbKXq1X/rkFpGBxq+d1fWAvdy2gsF7r6mD5XD9biqIxZ4rmkbqwo2pQ8iV6/e7sfkpuFUUv0ATUwzgG2ZuTo9FFkcbhID95AjVT+foQNtJ/m4YeQU6RWrn7JYBNh3TmV4L6P0+o1O6XOAVXKCT5XM3BJLVKkIePvm+syqMKKUHTNK4xrw3a/DOAG7sfEtk/YJGF8EtFGMH2kYk5cR/UG1tntKo9RD/SNks+QU/DdDLWq91o0Qc1eKCQa5CkrEBBeKRqUZmy6XslQNLbiRH47UXzqs7LVyodrQjjkhdNI5L9EhjEL8nqhOeNfNpnPXSXjGJuoXRqee3/iOLiCsZRxyGbaQVJ1JOp46sZ64jN2126XVPIHKyUydIBri5MTEm98Fq9wP50iSEArVp6CEz1ZsI3WtP06CqC+RS3TtjCT+fzEhNVTdjWSqInh1t1CFZIujpztZCeWCvZa7KPoOAIQEDe+zqB+qMrxBafOO2DrbconjsqcxiK5U1KOPQ0Ma2wM0rWVaJqQBqYHGu9BhkMkOwSYPbNnf1OorLq+iJBduBgtkCdij14t1plCs4ZlzOc=
+  app: blog-tool
+  on:
+    repo: lzzparis/blog-tool-extended
