@@ -17,6 +17,9 @@ describe('App name', function(){
       chai.request(app)
       .post("/post/all")
       .end(function(err,res){
+        Post.find(function(err, posts){
+          //touch database 
+        });
         done();
       });
     });
