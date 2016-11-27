@@ -41,7 +41,7 @@ module.exports = {
         path: path.resolve(__dirname, outputPath),
         filename: filename,
     },
-    devtool: 'inline-source-map',
+    devtool: isProduction ? 'source-map' : 'inline-source-map',
     module: {
       loaders: [
         {
