@@ -42,7 +42,7 @@
 
     "clean:client:dev:js": "rm -rf build/dev/client/js",
     "mkdir:client:dev:js": "mkdir -p build/dev/client/js",
-    "build:client:dev:js": "run-s clean:client:dev:js mkdir:client:dev:js && NODE_ENV=development webpack",
+    "build:client:dev:js": "run-s clean:client:dev:js mkdir:client:dev:js && NODE_ENV=production webpack",
     "watch:client:dev:js": "run-s build:client:dev:js && NODE_ENV=development webpack --watch",
 
     "clean:client:dev:css": "rm -rf build/dev/client/css",
