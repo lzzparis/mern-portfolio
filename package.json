@@ -51,7 +51,7 @@
     "build:client:production": "run-s build:client:production:*",
     "clean:client:production:html": "rm -f build/production/client/index.html",
     "mkdir:client:production:html": "run-s mkdir:client:production",
-    "build:client:production:html": "run-s clean:client:production:html mkdir:client:production:html && cp client/prod-index.html build/production/client/index.html",
+    "build:client:production:html": "run-s clean:client:production:html mkdir:client:production:html && { echo '{\"production\": true}'; cat package.json; } | json --merge | mustache - client/index.html > build/production/client/index.html",
     "clean:client:production:js": "rm -rf build/production/client/js",
     "mkdir:client:production:js": "mkdir -p build/production/client/js",
     "build:client:production:js": "run-s clean:client:production:js mkdir:client:production:js && NODE_ENV=production webpack",
