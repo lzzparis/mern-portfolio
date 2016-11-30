@@ -43,10 +43,18 @@ a {
 .clear-fix {
   clear:both;
 }
-.subtle-link{
+.link-home{
   margin:0 1rem;
   color:#444;
   font-size: 1rem;
+  font-style: italic;
+}
+.form-field {
+  margin: 0.5rem;
+}
+
+.form-error {
+  color: red;
   font-style: italic;
 }
 
@@ -60,7 +68,7 @@ a {
   padding: 0;
   text-align: center;
 }
-.blog-nav-item {
+.blog-nav-link {
   margin: 2rem;
   font-size: 2rem;
   text-transform: uppercase;
@@ -76,25 +84,18 @@ a {
 .login-form {
   font-size: 2rem; 
 }
-.login-form input {
-  margin: 0.5rem;
-}
+
 
 /*Admin view*/
-.form-field {
+.post-form-field {
   width: 98%;
   margin: 1%;
   font-size: 1.25rem;
   font-family: Georgia;
 }
 
-.body-box {
+.post-form-body {
   height: 50vh;
-}
-
-.error-message {
-  color: red;
-  font-style: italic;
 }
 
 .post-summary {
@@ -111,12 +112,11 @@ a {
   cursor: pointer
 }
 
-.post-info {
+.post-summary-content {
   display: inline-block;
 }
 
-
-#post-preview {
+.post-preview {
   position: fixed;
   top: 2%;
   left: 15%;
@@ -129,14 +129,14 @@ a {
 
 }
 
-.image-content {
+.full-post-content-image {
   margin: 1% auto;
   max-height: 40vh;
   max-width: 98%;
   display: block;
 }
 
-.close-x {
+.post-preview-close {
   margin: 1%;
   font-size: 5rem;
   line-height: 0.5em;

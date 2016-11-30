@@ -18,12 +18,12 @@ var Admin = React.createClass({
   },
   render: function(){
     return(
-      <div>
+      <div className="admin">
         {this.props.children}
         <PostFormContainer />
         <PostListContainer />
         <div className="clear-fix"></div>
-        <Link className="subtle-link" to="/">&#8606; home</Link> 
+        <Link className="link-home admin-link-home" to="/">&#8606; home</Link> 
       </div>
     );
   }
