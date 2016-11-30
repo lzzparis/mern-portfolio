@@ -1,17 +1,24 @@
 var React = require("react");
 
+var actions = require("../actions/actions");
+
 var BlogHeader = require("./blog-header");
 var BlogNav = require("./blog-nav");
 var BlogMain = require("./blog-main");
 
-var Blog = function(props) {
-  return (
-    <div>
-      <BlogHeader />
-      <BlogNav />
-      <BlogMain children={props.children} />
-    </div>
-  );
-};
+var Blog = React.createClass({
+  componentDidMount: function() {
+    this.props.dispatch(actions.resetForm());
+  },
+  render: function() {
+    return (
+      <div>
+        <BlogHeader />
+        <BlogNav />
+        <BlogMain children={this.props.children} />
+      </div>
+    );
+  }
+});
 
 module.exports = Blog;
