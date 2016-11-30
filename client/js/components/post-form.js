@@ -58,10 +58,15 @@ var PostForm = React.createClass({
       } else {
         this.props.dispatch(actions.createPost(post));
       }
-      this.formReset();
     }
   },
   render:function(){
+    var clearButtonText = null;
+    if (this.props.editMode) {
+      clearButtonText = "Cancel";
+    } else {
+      clearButtonText = "Clear";
+    }
     return(
       <div className="half-width left">
         <h1>Create Post</h1>
@@ -70,10 +75,10 @@ var PostForm = React.createClass({
           <input className="form-field subject-box" type="text" ref="subject" value={this.state.formSubject} /><br />
           Body<br />
           <textarea className="form-field body-box" ref="body" value={this.state.formBody}></textarea><br />
-          Image<br />
+          Image <em>(type or copy/paste a URL)</em><br />
           <input className="form-field img-box" ref="img" value={this.state.formImg} /><br />
           <input type="submit" className="btn submit-btn" onClick={this.formSubmit} />
-          <button className="btn clear-btn" onClick={this.formClear}>Clear</button>
+          <button className="btn clear-btn" onClick={this.formClear}>{clearButtonText}</button>
         </form> 
       </div>
     );
