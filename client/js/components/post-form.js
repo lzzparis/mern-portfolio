@@ -58,7 +58,6 @@ var PostForm = React.createClass({
       } else {
         this.props.dispatch(actions.createPost(post));
       }
-      this.formReset();
     }
   },
   render:function(){
