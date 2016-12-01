@@ -7,12 +7,12 @@ var Redirect = router.Redirect;
 var hashHistory = router.hashHistory;
 var Link = router.Link;
 
-var AppContainer = require("./components/app");
+var AppContainer = require("./components/app-container");
 var BlogContainer = require("./components/blog-container");
 var LatestPostsContainer = require("./components/latest-posts-container");
 var FullPostContainer = require("./components/full-post-container"); 
 var LoginContainer = require("./components/login-container");
-var Admin = require("./components/admin");
+var AdminContainer = require("./components/admin-container");
 var PreviewPost = require("./components/preview-post");
 
 var routes = (
@@ -24,7 +24,7 @@ var routes = (
         <Route path="full/:id" component={FullPostContainer} />
       </Route>
       <Route path="login" component={LoginContainer} />
-      <Route path="admin" component={Admin}>
+      <Route path="admin" component={AdminContainer}>
         <Route path="preview/:id" component={PreviewPost}>
           <IndexRoute component={FullPostContainer} />
         </Route>

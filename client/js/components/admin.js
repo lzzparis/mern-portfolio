@@ -29,12 +29,4 @@ var Admin = React.createClass({
   }
 });
 
-var mapStateToProps = function(state, props){
-  return {
-    isAuthenticated: state.isAuthenticated
-  };
-};
-
-var AdminContainer = connect(mapStateToProps)(Admin);
-
-module.exports = AdminContainer;
+module.exports = Admin;

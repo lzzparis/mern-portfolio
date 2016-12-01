@@ -18,7 +18,4 @@ var App = React.createClass({
   }
 });
 
-
-var AppContainer = connect()(App);
-
-module.exports = AppContainer;
+module.exports = App;
