@@ -25,7 +25,7 @@ var PostList = React.createClass({
     }
     return(
       <div className="post-list half-width right">
-        <h1 className="post-list-header">Post summary</h1>
+        <h1 className="header post-list-header">Post summary</h1>
         <ul className="post-list-list">{list}</ul>  
       </div>
     );

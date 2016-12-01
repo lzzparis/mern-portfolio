@@ -1,10 +1,15 @@
 html, body {
-  background-color: #ccc;
-  font-family: Catamaran, sans-serif;
   width: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  font-family: Catamaran, sans-serif;
+  background-color: #ccc;
+  background-attachment: fixed;
+  background-image: url("../assets/paper-light-detail.jpg");
+  background-size: cover;
+
 }
 
 *, *:before, *:after {
@@ -13,19 +18,20 @@ html, body {
 
 h1 {
   margin: 1rem 0;
+  color: #424264;
   font-size: 3rem;
-  font-weight: 700;
+  font-weight: normal
 }
 h2 {
   margin: 2%;
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: normal;
 }
 p {
   margin: 2%;
 }
 a {
-  color: black;
+  color: #424264;
   text-decoration: none;
 }
 
@@ -51,6 +57,25 @@ a {
 }
 .form-field {
   margin: 0.5rem;
+  padding: 0.5rem;
+  background-color: #fafafa;
+  font-family: "Libre Franklin", sans-serif;
+  border: none;
+  border-radius: 2px;
+}
+
+.header {
+  font-family: "Patua One", serif;
+}
+
+.button {
+  margin: 0.5rem;
+  padding: 0.25em 0.5em;
+  color: #EAD8FF;
+  background-color: #424264;
+  font-family: "Patua One", serif;
+  border: none;
+  border-radius: 4px;
 }
 
 .form-error {
@@ -58,16 +83,26 @@ a {
   font-style: italic;
 }
 
+#app {
+  margin: 0;
+ /* position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-image: url("../assets/paper.jpg");
+  background-size: cover;
+*/
+}
+
+/*Public view*/
 .blog {
   margin: 2rem auto;
   width: 64%;
-  background-color: #eee;
+  background-color: #fafafa;
   -webkit-box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);
   -moz-box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);
   box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);
 }
 
-/*Public view*/
 .blog-header {
   text-align: center;
 }
@@ -86,9 +121,13 @@ a {
 }
 .blog-nav-item {
   margin: 2rem;
+  font-family: "Patua One", serif;
   font-size: 2rem;
   text-transform: uppercase;
   display: inline-block;
+}
+.blog-nav-link {
+  color: #424264;
 }
 
 /*Login view*/
@@ -101,6 +140,37 @@ a {
   font-size: 2rem; 
 }
 
+.login-form-field {
+  font-size: 3rem; 
+  letter-spacing: 0.2rem;
+  text-align: center;
+/*  -webkit-box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);
+  -moz-box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);
+  box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);*/
+}
+
+.form-field:focus {
+    -webkit-box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);
+  -moz-box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);
+  box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);
+
+  outline: none;
+}
+
+.full-post {
+  padding: 3rem;
+}
+
+/*Full post*/
+.full-post-content-subject {
+  font-family: "Patua One", serif;
+  font-weight: normal;
+}
+.full-post-content-body p {
+  font-family: "Libre Franklin", sans-serif;
+  line-height: 1.5rem;
+  letter-spacing: 0.01rem;
+}
 
 /*Admin view*/
 .post-form-field {
