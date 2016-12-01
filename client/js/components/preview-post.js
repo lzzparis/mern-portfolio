@@ -9,8 +9,8 @@ var PreviewPost = React.createClass({
   },
   render: function(){
     return(
-      <div id="post-preview">
-        <span className="close-x right" onClick={this.closePost}>&times;</span>
+      <div className="post-preview">
+        <span className="post-preview-close right" onClick={this.closePost}>&times;</span>
         {this.props.children}
       </div>
     );

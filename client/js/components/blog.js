@@ -12,7 +12,7 @@ var Blog = React.createClass({
   },
   render: function() {
     return (
-      <div>
+      <div className="blog">
         <BlogHeader />
         <BlogNav />
         <BlogMain children={this.props.children} />

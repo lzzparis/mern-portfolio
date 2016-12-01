@@ -4,7 +4,7 @@ var Sidebar = require("./sidebar");
 
 var BlogMain = function(props) {
   return (
-    <div>
+    <div className="blog-main">
       {props.children}    
       <Sidebar />
     </div>

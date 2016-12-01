@@ -2,7 +2,7 @@ var React = require("react");
 
 var BlogHeader = function() {
   return (
-    <h1 className="blog-header">My blog!!!</h1>
+    <div className="blog-header"><img className="blog-header-image" src="../../assets/name-inline.png" /></div>
   );
 };
 

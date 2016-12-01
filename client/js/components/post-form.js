@@ -68,17 +68,17 @@ var PostForm = React.createClass({
       clearButtonText = "Clear";
     }
     return(
-      <div className="half-width left">
-        <h1>Create Post</h1>
-        <form id="post-form" name="" onChange={this.updateForm}>
-          Title<span className="error-message">{this.state.errorMessage}</span><br />
-          <input className="form-field subject-box" type="text" ref="subject" value={this.state.formSubject} /><br />
+      <div className="post half-width left">
+        <h1 className="header post-form-header">Create Post</h1>
+        <form className="form post-form" name="" onChange={this.updateForm}>
+          Title<span className="form-error post-form-error">{this.state.errorMessage}</span><br />
+          <input className="form-field post-form-field post-form-subject" type="text" ref="subject" value={this.state.formSubject} /><br />
           Body<br />
-          <textarea className="form-field body-box" ref="body" value={this.state.formBody}></textarea><br />
+          <textarea className="form-field post-form-field post-form-body" ref="body" value={this.state.formBody}></textarea><br />
           Image <em>(type or copy/paste a URL)</em><br />
-          <input className="form-field img-box" ref="img" value={this.state.formImg} /><br />
-          <input type="submit" className="btn submit-btn" onClick={this.formSubmit} />
-          <button className="btn clear-btn" onClick={this.formClear}>{clearButtonText}</button>
+          <input className="form-field post-form-field post-form-img" ref="img" value={this.state.formImg} /><br />
+          <input className="button form-button post-form-button post-form-submit" type="submit" onClick={this.formSubmit} />
+          <button className="button form-button post-form-button post-form-clear" onClick={this.formClear}>{clearButtonText}</button>
         </form> 
       </div>
     );

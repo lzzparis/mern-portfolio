@@ -24,9 +24,9 @@ var PostList = React.createClass({
                   post={this.props.posts[i]} key={i}/>);
     }
     return(
-      <div className="half-width right">
-        <h1>Post summary</h1>
-        <ul id="post-list">{list}</ul>  
+      <div className="post-list half-width right">
+        <h1 className="header post-list-header">Post summary</h1>
+        <ul className="post-list-list">{list}</ul>  
       </div>
     );
   }
