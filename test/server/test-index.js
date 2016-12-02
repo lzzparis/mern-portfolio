@@ -23,7 +23,7 @@ describe('App name', function(){
     });
   });
 
-  it("should return all posts on GET /post/all", function(done){
+  it("should return all posts on GET /post/all with default sort (newest)", function(done){
     chai.request(app)
     .get("/post/all")
     .end(function(err, res){
@@ -31,6 +31,24 @@ describe('App name', function(){
         var actualPost = res.body[i];
         //default is to sort by newest
         var expectedPost = POSTS[POSTS.length-1-i];
+        actualPost._id.should.not.equal(null);  
+        actualPost.subject.should.equal(expectedPost.subject);  
+        actualPost.body.should.equal(expectedPost.body);  
+        actualPost.timestamp.should.equal(expectedPost.timestamp.toISOString());  
+      }
+      done();
+    });
+  });
+
+    it("should return all posts on GET /post/all with sort by oldest", function(done){
+    chai.request(app)
+    .get("/post/all")
+    .send({sort: "oldest"})
+    .end(function(err, res){
+      for (var i=0; i < res.body.length; i++) {
+        var actualPost = res.body[i];
+        //default is to sort by newest
+        var expectedPost = POSTS[i];
         actualPost._id.should.not.equal(null);  
         actualPost.subject.should.equal(expectedPost.subject);  
         actualPost.body.should.equal(expectedPost.body);  
