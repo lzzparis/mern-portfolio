@@ -5,13 +5,7 @@ var expect = require("chai").expect;
 var dispatch = function() {
   return;
 };
-var POST = {
-    _id: null,
-    subject: "Apple surprise",
-    body: "Here's some text, y'all",
-    img: "http://placekitten.com/400/500",
-    timestamp: new Date()
-  };
+var POSTS = require("../sample-data");
 
 var Admin = require("../../client/js/components/admin");
 var AdminWrapper = shallow(<Admin />);
@@ -68,7 +62,7 @@ describe("(Component) BlogNav", function() {
 
 
 var FullPost = require("../../client/js/components/full-post");
-var FullPostWrapper = shallow(<FullPost dispatch={dispatch} post={POST}/>);
+var FullPostWrapper = shallow(<FullPost dispatch={dispatch} post={POSTS[0]}/>);
 describe("(Component) FullPost", function() {
 	it("renders", function() {
 		expect(FullPostWrapper).to.have.length(1);
@@ -77,7 +71,7 @@ describe("(Component) FullPost", function() {
 
 
 var LatestPosts = require("../../client/js/components/latest-posts");
-var LatestPostsWrapper = shallow(<LatestPosts dispatch={dispatch} posts={[POST, POST]}/>);
+var LatestPostsWrapper = shallow(<LatestPosts dispatch={dispatch} posts={POSTS}/>);
 describe("(Component) LatestPosts", function() {
 	it("renders", function() {
 		expect(LatestPostsWrapper).to.have.length(1);
@@ -104,7 +98,7 @@ describe("(Component) PostForm", function() {
 
 
 var PostList = require("../../client/js/components/post-list");
-var PostListWrapper = shallow(<PostList dispatch={dispatch} posts={[POST, POST]} />);
+var PostListWrapper = shallow(<PostList dispatch={dispatch} posts={POSTS} />);
 describe("(Component) PostList", function() {
 	it("renders", function() {
 		expect(PostListWrapper).to.have.length(1);
@@ -113,7 +107,7 @@ describe("(Component) PostList", function() {
 
 
 var PostSummary = require("../../client/js/components/post-summary");
-var PostSummaryWrapper = shallow(<PostSummary post={POST} />);
+var PostSummaryWrapper = shallow(<PostSummary post={POSTS[0]} />);
 describe("(Component) PostSummary", function() {
 	it("renders", function() {
 		expect(PostSummaryWrapper).to.have.length(1);
