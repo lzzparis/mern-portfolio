@@ -20,10 +20,26 @@ describe('App name', function(){
                   function(){
                     done();
                   });
-
-
     });
   });
+
+  it("should return all posts on GET /post/all", function(done){
+    chai.request(app)
+    .get("/post/all")
+    .end(function(err, res){
+      for (var i=0; i < res.body.length; i++) {
+        var actualPost = res.body[i];
+        //default is to sort by newest
+        var expectedPost = POSTS[POSTS.length-1-i];
+        actualPost._id.should.not.equal(null);  
+        actualPost.subject.should.equal(expectedPost.subject);  
+        actualPost.body.should.equal(expectedPost.body);  
+        actualPost.timestamp.should.equal(expectedPost.timestamp.toISOString());  
+      }
+      done();
+    });
+  });
+
   it('should return a post on GET with id', function(done){
     Post.findOne({subject:"Trapped"},function(err,post){
       var testId = post._id;

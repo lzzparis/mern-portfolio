@@ -81,7 +81,22 @@ app.post("/login", passport.authenticate("local", {session: false}), function(re
 });
 
 app.get("/post/all", function(req,res){
-  Post.find(function(err, posts) {
+  var sort = null;
+  switch(req.body.sort) {
+    case "newest":
+      sort = {timestamp: -1};
+      break;
+    case "oldest":
+      sort = {timestamp: 1};
+      break;
+    case "subject":
+      sort = {subject: 1};
+      break;
+    default:
+      sort = {timestamp: -1};
+      break;
+  }
+  Post.find().sort(sort).exec(function(err, posts) {
     if(err || !posts) {
       res.status(500).json({message:"Internal server error"}); 
       return;
