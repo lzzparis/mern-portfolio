@@ -1,6 +1,7 @@
 var React = require("react");
 var shallow = require("enzyme").shallow;
 var expect = require("chai").expect;
+var should = require("chai").should();
 
 var dispatch = function() {
   return;
@@ -11,7 +12,7 @@ var Admin = require("../../client/js/components/admin");
 var AdminWrapper = shallow(<Admin />);
 describe("(Component) Admin", function() {
 	it("renders", function() {
-		expect(AdminWrapper).to.have.length(1);
+		AdminWrapper.should.have.length(1);
 	});
 });
 
@@ -20,7 +21,7 @@ var App = require("../../client/js/components/app");
 var AppWrapper = shallow(<App />);
 describe("(Component) App", function() {
 	it("renders", function() {
-		expect(AppWrapper).to.have.length(1);
+		AppWrapper.should.have.length(1);
 	});
 });
 
@@ -29,7 +30,7 @@ var Blog = require("../../client/js/components/blog");
 var BlogWrapper = shallow(<Blog />);
 describe("(Component) Blog", function() {
 	it("renders", function() {
-		expect(BlogWrapper).to.have.length(1);
+		BlogWrapper.should.have.length(1);
 	});
 });
 
@@ -38,7 +39,7 @@ var BlogHeader = require("../../client/js/components/blog-header");
 var BlogHeaderWrapper = shallow(<BlogHeader />);
 describe("(Component) BlogHeader", function() {
 	it("renders", function() {
-		expect(BlogHeaderWrapper).to.have.length(1);
+		BlogHeaderWrapper.should.have.length(1);
 	});
 });
 
@@ -47,7 +48,7 @@ var BlogMain = require("../../client/js/components/blog-main");
 var BlogMainWrapper = shallow(<BlogMain />);
 describe("(Component) BlogMain", function() {
 	it("renders", function() {
-		expect(BlogMainWrapper).to.have.length(1);
+		BlogMainWrapper.should.have.length(1);
 	});
 });
 
@@ -56,7 +57,7 @@ var BlogNav = require("../../client/js/components/blog-nav");
 var BlogNavWrapper = shallow(<BlogNav />);
 describe("(Component) BlogNav", function() {
 	it("renders", function() {
-		expect(BlogNavWrapper).to.have.length(1);
+		BlogNavWrapper.should.have.length(1);
 	});
 });
 
@@ -65,7 +66,7 @@ var FullPost = require("../../client/js/components/full-post");
 var FullPostWrapper = shallow(<FullPost dispatch={dispatch} post={POSTS[0]}/>);
 describe("(Component) FullPost", function() {
 	it("renders", function() {
-		expect(FullPostWrapper).to.have.length(1);
+		FullPostWrapper.should.have.length(1);
 	});
 });
 
@@ -74,7 +75,7 @@ var LatestPosts = require("../../client/js/components/latest-posts");
 var LatestPostsWrapper = shallow(<LatestPosts dispatch={dispatch} posts={POSTS}/>);
 describe("(Component) LatestPosts", function() {
 	it("renders", function() {
-		expect(LatestPostsWrapper).to.have.length(1);
+		LatestPostsWrapper.should.have.length(1);
 	});
 });
 
@@ -83,7 +84,7 @@ var Login = require("../../client/js/components/login");
 var LoginWrapper = shallow(<Login />);
 describe("(Component) Login", function() {
 	it("renders", function() {
-		expect(LoginWrapper).to.have.length(1);
+		LoginWrapper.should.have.length(1);
 	});
 });
 
@@ -92,7 +93,7 @@ var PostForm = require("../../client/js/components/post-form");
 var PostFormWrapper = shallow(<PostForm />);
 describe("(Component) PostForm", function() {
 	it("renders", function() {
-		expect(PostFormWrapper).to.have.length(1);
+		PostFormWrapper.should.have.length(1);
 	});
 });
 
@@ -101,7 +102,7 @@ var PostList = require("../../client/js/components/post-list");
 var PostListWrapper = shallow(<PostList dispatch={dispatch} posts={POSTS} />);
 describe("(Component) PostList", function() {
 	it("renders", function() {
-		expect(PostListWrapper).to.have.length(1);
+		PostListWrapper.should.have.length(1);
 	});
 });
 
@@ -110,7 +111,7 @@ var PostSummary = require("../../client/js/components/post-summary");
 var PostSummaryWrapper = shallow(<PostSummary post={POSTS[0]} />);
 describe("(Component) PostSummary", function() {
 	it("renders", function() {
-		expect(PostSummaryWrapper).to.have.length(1);
+		PostSummaryWrapper.should.have.length(1);
 	});
 });
 
@@ -119,7 +120,7 @@ var PreviewPost = require("../../client/js/components/preview-post");
 var PreviewPostWrapper = shallow(<PreviewPost />);
 describe("(Component) PreviewPost", function() {
 	it("renders", function() {
-		expect(PreviewPostWrapper).to.have.length(1);
+		PreviewPostWrapper.should.have.length(1);
 	});
 });
 
@@ -128,7 +129,7 @@ var Sidebar = require("../../client/js/components/sidebar");
 var SidebarWrapper = shallow(<Sidebar />);
 describe("(Component) Sidebar", function() {
 	it("renders", function() {
-		expect(SidebarWrapper).to.have.length(1);
+		SidebarWrapper.should.have.length(1);
 	});
 });
 
