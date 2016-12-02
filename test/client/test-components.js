@@ -2,6 +2,17 @@ var React = require("react");
 var shallow = require("enzyme").shallow;
 var expect = require("chai").expect;
 
+var dispatch = function() {
+  return;
+};
+var POST = {
+    _id: null,
+    subject: "Apple surprise",
+    body: "Here's some text, y'all",
+    img: "http://placekitten.com/400/500",
+    timestamp: new Date()
+  };
+
 var Admin = require("../../client/js/components/admin");
 var AdminWrapper = shallow(<Admin />);
 describe("(Component) Admin", function() {
@@ -56,22 +67,22 @@ describe("(Component) BlogNav", function() {
 });
 
 
-//var FullPost = require("../../client/js/components/full-post");
-//var FullPostWrapper = shallow(<FullPost />);
-//describe("(Component) FullPost", function() {
-//	it("renders", function() {
-//		expect(FullPostWrapper).to.have.length(1);
-//	});
-//});
+var FullPost = require("../../client/js/components/full-post");
+var FullPostWrapper = shallow(<FullPost dispatch={dispatch} post={POST}/>);
+describe("(Component) FullPost", function() {
+	it("renders", function() {
+		expect(FullPostWrapper).to.have.length(1);
+	});
+});
 
 
-//var LatestPosts = require("../../client/js/components/latest-posts");
-//var LatestPostsWrapper = shallow(<LatestPosts />);
-//describe("(Component) LatestPosts", function() {
-//	it("renders", function() {
-//		expect(LatestPostsWrapper).to.have.length(1);
-//	});
-//});
+var LatestPosts = require("../../client/js/components/latest-posts");
+var LatestPostsWrapper = shallow(<LatestPosts dispatch={dispatch} posts={[POST, POST]}/>);
+describe("(Component) LatestPosts", function() {
+	it("renders", function() {
+		expect(LatestPostsWrapper).to.have.length(1);
+	});
+});
 
 
 var Login = require("../../client/js/components/login");
@@ -92,22 +103,22 @@ describe("(Component) PostForm", function() {
 });
 
 
-//var PostList = require("../../client/js/components/post-list");
-//var PostListWrapper = shallow(<PostList />);
-//describe("(Component) PostList", function() {
-//	it("renders", function() {
-//		expect(PostListWrapper).to.have.length(1);
-//	});
-//});
+var PostList = require("../../client/js/components/post-list");
+var PostListWrapper = shallow(<PostList dispatch={dispatch} posts={[POST, POST]} />);
+describe("(Component) PostList", function() {
+	it("renders", function() {
+		expect(PostListWrapper).to.have.length(1);
+	});
+});
 
 
-//var PostSummary = require("../../client/js/components/post-summary");
-//var PostSummaryWrapper = shallow(<PostSummary />);
-//describe("(Component) PostSummary", function() {
-//	it("renders", function() {
-//		expect(PostSummaryWrapper).to.have.length(1);
-//	});
-//});
+var PostSummary = require("../../client/js/components/post-summary");
+var PostSummaryWrapper = shallow(<PostSummary post={POST} />);
+describe("(Component) PostSummary", function() {
+	it("renders", function() {
+		expect(PostSummaryWrapper).to.have.length(1);
+	});
+});
 
 
 var PreviewPost = require("../../client/js/components/preview-post");
