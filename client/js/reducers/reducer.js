@@ -6,6 +6,16 @@ var actions = require("../actions/actions");
 
 var EmptyPost = function(){
   return {
+    _id: null,
+    subject: "",
+    body: "",
+    img: "",
+    timestamp: null
+  };
+};
+
+var ErrorPost = function(){
+  return {
     _id: 0,
     subject: "Sorry!",
     body: "I couldn't find any posts...",
@@ -41,7 +51,7 @@ var reducer = function(state, action){
     case actions.FETCH_ALL_POSTS_SUCCESS:
       return Object.assign({}, state, {posts: action.posts});
     case actions.FETCH_ALL_POSTS_FAILURE:
-      return Object.assign({}, state, {posts: [new EmptyPost()]});
+      return Object.assign({}, state, {posts: [new ErrorPost()]});
     case actions.FETCH_FULL_POST_DISPLAY:
       return Object.assign( {}, state, {displayPost: action.post}); 
     case actions.FETCH_FULL_POST_EDIT:

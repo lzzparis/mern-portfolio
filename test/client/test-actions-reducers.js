@@ -7,6 +7,16 @@ var POSTS = require("../sample-data");
 
 var EmptyPost = function(){
   return {
+    _id: null,
+    subject: "",
+    body: "",
+    img: "",
+    timestamp: null
+  };
+};
+
+var ErrorPost = function(){
+  return {
     _id: 0,
     subject: "Sorry!",
     body: "I couldn't find any posts...",
@@ -59,7 +69,7 @@ describe("reducer", function() {
   it("should handle FETCH_ALL_POSTS_FAILURE", function(){
     var actualState = reducer({}, actions.fetchAllPostsFailure());
     actualState.posts[0].timestamp = Math.floor(actualState.posts[0].timestamp);
-    var expectedState = {posts: [new EmptyPost()]};
+    var expectedState = {posts: [new ErrorPost()]};
     expectedState.posts[0].timestamp = Math.floor(expectedState.posts[0].timestamp);
     //compensate for creation time delta
     if( Math.abs(expectedState.posts[0].timestamp - actualState.posts[0].timestamp) < 2){
