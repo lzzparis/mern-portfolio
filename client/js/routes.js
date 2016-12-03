@@ -18,6 +18,7 @@ var PreviewPost = require("./components/preview-post");
 var routes = (
   <Router history={hashHistory}>
     <Redirect from="/" to="blog/latest" />
+    <Redirect from="/blog" to="blog/latest" />
     <Route path="/" component={AppContainer}>
       <Route path="blog" component={BlogContainer}>
         <Route path="latest" component={LatestPostsContainer} />
