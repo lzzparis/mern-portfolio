@@ -11,7 +11,7 @@ var LatestPosts = React.createClass({
     var list = [];
     for (var i=0 ; i < this.props.posts.length ; i++){
       list.push(<FullPostContainer post={this.props.posts[i]} key={i} />);
-      list.push(<hr />);
+      list.push(<hr key={i} />);
     }
     return (
       <div className="latest-posts">

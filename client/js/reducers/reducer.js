@@ -6,10 +6,10 @@ var actions = require("../actions/actions");
 
 var EmptyPost = function(){
   return {
-    _id: null,
-    subject: "",
-    body: "",
-    img: "",
+    _id: 0,
+    subject: "Sorry!",
+    body: "I couldn't find any posts...",
+    img: "https://images.unsplash.com/photo-1444005233317-7fb24f0da789",
     timestamp: new Date()
   };
 };
@@ -40,6 +40,8 @@ var reducer = function(state, action){
       return Object.assign({}, state, {formData: new EmptyPost()}, {editMode: false});
     case actions.FETCH_ALL_POSTS_SUCCESS:
       return Object.assign({}, state, {posts: action.posts});
+    case actions.FETCH_ALL_POSTS_FAILURE:
+      return Object.assign({}, state, {posts: [new EmptyPost()]});
     case actions.FETCH_FULL_POST_DISPLAY:
       return Object.assign( {}, state, {displayPost: action.post}); 
     case actions.FETCH_FULL_POST_EDIT:

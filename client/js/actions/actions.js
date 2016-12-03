@@ -135,11 +135,18 @@ var resetForm = function() {
   }
 };
 
-var FETCH_ALL_POSTS_SUCCESS = "FETCH_ALL_POSTS";
+var FETCH_ALL_POSTS_SUCCESS = "FETCH_ALL_POSTS_SUCCESS";
 var fetchAllPostsSuccess = function(posts) {
   return {
     type: FETCH_ALL_POSTS_SUCCESS,
     posts: posts 
+  }
+}
+
+var FETCH_ALL_POSTS_FAILURE = "FETCH_ALL_POSTS_FAILURE";
+var fetchAllPostsFailure = function() {
+  return {
+    type: FETCH_ALL_POSTS_FAILURE
   }
 }
 
@@ -265,20 +272,36 @@ var deletePost = function(id) {
   };
 };
 
+exports.fetchUserStatusSuccess = fetchUserStatusSuccess;
 exports.FETCH_USER_STATUS_SUCCESS = FETCH_USER_STATUS_SUCCESS;
 exports.fetchUserStatus = fetchUserStatus;
+
 exports.initUser = initUser;
+
+exports.authenticateUserSuccess = authenticateUserSuccess;
 exports.AUTHENTICATE_USER_SUCCESS = AUTHENTICATE_USER_SUCCESS;
+exports.authenticateUserFailure = authenticateUserFailure;
 exports.AUTHENTICATE_USER_FAILURE = AUTHENTICATE_USER_FAILURE;
 exports.authenticateUser = authenticateUser;
+
 exports.RESET_FORM = RESET_FORM;
 exports.resetForm = resetForm; 
+
 exports.fetchAllPosts = fetchAllPosts;
+exports.fetchAllPostsSuccess = fetchAllPostsSuccess;
 exports.FETCH_ALL_POSTS_SUCCESS = FETCH_ALL_POSTS_SUCCESS;
+exports.fetchAllPostsFailure = fetchAllPostsFailure;
+exports.FETCH_ALL_POSTS_FAILURE = FETCH_ALL_POSTS_FAILURE;
+
 exports.fetchFullPost = fetchFullPost;
+exports.fetchFullPostDisplay = fetchFullPostDisplay;
 exports.FETCH_FULL_POST_DISPLAY = FETCH_FULL_POST_DISPLAY;
+exports.fetchFullPostEdit = fetchFullPostEdit;
 exports.FETCH_FULL_POST_EDIT = FETCH_FULL_POST_EDIT;
+
 exports.createPost = createPost;
+
 exports.updatePost = updatePost;
+
 exports.deletePost = deletePost;
 
