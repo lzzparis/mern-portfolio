@@ -1,7 +1,7 @@
 {
-  "name": "mern-full-stack-template",
+  "name": "portfolio",
   "version": "0.0.1",
-  "description": "A MERN full-stack template.  Forked from oampo's thinkful-full-stack-template",
+  "description": "Lizzie Paris's web development portfolio",
   "main": "index.js",
   "main:server": "server/index.js",
   "main:client": "client/js/index.js",
@@ -61,7 +61,7 @@
     "clean:client:production:assets": "rm -rf build/production/client/assets",
     "build:client:production:assets": "run-s clean:client:production:assets && cp -r client/assets build/production/client"
   },
-  "author": "Joe Turner <joe@oampo.co.uk>",
+  "author": "Lizzie Paris <lzz.paris@gmail.com>",
   "license": "UNLICENSED",
   "devDependencies": {
     "babel-cli": "^6.11.4",
@@ -94,7 +94,9 @@
     "react-dom": "^15.4.1",
     "react-redux": "^4.4.6",
     "react-router": "^3.0.0",
+    "react-slick": "^0.14.5",
     "redux": "^3.6.0",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "slick-carousel": "^1.6.0"
   }
 }
