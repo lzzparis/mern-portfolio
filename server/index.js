@@ -11,6 +11,7 @@ app.use(bodyParser.json());
 app.use(express.static(process.env.CLIENT_PATH || "build/dev/client/"));
 
 app.get("/", function(req, res) {
+  console.log("hit");
   res.status(200).json({message: "Hello world"});
 });
 
