@@ -17,7 +17,7 @@ var routes = (
   <Router history={hashHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={BusinessCard} />
-      <Route path="/about" component={Bio} />
+      <Route path="/bio" component={Bio} />
       <Route path="/projects" component={ProjectList} />
       <Route path="/contact" component={Contact} />
     </Route>
