@@ -21,6 +21,29 @@ a {
   background-color: #eee;
 }
 
+.nav-bar-list {
+  position: fixed;
+  top: 0;
+  padding: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 34, 0.7);
+  text-align: center;
+}
+
+.nav-bar-list-item {
+  padding: 0.5rem 4rem;
+  display: inline-block;
+  font-family: Codystar, cursive;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.nav-bar-list-item a {
+  color: #eee; 
+}
+
+
 .business-card, .bio, .project-list, .contact, .slide-wrapper {
   width: 100%;
   height: 100vh;
