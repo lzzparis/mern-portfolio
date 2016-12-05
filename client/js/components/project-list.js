@@ -44,9 +44,7 @@ var ProjectList = React.createClass({
       for (var i=0; i < this.state.projects.length; i++) {
         var currentProject = this.state.projects[i];
         list.push(
-          <a key={i} href={currentProject.url}>
-            <Project key={i} name={currentProject.name} description={currentProject.description} thumbnail={currentProject.thumbnail} />
-          </a>
+            <Project key={i} name={currentProject.name} description={currentProject.description} thumbnail={currentProject.thumbnail} url={currentProject.url}/>
         );
       }
     return (
