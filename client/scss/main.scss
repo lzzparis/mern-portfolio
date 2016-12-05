@@ -28,7 +28,13 @@ a {
   width: 100%;
   background-color: rgba(0, 0, 34, 0.7);
   text-align: center;
+  z-index: 4;
 }
+
+.nav-bar-list a {
+  color: #eee; 
+}
+
 
 .nav-bar-list-item {
   padding: 0.5rem 4rem;
@@ -38,11 +44,6 @@ a {
   font-size: 1rem;
   text-transform: uppercase;
 }
-
-.nav-bar-list-item a {
-  color: #eee; 
-}
-
 
 .business-card, .bio, .project-list, .contact, .slide-wrapper {
   width: 100%;
@@ -63,7 +64,7 @@ a {
   background-image: url("../assets/towel.jpg");
 }
 
-.slide-wrapper {
+.project-list {
   background-image: url("../assets/popcorn.jpg");
 }
 
@@ -119,6 +120,7 @@ a {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  align-items: center;
 }
 
 .project-thumbnail {

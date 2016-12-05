@@ -50,7 +50,7 @@ var ProjectList = React.createClass({
         );
       }
     return (
-      <Carousel showThumbs={false} showStatus={false} useKeyboardArrows={true}>
+      <Carousel className="project-list" showThumbs={false} showStatus={false} useKeyboardArrows={true} infiniteLoop={true}>
         {list}
       </Carousel>
     );
