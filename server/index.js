@@ -16,6 +16,7 @@ app.get("/", function(req, res) {
 });
 
 var runServer = function(callback) {
+  console.log("DATABASE_URL", config.DATABASE_URL);
   mongoose.connect(config.DATABASE_URL, function(err) {
     if (err && callback) {
       return callback(err);

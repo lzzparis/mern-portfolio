@@ -1,6 +1,109 @@
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 
+  background-color: #eee;
+}
+
+*, *:before, *:after {
+  margin: 0;
+  box-sizing: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+#app {
+  padding: 0;
+  background-color: pink;
+}
+
+.business-card, .bio, .project-list, .contact {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+
+.business-card-name, .bio-header, .project-content-name {
+  color: #002;
+  font-family: "Playfair Display", serif;
+  font-size: 8rem;
+  line-height: 6rem;
+  text-transform: lowercase;
+}
+
+.business-card-title {
+  color: #001;
+  font-family: "Codystar", cursive;
+  font-size: 2rem;
+}
+
+.bio-description  {
+  width: 100%;
+  padding: 1rem 2rem;
+  color: #001;
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 2rem;
+}
+
+.project-content-description  {
+  width: 100%;
+  color: #001;
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 2rem;
+}
+
+.bio-image {
+  margin: 0 auto;
+  width: 20%;
+  height: auto;
+  border-radius: 1000px;
+}
+
+.project-list {
+  height: auto;
+  justify-content: initial;
+}
+
+.slide-wrapper {
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.project {
+  margin: auto;
+  padding: 3%;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  background-color: rgba(120, 120, 120, 0.3);
+}
 
 .project-thumbnail {
-  width: 200px;
-  height:200px;
+  width: 30%;
+  height: 30vh;
 }
+
+.project-content {
+  margin-left: 2%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.project-content-description {
+}
+
