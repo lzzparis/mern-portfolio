@@ -18,16 +18,30 @@ a {
 
 #app {
   padding: 0;
-  background-color: pink;
+  background-color: #eee;
 }
 
-.business-card, .bio, .project-list, .contact {
+.business-card, .bio, .project-list, .contact, .slide-wrapper {
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  background-size: cover;
+  background-position: fixed;
+}
+
+.business-card {
+  background-image: url("../assets/marble.jpg");
+}
+
+.bio {
+  background-image: url("../assets/towel.jpg");
+}
+
+.slide-wrapper {
+  background-image: url("../assets/popcorn.jpg");
 }
 
 
@@ -40,6 +54,7 @@ a {
 }
 
 .business-card-title {
+  padding: 2rem;
   color: #001;
   font-family: "Codystar", cursive;
   font-size: 2rem;
@@ -47,17 +62,18 @@ a {
 
 .bio-description  {
   width: 100%;
-  padding: 1rem 2rem;
+  padding: 2rem 4rem;
   color: #001;
   font-family: "Libre Franklin", sans-serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .project-content-description  {
   width: 100%;
+  padding: 2rem 0;
   color: #001;
   font-family: "Libre Franklin", sans-serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .bio-image {
@@ -72,14 +88,6 @@ a {
   justify-content: initial;
 }
 
-.slide-wrapper {
-  margin: 0;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
 
 .project {
   margin: auto;
@@ -88,7 +96,6 @@ a {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  background-color: rgba(120, 120, 120, 0.3);
 }
 
 .project-thumbnail {
