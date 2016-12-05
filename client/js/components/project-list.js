@@ -1,5 +1,5 @@
 var React = require("react");
-var Slider = require("react-slick");
+var Carousel = require("react-responsive-carousel").Carousel;
 
 var Project = require("./project");
 
@@ -41,10 +41,6 @@ var ProjectList = React.createClass({
   },
   render: function() {
     var list = [];
-    // if (!this.state.projects.length) {
-    //   list.push(<div></div>);
-    // }
-    // else {
       for (var i=0; i < this.state.projects.length; i++) {
         var currentProject = this.state.projects[i];
         list.push(
@@ -53,24 +49,16 @@ var ProjectList = React.createClass({
           </a>
         );
       }
-    // }
-    var settings = {
-      // infinite: false,
-      // speed: 500,
-      // slidesToShow: 1,
-      // slidesToScroll: 1
-      dots: true
-    };
-    // return (
-    //   <Slider className="project-list" {...settings}>
-    //     {list || <div></div>}
-    //   </Slider>
-    // );
     return (
-      <div className="project-list">
-        {list || <div></div>}
-      </div>
+      <Carousel showThumbs={false} showStatus={false} useKeyboardArrows={true}>
+        {list}
+      </Carousel>
     );
+    // return (
+    //   <div className="project-list">
+    //     {list || <div></div>}
+    //   </div>
+    // );
   }
 });
 
