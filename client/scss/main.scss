@@ -142,7 +142,7 @@ a {
 }
 
 .connect-list {
-  width: 50%;
+  width: 100%;
   margin: 0 auto;
   padding: 0;
   display: flex;
@@ -156,4 +156,63 @@ a {
   display: inline-block;
   width: 50%;
   padding: 2.5rem 0;
+}
+
+@media (max-width: 800px) {
+  .nav-bar-list-item {
+    padding: 0.5rem 1rem;
+  }
+  .business-card-name, .bio-header {
+    font-size: 5rem;
+    line-height: 4rem;
+  }
+
+  .project-content-name, .connect-list-item a {
+    font-size: 3rem;
+    line-height: 2rem;
+  } 
+
+  .bio-description {
+    padding: 1rem 2rem;
+    font-size: 1.25rem;
+    text-align: justify;
+  }
+
+  .bio-image {
+    width: 50%;
+  }
+
+  .project-description {
+    padding: 0.5rem 0;
+    font-size: 1rem;
+  } 
+
+  .project {
+    padding: 3%;
+    width: 90%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .project-thumbnail {
+    margin: 0.5rem 0;
+    width: 100%;
+    height: 30vh;
+  }
+
+  .connect-list-item {
+    padding: 1.5rem 0;
+  }
+
+}
+
+@media (max-width: 365px) {
+   .nav-bar-list-item {
+    padding: 0.5rem;
+  } 
+  .bio-description, .project-content-description {
+    font-size: 0.9rem;
+  } 
+
 }
