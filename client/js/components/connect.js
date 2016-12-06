@@ -8,7 +8,7 @@ var Connect = React.createClass({
         <ul className="connect-list">
           <li className="connect-list-item"><a href="https://github.com/lzzparis">Github</a></li>
           <li className="connect-list-item"><a href="https://www.linkedin.com/in/lzzparis">LinkedIn</a></li>
-          <li className="connect-list-item"><a href="https://www.instagram.com/lzzparis/">Insta</a></li>
+          <li className="connect-list-item"><a href="https://www.instagram.com/lzzparis/">Instagram</a></li>
           <li className="connect-list-item"><a href="mailto:lzz.paris@gmail.com">Mail</a></li>
         </ul>
       </div>
