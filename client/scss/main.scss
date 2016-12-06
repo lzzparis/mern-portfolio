@@ -1,0 +1,218 @@
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  background-color: #eee;
+}
+
+*, *:before, *:after {
+  margin: 0;
+  box-sizing: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+#app {
+  padding: 0;
+  background-color: #eee;
+}
+
+.nav-bar-list {
+  position: fixed;
+  top: 0;
+  padding: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 34, 0.7);
+  text-align: center;
+  z-index: 4;
+}
+
+.nav-bar-list a {
+  color: #eee; 
+}
+
+
+.nav-bar-list-item {
+  padding: 0.5rem 4rem;
+  display: inline-block;
+  font-family: Codystar, cursive;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.business-card, .bio, .project-list, .connect, .slide-wrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  background-size: cover;
+  background-position: fixed;
+}
+
+.business-card {
+  background-image: url("../assets/marble.jpg");
+}
+
+.bio {
+  background-image: url("../assets/towel.jpg");
+}
+
+.project-list {
+  background-image: url("../assets/popcorn.jpg");
+}
+
+.connect {
+  background-image: url("../assets/shingle.jpg");
+}
+
+
+.business-card-name, .bio-header, .project-content-name, .connect-list-item a {
+  color: #002;
+  font-family: "Playfair Display", serif;
+  font-size: 8rem;
+  font-weight: 700;
+  line-height: 6rem;
+  text-transform: lowercase;
+}
+
+.business-card-title {
+  padding: 2rem;
+  color: #001;
+  font-family: "Codystar", cursive;
+  font-size: 2rem;
+}
+
+.bio-description  {
+  width: 100%;
+  padding: 2rem 4rem;
+  color: #001;
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 1.5rem;
+}
+
+.project-content-description  {
+  width: 100%;
+  padding: 2rem 0;
+  color: #001;
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 1.5rem;
+}
+
+.bio-image {
+  margin: 0 auto;
+  width: 20%;
+  height: auto;
+  border-radius: 1000px;
+}
+
+.project-list {
+  height: auto;
+  justify-content: initial;
+}
+
+
+.project {
+  margin: auto;
+  padding: 3%;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.project-thumbnail {
+  width: 30%;
+  height: 30vh;
+}
+
+.project-content {
+  margin-left: 2%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.connect-list {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.connect-list-item {
+  display: inline-block;
+  width: 50%;
+  padding: 2.5rem 0;
+}
+
+@media (max-width: 800px) {
+  .nav-bar-list-item {
+    padding: 0.5rem 1rem;
+  }
+  .business-card-name, .bio-header {
+    font-size: 5rem;
+    line-height: 4rem;
+  }
+
+  .project-content-name, .connect-list-item a {
+    font-size: 3rem;
+    line-height: 2rem;
+  } 
+
+  .bio-description {
+    padding: 1rem 2rem;
+    font-size: 1.25rem;
+    text-align: justify;
+  }
+
+  .bio-image {
+    width: 50%;
+  }
+
+  .project-description {
+    padding: 0.5rem 0;
+    font-size: 1rem;
+  } 
+
+  .project {
+    padding: 3%;
+    width: 90%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .project-thumbnail {
+    margin: 0.5rem 0;
+    width: 100%;
+    height: 30vh;
+  }
+
+  .connect-list-item {
+    padding: 1.5rem 0;
+  }
+
+}
+
+@media (max-width: 365px) {
+   .nav-bar-list-item {
+    padding: 0.5rem;
+  } 
+  .bio-description, .project-content-description {
+    font-size: 0.9rem;
+  } 
+
+}

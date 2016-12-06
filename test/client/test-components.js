@@ -27,11 +27,11 @@ describe("BusinessCard component", function() {
 	});
 });
 
-var Contact = require("../../client/js/components/contact");
-var ContactWrapper = shallow(<Contact />);
-describe("Contact component", function() {
+var Connect = require("../../client/js/components/connect");
+var ConnectWrapper = shallow(<Connect />);
+describe("Connect component", function() {
 	it("should render", function() {
-		ContactWrapper.should.have.length(1);
+		ConnectWrapper.should.have.length(1);
 	});
 });
 
