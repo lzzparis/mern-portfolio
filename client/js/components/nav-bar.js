@@ -7,7 +7,7 @@ var NavBar = function() {
       <Link to="/"><li className="nav-bar-list-item">Home</li></Link>
       <Link to="/bio"><li className="nav-bar-list-item">Bio</li></Link>
       <Link to="/projects"><li className="nav-bar-list-item">Projects</li></Link>
-      <Link to="/contact"><li className="nav-bar-list-item">Contact</li></Link>
+      <Link to="/connect"><li className="nav-bar-list-item">Connect</li></Link>
     </ul>
   );
 };

@@ -45,7 +45,7 @@ a {
   text-transform: uppercase;
 }
 
-.business-card, .bio, .project-list, .contact, .slide-wrapper {
+.business-card, .bio, .project-list, .connect, .slide-wrapper {
   width: 100%;
   height: 100vh;
   display: flex;
@@ -68,11 +68,16 @@ a {
   background-image: url("../assets/popcorn.jpg");
 }
 
+.connect {
+  background-image: url("../assets/shingle.jpg");
+}
 
-.business-card-name, .bio-header, .project-content-name {
+
+.business-card-name, .bio-header, .project-content-name, .connect-list-item a {
   color: #002;
   font-family: "Playfair Display", serif;
   font-size: 8rem;
+  font-weight: 700;
   line-height: 6rem;
   text-transform: lowercase;
 }
@@ -136,6 +141,19 @@ a {
   justify-content: center;
 }
 
-.project-content-description {
+.connect-list {
+  width: 50%;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
+.connect-list-item {
+  display: inline-block;
+  width: 50%;
+  padding: 2.5rem 0;
+}

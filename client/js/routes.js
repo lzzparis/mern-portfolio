@@ -11,7 +11,7 @@ var App = require("./components/app");
 var BusinessCard = require("./components/business-card");
 var Bio = require("./components/bio");
 var ProjectList = require("./components/project-list");
-var Contact = require("./components/contact");
+var Connect = require("./components/connect");
 
 var routes = (
   <Router history={hashHistory}>
@@ -19,7 +19,7 @@ var routes = (
       <IndexRoute component={BusinessCard} />
       <Route path="/bio" component={Bio} />
       <Route path="/projects" component={ProjectList} />
-      <Route path="/contact" component={Contact} />
+      <Route path="/connect" component={Connect} />
     </Route>
   </Router>
 );
