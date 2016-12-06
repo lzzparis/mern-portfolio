@@ -43,15 +43,15 @@ describe("Routes", function(){
     })
     done();
   })
-  it("should render App, Contact when visiting /contact", function(done){
-    match({routes, location: "/contact"}, function(error, redirectLocation, renderProps) {
+  it("should render App, Connect when visiting /connect", function(done){
+    match({routes, location: "/connect"}, function(error, redirectLocation, renderProps) {
       var App = function () {};
       if (error) {
         console.error(error);
       };
       var results = renderProps.components;      
       results[1].displayName.should.equal("App");
-      results[2].displayName.should.equal("Contact");
+      results[2].displayName.should.equal("Connect");
     })
     done();
   })
