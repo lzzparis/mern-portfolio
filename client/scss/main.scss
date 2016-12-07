@@ -154,8 +154,7 @@ a {
 
 .connect-list-item {
   display: inline-block;
-  width: 50%;
-  padding: 2.5rem 0;
+  padding: 2rem 0;
 }
 
 @media (max-width: 800px) {
@@ -182,9 +181,14 @@ a {
     width: 50%;
   }
 
-  .project-description {
+  .project-content {
+    margin: 0;
+  }
+
+  .project-content-description {
     padding: 0.5rem 0;
     font-size: 1rem;
+    text-align: justify;
   } 
 
   .project {
