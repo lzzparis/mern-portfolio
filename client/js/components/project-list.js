@@ -6,13 +6,13 @@ var Project = require("./project");
 var PROJECTS = [
   { 
     name: "Etsy Near Me", 
-    description: "Store locator built on HTML, CSS, and jQuery.  This was my frontend unit capstone, so the emphasis was third-party API integration and clean, creative styling.", 
+    description: "Store locator built on HTML, CSS, and jQuery.  This was my frontend unit capstone, so the emphasis was third-party API integration and clean, responsive styling.", 
     thumbnail: "../../assets/etsynearme.png",
     url: "http://lzzparis.github.io/etsynearme"
   },
   { 
     name: "Blog Tool", 
-    description: "Simple content manager built on Node.js and MongoDB.  This was my backend unit capstone project so emphasis was put on building my own API to the server and database layers, with minimal styling.", 
+    description: "Simple content manager built on Node.js and MongoDB.  This was my backend unit capstone project so emphasis was building my own API to the server and database layers, with minimal styling.", 
     thumbnail: "../../assets/blog-tool.png",
     url: "https://hidden-crag-51505.herokuapp.com/"
   },
@@ -24,7 +24,7 @@ var PROJECTS = [
   },
   { 
     name: "Blog Tool (Extended)", 
-    description: "Extended content manager built on a MongoDB/Express/React/Node.js (MERN) stack.  This was my final course capstone, so emphasis was integrating all tools together.", 
+    description: "Extended content manager built on a MongoDB/Express/React/Node.js (MERN) stack.  This was my final course capstone, so emphasis was integrating all technologies together to create an interesting, functional, full-stack app.", 
     thumbnail: "../../assets/blog-tool-extended.png",
     url: "https://blog-tool.herokuapp.com/#/"
   },
