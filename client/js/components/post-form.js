@@ -68,7 +68,7 @@ var PostForm = React.createClass({
       clearButtonText = "Clear";
     }
     return(
-      <div className="post half-width left">
+      <div className="post-form-wrapper left">
         <h1 className="header post-form-header">Create Post</h1>
         <form className="form post-form" name="" onChange={this.updateForm}>
           Title<span className="form-error post-form-error">{this.state.errorMessage}</span><br />

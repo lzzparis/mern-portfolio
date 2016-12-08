@@ -36,10 +36,7 @@ a {
 }
 
 /*Generic helpers*/
-.half-width {
-  width: 50%;
-  padding: 2%;
-}
+
 .left {
   float: left;
 }
@@ -56,8 +53,6 @@ a {
   font-style: italic;
 }
 .form-field {
-  margin: 0.5rem;
-  padding: 0.5rem;
   background-color: #fafafa;
   font-family: "Libre Franklin", sans-serif;
   border: none;
@@ -85,12 +80,6 @@ a {
 
 #app {
   margin: 0;
- /* position: fixed;
-  width: 100%;
-  height: 100vh;
-  background-image: url("../assets/paper.jpg");
-  background-size: cover;
-*/
 }
 
 /*Public view*/
@@ -108,7 +97,7 @@ a {
 }
 
 .blog-header-image {
-  margin: 2%;
+  margin: 2rem;
   width: 64%;
 }
 
@@ -133,24 +122,23 @@ a {
 /*Login view*/
 .login {
   margin: 4rem auto;
-  width: 50%;
+  width: 90%;
   text-align: center;
 }
 .login-form {
-  font-size: 2rem; 
+  font-size: 1rem; 
 }
 
 .login-form-field {
-  font-size: 3rem; 
+  margin: 0.5rem auto;
+  width: 50%;
+  font-size: 2rem; 
   letter-spacing: 0.2rem;
   text-align: center;
-/*  -webkit-box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);
-  -moz-box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);
-  box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);*/
 }
 
 .form-field:focus {
-    -webkit-box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);
+  -webkit-box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);
   -moz-box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);
   box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);
 
@@ -173,6 +161,12 @@ a {
 }
 
 /*Admin view*/
+
+.post-form-wrapper, .post-list-wrapper {
+  width: 50%;
+  padding: 2%;
+}
+
 .post-form-field {
   width: 98%;
   margin: 1%;
@@ -182,6 +176,11 @@ a {
 
 .post-form-body {
   height: 50vh;
+}
+
+.post-list {
+  margin: 0;
+  padding: 0.5rem;
 }
 
 .post-summary {
@@ -232,3 +231,40 @@ a {
   cursor: pointer;
 }
 
+
+@media (max-width: 500px) {
+  .blog {
+    width: 80%;
+  }
+  .blog-header-image {
+    width: 80%;
+  }
+
+  .blog-nav {
+    margin-top: -4rem;
+  }
+  .blog-nav-item {
+    margin: 0.5rem;
+    font-size: 1.5rem;
+  }
+  .full-post {
+    padding: 1rem;
+  }
+
+  .full-post-content-body {
+    font-size: 0.75rem;
+  }
+  
+  .login-form-field {
+    width: 100%;
+  }
+
+  .post-form-wrapper, .post-list-wrapper {
+    width: 100%;
+  }
+
+  .post-summary-timestamp {
+    display: none;
+  }
+
+}

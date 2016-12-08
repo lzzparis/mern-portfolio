@@ -20,7 +20,7 @@ var PostSummary = React.createClass({
         <button className="button post-summary-button post-summary-button-edit" onClick={this.editPost}>&#x270e;</button>
         <button className="button post-summary-button post-summary-button-delete" onClick={this.deletePost}>&times;</button>
         <p className="post-summary-content" onClick={this.displayPost}>
-          {this.props.post.subject} ..... {prettyTime}
+          {this.props.post.subject} <span className="post-summary-timestamp"> ..... {prettyTime} </span>
         </p>
       </li>
     );
