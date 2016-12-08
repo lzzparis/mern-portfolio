@@ -6,10 +6,10 @@ var hashHistory = router.hashHistory;
 var actions = require("../actions/actions");
 
 var App = React.createClass({
-  componentDidMount: function(){
+  componentDidMount: function() {
     this.props.dispatch(actions.fetchUserStatus());
   }, 
-  render: function(){
+  render: function() {
     return(
       <div className="app">
         {this.props.children}

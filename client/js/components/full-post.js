@@ -7,7 +7,7 @@ var actions = require("../actions/actions");
 
 var FullPost = React.createClass({
   componentWillMount: function() {
-    if(!this.props.multiPostView){
+    if(!this.props.multiPostView) {
       this.props.dispatch(actions.fetchFullPost(this.props.id, actions.FETCH_FULL_POST_DISPLAY));
     }
   },

@@ -3,7 +3,7 @@ var connect = require("react-redux").connect;
 
 var Admin = require("./admin");
  
-var mapStateToProps = function(state, props){
+var mapStateToProps = function(state, props) {
   return {
     isAuthenticated: state.isAuthenticated
   };

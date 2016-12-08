@@ -4,7 +4,7 @@ var hashHistory = router.hashHistory;
 
 var actions = require("../actions/actions");
 
-var EmptyPost = function(){
+var EmptyPost = function() {
   return {
     _id: null,
     subject: "",
@@ -14,7 +14,7 @@ var EmptyPost = function(){
   };
 };
 
-var ErrorPost = function(){
+var ErrorPost = function() {
   return {
     _id: 0,
     subject: "Sorry!",
@@ -35,11 +35,9 @@ var initialState = {
   editMode: false
 };
 
-var reducer = function(state, action){
-  console.log(action.type);
-  console.log("current state", state);
+var reducer = function(state, action) {
   state = state || initialState;
-  switch(action.type){
+  switch(action.type) {
     case actions.FETCH_USER_STATUS_SUCCESS:
       return Object.assign({}, state, {userInitialized: action.value});
     case actions.AUTHENTICATE_USER_SUCCESS:

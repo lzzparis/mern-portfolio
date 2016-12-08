@@ -3,7 +3,7 @@ var React = require("react");
 var actions = require("../actions/actions");
 
 var PostForm = React.createClass({
-  getInitialState: function(){
+  getInitialState: function() {
     return {
       formSubject: "",
       formBody: "",
@@ -12,7 +12,7 @@ var PostForm = React.createClass({
       errorMessage: ""
     }
   },
-  componentWillReceiveProps: function(nextProps){
+  componentWillReceiveProps: function(nextProps) {
     this.setState({
       formSubject: nextProps.formSubject,
       formBody: nextProps.formBody,
@@ -20,14 +20,14 @@ var PostForm = React.createClass({
       postId: nextProps.postId
     });
   },
-  updateForm: function(){
+  updateForm: function() {
     this.setState({
       formSubject: this.refs.subject.value,
       formBody: this.refs.body.value,
       formImg: this.refs.img.value
     })
   },
-  formReset: function(){
+  formReset: function() {
     this.props.dispatch(actions.resetForm());
     this.setState({
       formSubject: "",
@@ -36,11 +36,11 @@ var PostForm = React.createClass({
       postId: null
     });
   },
-  formClear: function(e){
+  formClear: function(e) {
     e.preventDefault();
     this.formReset();
   },
-  formSubmit: function(e){
+  formSubmit: function(e) {
     e.preventDefault();
     var post = {
       subject: this.state.formSubject, 
@@ -60,7 +60,7 @@ var PostForm = React.createClass({
       }
     }
   },
-  render:function(){
+  render:function() {
     var clearButtonText = null;
     if (this.props.editMode) {
       clearButtonText = "Cancel";
@@ -68,7 +68,7 @@ var PostForm = React.createClass({
       clearButtonText = "Clear";
     }
     return(
-      <div className="post half-width left">
+      <div className="post-form-wrapper left">
         <h1 className="header post-form-header">Create Post</h1>
         <form className="form post-form" name="" onChange={this.updateForm}>
           Title<span className="form-error post-form-error">{this.state.errorMessage}</span><br />

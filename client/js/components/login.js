@@ -7,8 +7,8 @@ var Link = router.Link;
 var actions = require("../actions/actions");
 
 var Login = React.createClass({
-  componentWillReceiveProps: function(nextProps){
-    if(nextProps.isAuthenticated){
+  componentWillReceiveProps: function(nextProps) {
+    if(nextProps.isAuthenticated) {
       hashHistory.replace("/admin");
     }
   },
@@ -16,17 +16,16 @@ var Login = React.createClass({
     event.preventDefault();
     var username = this.refs.username.value;
     var password = this.refs.password.value;
-    if(this.props.userInitialized){
+    if(this.props.userInitialized) {
       this.props.dispatch(actions.authenticateUser(username, password));
     } else {
       this.props.dispatch(actions.initUser(username, password));
     }
-    console.log(event);
   },
   render: function() {
     var headerText = null;
     var authError = null;
-    if(this.props.userInitialized){
+    if(this.props.userInitialized) {
       headerText = "Login";  
     } else {
       headerText = "Create User";

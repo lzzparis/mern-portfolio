@@ -10,13 +10,13 @@ var PostFormContainer = require("./post-form-container");
 var PostListContainer = require("./post-list-container");
 
 var Admin = React.createClass({
-  componentDidMount:function(){
-    if(!this.props.isAuthenticated){
+  componentDidMount:function() {
+    if(!this.props.isAuthenticated) {
       hashHistory.push("/login");
     }
     this.props.dispatch(actions.fetchAllPosts());
   },
-  render: function(){
+  render: function() {
     return(
       <div className="admin">
         {this.props.children}
