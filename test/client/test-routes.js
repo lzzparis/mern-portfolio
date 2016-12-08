@@ -5,20 +5,20 @@ var match = require("react-router").match;
 
 var routes = require("../../client/js/routes");
 
-describe("Routes", function(){
+describe("Routes", function() {
   it("/ redirects to /blog/latest", function(done) {
     match({routes, location: "/"}, function(error, redirectLocation, renderProps) {
       redirectLocation.pathname.should.equal("/blog/latest");
     })
     done();
   })
-  it("/blog redirects to /blog/latest", function(done){
+  it("/blog redirects to /blog/latest", function(done) {
     match({routes, location: "/blog"}, function(error, redirectLocation, renderProps) {
       redirectLocation.pathname.should.equal("/blog/latest");
     })
     done();
   })
-  it("/blog/latest renders App, Blog, LatestPosts", function(done){
+  it("/blog/latest renders App, Blog, LatestPosts", function(done) {
     match({routes, location: "/blog/latest"}, function(error, redirectLocation, renderProps) {
       var results = renderProps.components;      
       results[1].WrappedComponent.displayName.should.equal("App");
@@ -27,7 +27,7 @@ describe("Routes", function(){
     })
     done();
   })
-  it("/blog/full/:id renders App, Blog, FullPost", function(done){
+  it("/blog/full/:id renders App, Blog, FullPost", function(done) {
     match({routes, location: "/blog/full/1000"}, function(error, redirectLocation, renderProps) {
       var results = renderProps.components;      
       results[1].WrappedComponent.displayName.should.equal("App");
@@ -36,7 +36,7 @@ describe("Routes", function(){
     })
     done();
   })
-  it("/login renders App, Login", function(done){
+  it("/login renders App, Login", function(done) {
     match({routes, location: "/login"}, function(error, redirectLocation, renderProps) {
       var results = renderProps.components;      
       results[1].WrappedComponent.displayName.should.equal("App");
@@ -44,7 +44,7 @@ describe("Routes", function(){
     })
     done();
   })
-  it("/admin renders App, Admin", function(done){
+  it("/admin renders App, Admin", function(done) {
     match({routes, location: "/admin"}, function(error, redirectLocation, renderProps) {
       var results = renderProps.components;      
       results[1].WrappedComponent.displayName.should.equal("App");
@@ -52,7 +52,7 @@ describe("Routes", function(){
     })
     done();
   })
-  it("/admin/preview/:id renders App, Admin, PreviewPost", function(done){
+  it("/admin/preview/:id renders App, Admin, PreviewPost", function(done) {
     match({routes, location: "/admin/preview/1000"}, function(error, redirectLocation, renderProps) {
       var results = renderProps.components;      
       results[1].WrappedComponent.displayName.should.equal("App");

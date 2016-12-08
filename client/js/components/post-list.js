@@ -6,18 +6,18 @@ var actions = require("../actions/actions");
 var PostSummary = require("./post-summary");
 
 var PostList = React.createClass({
-  displayPost: function(id){
+  displayPost: function(id) {
     hashHistory.push("/admin/preview/"+id);
   },
-  editPost: function(id){
+  editPost: function(id) {
     this.props.dispatch(actions.fetchFullPost(id, actions.FETCH_FULL_POST_EDIT));
   },
-  deletePost: function(id){
+  deletePost: function(id) {
     this.props.dispatch(actions.deletePost(id));
   },
-  render: function(){
+  render: function() {
     var list = [];
-    for(var i=0; i < this.props.posts.length; i++){
+    for(var i=0; i < this.props.posts.length; i++) {
       list.push(<PostSummary displayHandler={this.displayPost} 
                   editHandler={this.editPost}
                   deleteHandler={this.deletePost} 

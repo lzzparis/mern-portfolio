@@ -3,11 +3,11 @@ var connect = require("react-redux").connect;
 
 var FullPost = require("./full-post");
 
-var mapStateToProps = function(state, props){
+var mapStateToProps = function(state, props) {
   var whichPost = null;
   var whichId = null;
   var multiPostView = null;
-  if(props.post){
+  if(props.post) {
     whichPost = props.post;
     whichId = props.post._id;
     multiPostView = true;

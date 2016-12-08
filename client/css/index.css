@@ -47,11 +47,11 @@ a {
   float: right;
 }
 .clear-fix {
-  clear:both;
+  clear: both;
 }
-.link-home{
-  margin:0 1rem;
-  color:#444;
+.link-home {
+  margin: 0 1rem;
+  color: #444;
   font-size: 1rem;
   font-style: italic;
 }

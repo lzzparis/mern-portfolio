@@ -14,25 +14,25 @@ describe("", function() {
   afterEach(function() {
     nock.cleanAll();
   });
-  it("authenticateUser", function(done){
+  it("authenticateUser", function(done) {
     done();
   });
-  it("createPost", function(done){done();});
-  it("deletePost", function(done){done();});
-  it("fetchAllPosts", function(done){
+  it("createPost", function(done) {done();});
+  it("deletePost", function(done) {done();});
+  it("fetchAllPosts", function(done) {
     nock("localhost:8080")
     .get("/post/all")
     .reply(200, { body: POSTS});
 
     return store.dispatch(actions.fetchAllPosts())
-    .then(function(){
+    .then(function() {
       console.log(store.getActions());
       done();
     });
   });
-  it("fetchFullPost", function(done){done();});
-  it("fetchUserStatus", function(done){done();});
-  it("initUser", function(done){done();});
-  it("updatePost", function(done){done();});
+  it("fetchFullPost", function(done) {done();});
+  it("fetchUserStatus", function(done) {done();});
+  it("initUser", function(done) {done();});
+  it("updatePost", function(done) {done();});
 
 });

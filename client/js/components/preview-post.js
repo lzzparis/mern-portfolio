@@ -4,10 +4,10 @@ var hashHistory = router.hashHistory;
 
 var FullPostContainer = require("./full-post-container");
 var PreviewPost = React.createClass({
-  closePost: function(){
+  closePost: function() {
     hashHistory.goBack(); 
   },
-  render: function(){
+  render: function() {
     return(
       <div className="post-preview">
         <span className="post-preview-close right" onClick={this.closePost}>&times;</span>

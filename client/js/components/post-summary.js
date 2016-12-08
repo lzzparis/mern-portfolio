@@ -4,16 +4,16 @@ var moment = require("moment");
 var actions = require("../actions/actions");
 
 var PostSummary = React.createClass({
-  displayPost: function(){
+  displayPost: function() {
     this.props.displayHandler(this.props.post._id);
   },
-  editPost: function(){
+  editPost: function() {
     this.props.editHandler(this.props.post._id);
   },
-  deletePost: function(){
+  deletePost: function() {
     this.props.deleteHandler(this.props.post._id);
   },
-  render: function(){
+  render: function() {
     var prettyTime = moment(this.props.post.timestamp).format("MM-DD-YYYY @ h:mm a");
     return(
       <li className="post-summary" id={this.props.post._id} >

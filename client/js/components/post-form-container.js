@@ -3,7 +3,7 @@ var connect = require("react-redux").connect;
 
 var PostForm = require("./post-form");
 
-var mapStateToProps = function(state, props){
+var mapStateToProps = function(state, props) {
   return {
     formSubject: state.formData.subject,
     formBody: state.formData.body,

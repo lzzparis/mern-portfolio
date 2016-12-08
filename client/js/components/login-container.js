@@ -7,7 +7,7 @@ var actions = require("../actions/actions");
 
 var Login = require("./login"); 
 
-var mapStateToProps = function(state, props){
+var mapStateToProps = function(state, props) {
   return {
     userInitialized: state.userInitialized,
     isAuthenticated: state.isAuthenticated,
