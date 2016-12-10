@@ -21,6 +21,10 @@ a {
   background-color: #eee;
 }
 
+.hidden {
+  display: none;
+}
+
 .nav-bar-list {
   position: fixed;
   top: 0;
@@ -41,7 +45,7 @@ a {
   display: inline-block;
   font-family: Codystar, cursive;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.5rem;
   text-transform: uppercase;
 }
 
@@ -210,6 +214,25 @@ a {
   }
 
 }
+
+@media (max-width: 500px) {
+
+  .nav-bar-list-item {
+    font-size: 1rem;
+  }
+
+  .carousel .control-arrow:before, .carousel.carousel-slider .control-arrow:before {
+    border-top: 16px solid transparent;
+    border-bottom: 16px solid transparent;
+  }
+  .carousel .control-prev.control-arrow:before {
+    border-right: 16px solid rgb(0, 0, 34); 
+  }
+  .carousel .control-next.control-arrow:before {
+    border-left: 16px solid rgb(0, 0, 34); 
+  } 
+}
+
 
 @media (max-width: 365px) {
    .nav-bar-list-item {

@@ -52,11 +52,6 @@ var ProjectList = React.createClass({
         {list}
       </Carousel>
     );
-    // return (
-    //   <div className="project-list">
-    //     {list || <div></div>}
-    //   </div>
-    // );
   }
 });
 
