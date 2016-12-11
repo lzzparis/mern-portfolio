@@ -23,7 +23,7 @@ var PROJECTS = [
     url: "https://arcane-bastion-54494.herokuapp.com"
   },
   { 
-    name: "Blog Tool (Extended)", 
+    name: "Blog Tool 1.0", 
     description: "Extended content manager built on a MongoDB/Express/React/Node.js (MERN) stack.  This was my final course capstone, so emphasis was integrating all technologies together to create an interesting, functional, full-stack app.", 
     thumbnail: "../../assets/blog-tool-extended.png",
     url: "https://blog-tool.herokuapp.com/#/"
@@ -43,20 +43,18 @@ var ProjectList = React.createClass({
     var list = [];
       for (var i=0; i < this.state.projects.length; i++) {
         var currentProject = this.state.projects[i];
+        var setRight = (i % 2 == 1);
         list.push(
-            <Project key={i} name={currentProject.name} description={currentProject.description} thumbnail={currentProject.thumbnail} url={currentProject.url}/>
+            <Project key={i} setRight={setRight} name={currentProject.name} description={currentProject.description} thumbnail={currentProject.thumbnail} url={currentProject.url}/>
         );
       }
     return (
-      <Carousel className="project-list" showThumbs={false} showStatus={false} useKeyboardArrows={true} infiniteLoop={true}>
-        {list}
-      </Carousel>
+      <div className="projects">
+        <div className="project-list">
+          {list}
+        </div>
+      </div>
     );
-    // return (
-    //   <div className="project-list">
-    //     {list || <div></div>}
-    //   </div>
-    // );
   }
 });
 
