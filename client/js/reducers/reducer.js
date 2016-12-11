@@ -30,8 +30,8 @@ var initialState = {
   failedAuthentication: false,
   formData: new EmptyPost(),
   displayPost:{},
-  posts:[
-  ],
+  posts:[],
+  drafts: [],
   editMode: false
 };
 
@@ -46,8 +46,10 @@ var reducer = function(state, action) {
       return Object.assign({}, state, {failedAuthentication: true});
     case actions.RESET_FORM:
       return Object.assign({}, state, {formData: new EmptyPost()}, {editMode: false});
-    case actions.FETCH_ALL_POSTS_SUCCESS:
+    case actions.FETCH_ALL_PUBLISHED_SUCCESS:
       return Object.assign({}, state, {posts: action.posts});
+    case actions.FETCH_ALL_DRAFTS_SUCCESS:
+      return Object.assign({}, state, {drafts: action.posts});
     case actions.FETCH_ALL_POSTS_FAILURE:
       return Object.assign({}, state, {posts: [new ErrorPost()]});
     case actions.FETCH_FULL_POST_DISPLAY:

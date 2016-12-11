@@ -8,6 +8,7 @@ var actions = require("../actions/actions");
 
 var PostFormContainer = require("./post-form-container");
 var PostListContainer = require("./post-list-container");
+var DraftListContainer = require("./draft-list-container");
 
 var Admin = React.createClass({
   componentDidMount:function() {
@@ -21,6 +22,7 @@ var Admin = React.createClass({
       <div className="admin">
         {this.props.children}
         <PostFormContainer />
+        <DraftListContainer />
         <PostListContainer />
         <div className="clear-fix"></div>
         <Link className="link-home admin-link-home" to="/">&#8606; home</Link> 

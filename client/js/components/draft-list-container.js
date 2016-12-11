@@ -5,11 +5,11 @@ var PostList = require("./post-list");
 
 var mapStateToProps = function(state, props) {
   return{
-    posts: state.posts,
-    header: "Published Posts"
+    posts: state.drafts,
+    header: "Drafts"
   }
 }
 
-var PostListContainer = connect(mapStateToProps)(PostList);
+var DraftListContainer = connect(mapStateToProps)(PostList);
 
-module.exports = PostListContainer;
+module.exports = DraftListContainer;

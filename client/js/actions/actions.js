@@ -134,14 +134,20 @@ var resetForm = function() {
   }
 };
 
-var FETCH_ALL_POSTS_SUCCESS = "FETCH_ALL_POSTS_SUCCESS";
-var fetchAllPostsSuccess = function(posts) {
+var FETCH_ALL_PUBLISHED_SUCCESS = "FETCH_ALL_PUBLISHED_SUCCESS";
+var fetchAllPublishedSuccess = function(posts) {
   return {
-    type: FETCH_ALL_POSTS_SUCCESS,
+    type: FETCH_ALL_PUBLISHED_SUCCESS,
     posts: posts 
   }
 }
-
+var FETCH_ALL_DRAFTS_SUCCESS = "FETCH_ALL_DRAFTS_SUCCESS";
+var fetchAllDraftsSuccess = function(posts) {
+  return {
+    type: FETCH_ALL_DRAFTS_SUCCESS,
+    posts: posts 
+  }
+}
 var FETCH_ALL_POSTS_FAILURE = "FETCH_ALL_POSTS_FAILURE";
 var fetchAllPostsFailure = function() {
   return {
@@ -149,7 +155,9 @@ var fetchAllPostsFailure = function() {
   }
 }
 
-var fetchAllPosts = function() {
+
+
+var fetchAllPublished = function() {
   return function(dispatch) {
     var url = "/post/published";
     var headers = {
@@ -161,8 +169,8 @@ var fetchAllPosts = function() {
     .then(function(response) {
       return response.json();
     })
-    .then(function(allPosts) {
-      return dispatch(fetchAllPostsSuccess(allPosts));
+    .then(function(allPublished) {
+      return dispatch(fetchAllPublishedSuccess(allPublished));
     })
     .catch(function(error) {
       console.error(error);
@@ -182,12 +190,19 @@ var fetchAllDrafts = function() {
     .then(function(response) {
       return response.json();
     })
-    .then(function(allPosts) {
-      return dispatch(fetchAllPostsSuccess(allPosts));
+    .then(function(allDrafts) {
+      return dispatch(fetchAllDraftsSuccess(allDrafts));
     })
     .catch(function(error) {
       console.error(error);
     });  
+  }
+}
+
+var fetchAllPosts = function() {
+  return function(dispatch) {
+    dispatch(fetchAllPublished());
+    dispatch(fetchAllDrafts());
   }
 }
 
@@ -308,8 +323,10 @@ exports.RESET_FORM = RESET_FORM;
 exports.resetForm = resetForm; 
 
 exports.fetchAllPosts = fetchAllPosts;
-exports.fetchAllPostsSuccess = fetchAllPostsSuccess;
-exports.FETCH_ALL_POSTS_SUCCESS = FETCH_ALL_POSTS_SUCCESS;
+exports.fetchAllPublishedSuccess = fetchAllPublishedSuccess;
+exports.FETCH_ALL_PUBLISHED_SUCCESS = FETCH_ALL_PUBLISHED_SUCCESS;
+exports.fetchAllDrafts = fetchAllDrafts;
+exports.FETCH_ALL_DRAFTS_SUCCESS = FETCH_ALL_DRAFTS_SUCCESS;
 exports.fetchAllPostsFailure = fetchAllPostsFailure;
 exports.FETCH_ALL_POSTS_FAILURE = FETCH_ALL_POSTS_FAILURE;
 
