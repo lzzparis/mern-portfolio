@@ -151,7 +151,28 @@ var fetchAllPostsFailure = function() {
 
 var fetchAllPosts = function() {
   return function(dispatch) {
-    var url = "/post/all";
+    var url = "/post/published";
+    var headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+
+    fetch(url, {method: "GET", headers: headers})
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(allPosts) {
+      return dispatch(fetchAllPostsSuccess(allPosts));
+    })
+    .catch(function(error) {
+      console.error(error);
+    });  
+  }
+}
+
+var fetchAllDrafts = function() {
+  return function(dispatch) {
+    var url = "/post/drafts";
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
