@@ -1,9 +1,12 @@
 var React = require("react");
 
-var Project = function(props) {
+var Project =  function(props) {
+  var sideClass = ""; 
+  if(props.setRight) { sideClass = "project-right"; }
+  else { sideClass = "project-left"; }
   return (
-    <div className="slide-wrapper slide-wrapper-project">
-      <a className="project" href={props.url}>
+    <div className={"project "+sideClass}>
+      <a href={props.url}>
         <img className="project-thumbnail" src={props.thumbnail} />
         <div className="project-content" href={props.url}>
           <h2 className="project-content-name">{props.name}</h2>
