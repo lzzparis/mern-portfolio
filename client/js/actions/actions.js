@@ -222,26 +222,38 @@ var createPost = function(post) {
       return response.json();
     })
     .then(function(data) {
+      if(data.draft) {
+        dispatch(storeFullPostEdit(data));
+      }
       return dispatch(fetchAllPosts()); 
     }); 
   }
 };
 
 var FETCH_FULL_POST_DISPLAY = "FETCH_FULL_POST_DISPLAY";
-var fetchFullPostDisplay = function(post) {
+var STORE_FULL_POST_DISPLAY = "STORE_FULL_POST_DISPLAY";
+var storeFullPostDisplay = function(post) {
   return {
-    type: FETCH_FULL_POST_DISPLAY,
+    type: STORE_FULL_POST_DISPLAY,
     post: post
-  }
-}
+  };
+};
 
 var FETCH_FULL_POST_EDIT = "FETCH_FULL_POST_EDIT";
-var fetchFullPostEdit = function(post) {
+var STORE_FULL_POST_EDIT = "STORE_FULL_POST_EDIT";
+var storeFullPostEdit = function(post) {
   return {
-    type: FETCH_FULL_POST_EDIT,
+    type: STORE_FULL_POST_EDIT,
     post: post
-  }
-}
+  };
+};
+
+var SET_EDIT_MODE = "SET_EDIT_MODE";
+var setEditMode = function() {
+  return {
+    type: SET_EDIT_MODE
+  };
+};
 
 var fetchFullPost = function(id, type) {
   return function(dispatch) {
@@ -257,9 +269,9 @@ var fetchFullPost = function(id, type) {
     })
     .then(function(data) {
       if(type === FETCH_FULL_POST_EDIT) {
-        return dispatch(fetchFullPostEdit(data));
+        return dispatch(storeFullPostEdit(data));
       } else if (type === FETCH_FULL_POST_DISPLAY) {
-        return dispatch(fetchFullPostDisplay(data));
+        return dispatch(storeFullPostDisplay(data));
       } else {
         throw "Error: Invalid fetch type";
       }
@@ -325,16 +337,20 @@ exports.resetForm = resetForm;
 exports.fetchAllPosts = fetchAllPosts;
 exports.fetchAllPublishedSuccess = fetchAllPublishedSuccess;
 exports.FETCH_ALL_PUBLISHED_SUCCESS = FETCH_ALL_PUBLISHED_SUCCESS;
-exports.fetchAllDrafts = fetchAllDrafts;
+exports.fetchAllDraftsSuccess = fetchAllDraftsSuccess;
 exports.FETCH_ALL_DRAFTS_SUCCESS = FETCH_ALL_DRAFTS_SUCCESS;
 exports.fetchAllPostsFailure = fetchAllPostsFailure;
 exports.FETCH_ALL_POSTS_FAILURE = FETCH_ALL_POSTS_FAILURE;
 
 exports.fetchFullPost = fetchFullPost;
-exports.fetchFullPostDisplay = fetchFullPostDisplay;
+exports.storeFullPostDisplay = storeFullPostDisplay;
+exports.STORE_FULL_POST_DISPLAY = STORE_FULL_POST_DISPLAY;
 exports.FETCH_FULL_POST_DISPLAY = FETCH_FULL_POST_DISPLAY;
-exports.fetchFullPostEdit = fetchFullPostEdit;
+exports.storeFullPostEdit = storeFullPostEdit;
+exports.STORE_FULL_POST_EDIT = STORE_FULL_POST_EDIT;
 exports.FETCH_FULL_POST_EDIT = FETCH_FULL_POST_EDIT;
+exports.setEditMode = setEditMode;
+exports.SET_EDIT_MODE = SET_EDIT_MODE;
 
 exports.createPost = createPost;
 

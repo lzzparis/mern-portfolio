@@ -63,6 +63,7 @@ var PostForm = React.createClass({
       draft: false
     };
     this.formSubmit(post);
+    this.formReset();
   },
   saveDraft: function(e) {
     e.preventDefault();

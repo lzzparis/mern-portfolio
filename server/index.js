@@ -165,7 +165,8 @@ app.put("/post/:id", function(req,res){
     subject: req.body.subject,
     body: req.body.body,
     img: req.body.img,
-    timestamp: new Date()
+    timestamp: new Date(),
+    draft: req.body.draft
   };
   Post.findOneAndUpdate({_id:id},updatedPost,function(err, post){
     if(err || !post){

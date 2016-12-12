@@ -37,6 +37,7 @@ var initialState = {
 
 var reducer = function(state, action) {
   state = state || initialState;
+  console.log(action.type);
   switch(action.type) {
     case actions.FETCH_USER_STATUS_SUCCESS:
       return Object.assign({}, state, {userInitialized: action.value});
@@ -52,10 +53,12 @@ var reducer = function(state, action) {
       return Object.assign({}, state, {drafts: action.posts});
     case actions.FETCH_ALL_POSTS_FAILURE:
       return Object.assign({}, state, {posts: [new ErrorPost()]});
-    case actions.FETCH_FULL_POST_DISPLAY:
+    case actions.STORE_FULL_POST_DISPLAY:
       return Object.assign( {}, state, {displayPost: action.post}); 
-    case actions.FETCH_FULL_POST_EDIT:
+    case actions.STORE_FULL_POST_EDIT:
       return Object.assign( {}, state, {formData: action.post}, {editMode: true}); 
+    case actions.SET_EDIT_MODE:
+      return Object.assign( {}, state, {editMode: true}); 
     default: 
       return state;
   }
