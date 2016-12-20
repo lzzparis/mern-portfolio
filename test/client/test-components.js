@@ -11,14 +11,6 @@ describe("App component", function() {
 	});
 });
 
-var Bio = require("../../client/js/components/bio");
-var BioWrapper = shallow(<Bio />);
-describe("Bio component", function() {
-	it("should render", function() {
-		BioWrapper.should.have.length(1);
-	});
-});
-
 var BusinessCard = require("../../client/js/components/business-card");
 var BusinessCardWrapper = shallow(<BusinessCard />);
 describe("BusinessCard component", function() {
