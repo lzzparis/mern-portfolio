@@ -1,16 +1,32 @@
 var React = require("react");
 var Link = require("react-router").Link;
+var router = require("react-router");
+var hashHistory = router.hashHistory;
 
 var NavBar = React.createClass({
   getInitialState: function() {
     return {
-      homeClass: "active-nav-bar-list-item",
-      projectsClass:  "inactive-nav-bar-list-item",
+      homeClass: "inactive-nav-bar-list-item",
+      projectsClass: "inactive-nav-bar-list-item",
       connectClass: "inactive-nav-bar-list-item"
     };
   },
+  componentWillMount: function() {
+    var currentLocation = hashHistory.getCurrentLocation().pathname;
+    if (currentLocation.match(/projects/)) {
+      this.setState({projectsClass: "active-nav-bar-list-item"});
+    } else if (currentLocation.match(/connect/)) {
+      this.setState({connectClass: "active-nav-bar-list-item"});
+    } else {
+      this.setState({homeClass: "active-nav-bar-list-item"});
+    }
+  },
   setHomeActive: function() {
-    this.setState(this.getInitialState());
+    this.setState({
+      homeClass: "active-nav-bar-list-item",
+      projectsClass:  "inactive-nav-bar-list-item",
+      connectClass: "inactive-nav-bar-list-item"      
+    });
   },
   setProjectsActive: function() {
     this.setState({
