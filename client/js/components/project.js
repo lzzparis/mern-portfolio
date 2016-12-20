@@ -6,7 +6,7 @@ var Project =  function(props) {
   else { sideClass = "project-left"; }
   return (
     <div className={"project "+sideClass}>
-      <a href={props.url}>
+      <a href={props.url} target="_blank">
         <img className="project-thumbnail" src={props.thumbnail} />
         <div className="project-content" href={props.url}>
           <h2 className="project-content-name">{props.name}</h2>
