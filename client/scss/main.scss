@@ -23,10 +23,12 @@ a {
 
 .left {
   float: left;
+  text-align: left;
 }
 
 .right {
   float: right;
+  text-align: right;
 }
 
 .clearfix {
@@ -200,6 +202,7 @@ a {
 .connect-list-item {
   display: inline-block;
   padding: 2rem 0;
+  /*width: 22rem;*/
 }
 
 .connect-list-item-link {
@@ -219,9 +222,19 @@ a {
   border-top: 6px solid #002;
 }
 
-@media (max-width: 1020px) {
+@media (max-width: 1400px) {
+  .connect-list {
+    width: 50%;
+  }
+}
+@media (max-width: 1200px) {
+  .connect-list {
+    width: 60%;
+  }
+}
+@media (max-width: 970px) {
   .nav-bar-list-item {
-    padding: 0.5rem 1rem;
+    margin: 0rem 3rem;
   }
 
   .business-card-name {
@@ -279,7 +292,8 @@ a {
 
 }
 
-@media (max-width: 500px) {
+
+@media (max-width: 730px) {
 
   .nav-bar-list-item {
     font-size: 1rem;
@@ -295,15 +309,25 @@ a {
   .carousel .control-next.control-arrow:before {
     border-left: 16px solid rgb(0, 0, 34); 
   } 
+
+  .connect-list {
+    width: 70%;
+  }
+
 }
 
 
-@media (max-width: 365px) {
-   .nav-bar-list-item {
-    padding: 0.5rem;
+
+@media (max-width: 650px) {
+  .nav-bar-list-item {
+    margin: 0 2rem;
   } 
   .business-card-description, .project-content-description {
     font-size: 0.9rem;
   } 
+
+  .connect-list {
+    width: 60%;
+  }
 
 }
