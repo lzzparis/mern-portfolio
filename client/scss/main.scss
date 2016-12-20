@@ -215,12 +215,16 @@ a {
   text-transform: uppercase;
 }
 
-.hover-bottom:hover {
+.connect-list-item-link:hover {
+  color: #448;
+}
+
+/*.hover-bottom:hover {
   border-bottom: 6px solid #002;
 }
 .hover-top:hover {
   border-top: 6px solid #002;
-}
+}*/
 
 @media (max-width: 1400px) {
   .connect-list {
