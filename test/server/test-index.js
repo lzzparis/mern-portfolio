@@ -39,7 +39,38 @@ describe("App name", function() {
       done();
     });
   });
-
+  it("should return all posts on GET /post/published with default sort (newest)", function(done) {
+    chai.request(app)
+    .get("/post/published")
+    .end(function(err, res) {
+      for (var i=0; i < res.body.length; i++) {
+        var actualPost = res.body[i];
+        //default is to sort by newest
+        var expectedPost = POSTS[POSTS.length-1-i];
+        actualPost._id.should.not.equal(null);  
+        actualPost.subject.should.equal(expectedPost.subject);  
+        actualPost.body.should.equal(expectedPost.body);  
+        actualPost.timestamp.should.equal(expectedPost.timestamp.toISOString());  
+      }
+      done();
+    });
+  });
+  it("should return all drafts on GET /post/drafts with default sort (newest)", function(done) {
+    chai.request(app)
+    .get("/post/drafts")
+    .end(function(err, res) {
+      for (var i=0; i < res.body.length; i++) {
+        var actualPost = res.body[i];
+        //default is to sort by newest
+        var expectedPost = POSTS[POSTS.length-1-i];
+        actualPost._id.should.not.equal(null);  
+        actualPost.subject.should.equal(expectedPost.subject);  
+        actualPost.body.should.equal(expectedPost.body);  
+        actualPost.timestamp.should.equal(expectedPost.timestamp.toISOString());  
+      }
+      done();
+    });
+  });
     it("should return all posts on GET /post/all with sort by oldest", function(done) {
     chai.request(app)
     .get("/post/all")
@@ -74,7 +105,7 @@ describe("App name", function() {
   it("should create a post on POST", function(done) {
     chai.request(app)
     .post("/post")
-    .send({subject:"Mocha post", body:"Holy cow, how delicious is this coffee!!!"})
+    .send({draft:false, subject:"Mocha post", body:"Holy cow, how delicious is this coffee!!!"})
     .end(function(err,res) {
       res.should.have.status(201);
       res.body.subject.should.equal("Mocha post");
