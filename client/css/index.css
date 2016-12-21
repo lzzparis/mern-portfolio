@@ -4,7 +4,7 @@ html, body {
   padding: 0;
   box-sizing: border-box;
 
-  font-family: Catamaran, sans-serif;
+  font-family: "Libre Franklin", sans-serif;
   background-color: #ccc;
   background-attachment: fixed;
   background-image: url("../assets/paper-light-detail.jpg");
@@ -82,6 +82,21 @@ a {
   margin: 0;
 }
 
+.app-toolbar {
+  background-color: #424264;
+  color: #fafafa;
+  text-align: center;
+}
+.app-toolbar-text {
+  margin: 0;
+  padding: 0.5rem;
+  display: inline-block;
+}
+.app-toolbar-text a {
+  color: #fafafa;
+  font-weight: bold;
+}
+
 /*Public view*/
 .blog {
   margin: 2rem auto;
@@ -125,17 +140,31 @@ a {
   width: 90%;
   text-align: center;
 }
+
+.login-image {
+  width: 50%;
+}
+
 .login-form {
+  margin: 1rem 0;
   font-size: 1rem; 
 }
 
 .login-form-field {
   margin: 0.5rem auto;
+  padding: 0.5rem;
   width: 50%;
   font-size: 2rem; 
   letter-spacing: 0.2rem;
   text-align: center;
 }
+
+.login-form-button {
+  font-size: 2rem;
+  width: 50%;
+  padding: 0.5rem;
+}
+
 
 .form-field:focus {
   -webkit-box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);
@@ -232,7 +261,19 @@ a {
 }
 
 
+@media (max-width: 760px) {
+  .login-image, .login-form-field, .login-form-button {
+    width: 80%;
+  } 
+
+}
+
+
 @media (max-width: 500px) {
+  .hide-for-narrow-views {
+    display: none;
+  }
+
   .blog {
     width: 80%;
   }
@@ -255,8 +296,13 @@ a {
     font-size: 0.75rem;
   }
   
-  .login-form-field {
+  .login-image, .login-form-field, .login-form-button {
     width: 100%;
+  }
+
+  .login-form-button {
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .post-form-wrapper, .post-list-wrapper {
