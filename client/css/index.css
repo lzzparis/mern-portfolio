@@ -82,6 +82,19 @@ a {
   margin: 0;
 }
 
+.app-toolbar {
+  background-color: #424264;
+  color: #fafafa;
+}
+.app-toolbar-text {
+  margin: 0;
+  padding: 0.5rem;
+  display: inline-block;
+}
+.app-toolbar-text a {
+  font-weight: bold;
+}
+
 /*Public view*/
 .blog {
   margin: 2rem auto;
@@ -125,17 +138,31 @@ a {
   width: 90%;
   text-align: center;
 }
+
+.login-image {
+  width: 40%;
+}
+
 .login-form {
+  margin: 1rem 0;
   font-size: 1rem; 
 }
 
 .login-form-field {
   margin: 0.5rem auto;
-  width: 50%;
+  padding: 0.5rem;
+  width: 40%;
   font-size: 2rem; 
   letter-spacing: 0.2rem;
   text-align: center;
 }
+
+.login-form-button {
+  font-size: 2rem;
+  width: 40%;
+  padding: 0.5rem;
+}
+
 
 .form-field:focus {
   -webkit-box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);
