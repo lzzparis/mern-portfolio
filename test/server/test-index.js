@@ -4,6 +4,15 @@ var chai = require("chai");
 var chaiHttp = require("chai-http");
 
 var POSTS = require("../sample-data");
+var DRAFTS = [];
+var PUBLISHED = [];
+for(var i = 0; i < POSTS.length; i++) {
+  if(POSTS[i].draft) {
+    DRAFTS.push(POSTS[i]);
+  } else {
+    PUBLISHED.push(POSTS[i]);
+  }
+}
 
 var server = require("../../server/index");
 var Post = require("../../server/models/post");
@@ -27,7 +36,7 @@ describe("App name", function() {
     chai.request(app)
     .get("/post/all")
     .end(function(err, res) {
-      for (var i=0; i < res.body.length; i++) {
+      for (var i = 0; i < res.body.length; i++) {
         var actualPost = res.body[i];
         //default is to sort by newest
         var expectedPost = POSTS[POSTS.length-1-i];
@@ -43,10 +52,11 @@ describe("App name", function() {
     chai.request(app)
     .get("/post/published")
     .end(function(err, res) {
-      for (var i=0; i < res.body.length; i++) {
+      res.body.length.should.equal(PUBLISHED.length);
+      for (var i = 0; i < res.body.length; i++) {
         var actualPost = res.body[i];
         //default is to sort by newest
-        var expectedPost = POSTS[POSTS.length-1-i];
+        var expectedPost = PUBLISHED[PUBLISHED.length-1-i];
         actualPost._id.should.not.equal(null);  
         actualPost.subject.should.equal(expectedPost.subject);  
         actualPost.body.should.equal(expectedPost.body);  
@@ -59,10 +69,11 @@ describe("App name", function() {
     chai.request(app)
     .get("/post/drafts")
     .end(function(err, res) {
-      for (var i=0; i < res.body.length; i++) {
+      res.body.length.should.equal(DRAFTS.length);
+      for (var i = 0; i < res.body.length; i++) {
         var actualPost = res.body[i];
         //default is to sort by newest
-        var expectedPost = POSTS[POSTS.length-1-i];
+        var expectedPost = DRAFTS[DRAFTS.length-1-i];
         actualPost._id.should.not.equal(null);  
         actualPost.subject.should.equal(expectedPost.subject);  
         actualPost.body.should.equal(expectedPost.body);  
@@ -76,7 +87,7 @@ describe("App name", function() {
     .get("/post/all")
     .send({sort: "oldest"})
     .end(function(err, res) {
-      for (var i=0; i < res.body.length; i++) {
+      for (var i = 0; i < res.body.length; i++) {
         var actualPost = res.body[i];
         //default is to sort by newest
         var expectedPost = POSTS[i];
