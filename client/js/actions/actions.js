@@ -134,14 +134,20 @@ var resetForm = function() {
   }
 };
 
-var FETCH_ALL_POSTS_SUCCESS = "FETCH_ALL_POSTS_SUCCESS";
-var fetchAllPostsSuccess = function(posts) {
+var FETCH_ALL_PUBLISHED_SUCCESS = "FETCH_ALL_PUBLISHED_SUCCESS";
+var fetchAllPublishedSuccess = function(posts) {
   return {
-    type: FETCH_ALL_POSTS_SUCCESS,
+    type: FETCH_ALL_PUBLISHED_SUCCESS,
     posts: posts 
   }
 }
-
+var FETCH_ALL_DRAFTS_SUCCESS = "FETCH_ALL_DRAFTS_SUCCESS";
+var fetchAllDraftsSuccess = function(posts) {
+  return {
+    type: FETCH_ALL_DRAFTS_SUCCESS,
+    posts: posts 
+  }
+}
 var FETCH_ALL_POSTS_FAILURE = "FETCH_ALL_POSTS_FAILURE";
 var fetchAllPostsFailure = function() {
   return {
@@ -149,9 +155,11 @@ var fetchAllPostsFailure = function() {
   }
 }
 
-var fetchAllPosts = function() {
+
+
+var fetchAllPublished = function() {
   return function(dispatch) {
-    var url = "/post/all";
+    var url = "/post/published";
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -161,12 +169,40 @@ var fetchAllPosts = function() {
     .then(function(response) {
       return response.json();
     })
-    .then(function(allPosts) {
-      return dispatch(fetchAllPostsSuccess(allPosts));
+    .then(function(allPublished) {
+      return dispatch(fetchAllPublishedSuccess(allPublished));
     })
     .catch(function(error) {
       console.error(error);
     });  
+  }
+}
+
+var fetchAllDrafts = function() {
+  return function(dispatch) {
+    var url = "/post/drafts";
+    var headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+
+    fetch(url, {method: "GET", headers: headers})
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(allDrafts) {
+      return dispatch(fetchAllDraftsSuccess(allDrafts));
+    })
+    .catch(function(error) {
+      console.error(error);
+    });  
+  }
+}
+
+var fetchAllPosts = function() {
+  return function(dispatch) {
+    dispatch(fetchAllPublished());
+    dispatch(fetchAllDrafts());
   }
 }
 
@@ -186,26 +222,38 @@ var createPost = function(post) {
       return response.json();
     })
     .then(function(data) {
+      if(data.draft) {
+        dispatch(storeFullPostEdit(data));
+      }
       return dispatch(fetchAllPosts()); 
     }); 
   }
 };
 
 var FETCH_FULL_POST_DISPLAY = "FETCH_FULL_POST_DISPLAY";
-var fetchFullPostDisplay = function(post) {
+var STORE_FULL_POST_DISPLAY = "STORE_FULL_POST_DISPLAY";
+var storeFullPostDisplay = function(post) {
   return {
-    type: FETCH_FULL_POST_DISPLAY,
+    type: STORE_FULL_POST_DISPLAY,
     post: post
-  }
-}
+  };
+};
 
 var FETCH_FULL_POST_EDIT = "FETCH_FULL_POST_EDIT";
-var fetchFullPostEdit = function(post) {
+var STORE_FULL_POST_EDIT = "STORE_FULL_POST_EDIT";
+var storeFullPostEdit = function(post) {
   return {
-    type: FETCH_FULL_POST_EDIT,
+    type: STORE_FULL_POST_EDIT,
     post: post
-  }
-}
+  };
+};
+
+var SET_EDIT_MODE = "SET_EDIT_MODE";
+var setEditMode = function() {
+  return {
+    type: SET_EDIT_MODE
+  };
+};
 
 var fetchFullPost = function(id, type) {
   return function(dispatch) {
@@ -221,9 +269,9 @@ var fetchFullPost = function(id, type) {
     })
     .then(function(data) {
       if(type === FETCH_FULL_POST_EDIT) {
-        return dispatch(fetchFullPostEdit(data));
+        return dispatch(storeFullPostEdit(data));
       } else if (type === FETCH_FULL_POST_DISPLAY) {
-        return dispatch(fetchFullPostDisplay(data));
+        return dispatch(storeFullPostDisplay(data));
       } else {
         throw "Error: Invalid fetch type";
       }
@@ -287,16 +335,22 @@ exports.RESET_FORM = RESET_FORM;
 exports.resetForm = resetForm; 
 
 exports.fetchAllPosts = fetchAllPosts;
-exports.fetchAllPostsSuccess = fetchAllPostsSuccess;
-exports.FETCH_ALL_POSTS_SUCCESS = FETCH_ALL_POSTS_SUCCESS;
+exports.fetchAllPublishedSuccess = fetchAllPublishedSuccess;
+exports.FETCH_ALL_PUBLISHED_SUCCESS = FETCH_ALL_PUBLISHED_SUCCESS;
+exports.fetchAllDraftsSuccess = fetchAllDraftsSuccess;
+exports.FETCH_ALL_DRAFTS_SUCCESS = FETCH_ALL_DRAFTS_SUCCESS;
 exports.fetchAllPostsFailure = fetchAllPostsFailure;
 exports.FETCH_ALL_POSTS_FAILURE = FETCH_ALL_POSTS_FAILURE;
 
 exports.fetchFullPost = fetchFullPost;
-exports.fetchFullPostDisplay = fetchFullPostDisplay;
+exports.storeFullPostDisplay = storeFullPostDisplay;
+exports.STORE_FULL_POST_DISPLAY = STORE_FULL_POST_DISPLAY;
 exports.FETCH_FULL_POST_DISPLAY = FETCH_FULL_POST_DISPLAY;
-exports.fetchFullPostEdit = fetchFullPostEdit;
+exports.storeFullPostEdit = storeFullPostEdit;
+exports.STORE_FULL_POST_EDIT = STORE_FULL_POST_EDIT;
 exports.FETCH_FULL_POST_EDIT = FETCH_FULL_POST_EDIT;
+exports.setEditMode = setEditMode;
+exports.SET_EDIT_MODE = SET_EDIT_MODE;
 
 exports.createPost = createPost;
 

@@ -60,10 +60,16 @@ describe("reducer", function() {
     expectedState = JSON.stringify(expectedState);
     actualState.should.equal(expectedState);
   });
-  it("should handle FETCH_ALL_POSTS_SUCCESS", function() {
-    var actualState = reducer({}, actions.fetchAllPostsSuccess(POSTS));
+  it("should handle FETCH_ALL_PUBLISHED_SUCCESS", function() {
+    var actualState = reducer({}, actions.fetchAllPublishedSuccess(POSTS));
     actualState = JSON.stringify(actualState); 
     var expectedState = JSON.stringify({posts: POSTS});
+    actualState.should.equal(expectedState);
+  });
+  it("should handle FETCH_ALL_DRAFTS_SUCCESS", function() {
+    var actualState = reducer({}, actions.fetchAllDraftsSuccess(POSTS));
+    actualState = JSON.stringify(actualState); 
+    var expectedState = JSON.stringify({drafts: POSTS});
     actualState.should.equal(expectedState);
   });
   it("should handle FETCH_ALL_POSTS_FAILURE", function() {
@@ -81,16 +87,16 @@ describe("reducer", function() {
     expectedState = JSON.stringify(expectedState);
     actualState.should.equal(expectedState);
   });
-  it("should handle FETCH_FULL_POSTS_DISPLAY", function() {
+  it("should handle STORE_FULL_POSTS_DISPLAY", function() {
     var selectedPost = POSTS[1];
-    var actualState = reducer({}, actions.fetchFullPostDisplay(selectedPost));
+    var actualState = reducer({}, actions.storeFullPostDisplay(selectedPost));
     actualState = JSON.stringify(actualState); 
     var expectedState = JSON.stringify({displayPost: selectedPost});
     actualState.should.equal(expectedState);
   });
-  it("should handle FETCH_FULL_POSTS_EDIT", function() {
+  it("should handle STORE_FULL_POSTS_EDIT", function() {
     var selectedPost = POSTS[2];
-    var actualState = reducer({}, actions.fetchFullPostEdit(selectedPost));
+    var actualState = reducer({}, actions.storeFullPostEdit(selectedPost));
     actualState = JSON.stringify(actualState); 
     var expectedState = JSON.stringify({formData: selectedPost, editMode: true});
     actualState.should.equal(expectedState);

@@ -40,13 +40,7 @@ var PostForm = React.createClass({
     e.preventDefault();
     this.formReset();
   },
-  formSubmit: function(e) {
-    e.preventDefault();
-    var post = {
-      subject: this.state.formSubject, 
-      body: this.state.formBody,
-      img: this.state.formImg
-    };
+  formSubmit: function(post) {
     if (post.subject == "") {
       this.setState({
         errorMessage: "* required"
@@ -59,6 +53,27 @@ var PostForm = React.createClass({
         this.props.dispatch(actions.createPost(post));
       }
     }
+  },
+  submitPost: function(e) {
+    e.preventDefault();
+    var post = {
+      subject: this.state.formSubject, 
+      body: this.state.formBody,
+      img: this.state.formImg,
+      draft: false
+    };
+    this.formSubmit(post);
+    this.formReset();
+  },
+  saveDraft: function(e) {
+    e.preventDefault();
+    var post = {
+      subject: this.state.formSubject, 
+      body: this.state.formBody,
+      img: this.state.formImg,
+      draft: true 
+    };
+    this.formSubmit(post);
   },
   render:function() {
     var clearButtonText = null;
@@ -77,7 +92,8 @@ var PostForm = React.createClass({
           <textarea className="form-field post-form-field post-form-body" ref="body" value={this.state.formBody}></textarea><br />
           Image <em>(type or copy/paste a URL)</em><br />
           <input className="form-field post-form-field post-form-img" ref="img" value={this.state.formImg} /><br />
-          <input className="button form-button post-form-button post-form-submit" type="submit" onClick={this.formSubmit} />
+          <input className="button form-button post-form-button post-form-submit" type="submit" onClick={this.submitPost} value="Submit" />
+          <input className="button form-button post-form-button post-form-save" type="submit" onClick={this.saveDraft} value="Save Draft" />
           <button className="button form-button post-form-button post-form-clear" onClick={this.formClear}>{clearButtonText}</button>
         </form> 
       </div>
