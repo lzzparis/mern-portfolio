@@ -15,8 +15,8 @@ var PostSummary = React.createClass({
   },
   render: function() {
     var prettyTime = moment(this.props.post.timestamp).format("MM-DD-YYYY @ h:mm a");
-    var prettyTimeCreated = moment(this.props.post.created).format("MM-DD-YY");
-    var prettyTimeModified = moment(this.props.post.modified).format("MM-DD-YY");
+    var prettyTimeCreated = moment(this.props.post.created).format("MM-DD-YY @ h:mm a");
+    var prettyTimeModified = moment(this.props.post.modified).format("MM-DD-YY @ h:mm a");
     return(
       <li className="post-summary" id={this.props.post._id} >
         <button className="button post-summary-button post-summary-button-edit" onClick={this.editPost}>&#x270e;</button>

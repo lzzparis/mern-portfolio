@@ -142,6 +142,8 @@ app.post("/post", function(req,res){
     body: req.body.body,
     img: req.body.img,
     timestamp: new Date(),
+    created: new Date(),
+    modified: new Date(),
     draft: req.body.draft
   };
   Post.create(newPost, function(err, post){
@@ -160,6 +162,7 @@ app.put("/post/:id", function(req,res){
     body: req.body.body,
     img: req.body.img,
     timestamp: new Date(),
+    modified: new Date(),
     draft: req.body.draft
   };
   Post.findOneAndUpdate({_id:id},updatedPost,function(err, post){
