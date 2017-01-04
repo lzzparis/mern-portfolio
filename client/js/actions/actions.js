@@ -206,29 +206,6 @@ var fetchAllPosts = function() {
   }
 }
 
-var createPost = function(post) {
-  return function(dispatch) {
-    var body = JSON.stringify(post);
-
-    var url = "/post";
-    var headers = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    };
-
-    fetch(url, {method: "POST", headers: headers, body:body})
-    .then(function(response) {
-
-      return response.json();
-    })
-    .then(function(data) {
-      if(data.draft) {
-        dispatch(storeFullPostEdit(data));
-      }
-      return dispatch(fetchAllPosts()); 
-    }); 
-  }
-};
 
 var FETCH_FULL_POST_DISPLAY = "FETCH_FULL_POST_DISPLAY";
 var STORE_FULL_POST_DISPLAY = "STORE_FULL_POST_DISPLAY";
@@ -281,6 +258,31 @@ var fetchFullPost = function(id, type) {
     });
   }
 }
+
+
+var createPost = function(post) {
+  return function(dispatch) {
+    var body = JSON.stringify(post);
+
+    var url = "/post";
+    var headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+
+    fetch(url, {method: "POST", headers: headers, body:body})
+    .then(function(response) {
+
+      return response.json();
+    })
+    .then(function(data) {
+      if(data.draft) {
+        dispatch(storeFullPostEdit(data));
+      }
+      return dispatch(fetchAllPosts()); 
+    }); 
+  }
+};
 
 var updatePost = function(post) {
   return function(dispatch) {
