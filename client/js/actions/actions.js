@@ -272,14 +272,18 @@ var createPost = function(post) {
 
     fetch(url, {method: "POST", headers: headers, body:body})
     .then(function(response) {
-
       return response.json();
     })
     .then(function(data) {
-      if(data.draft) {
+      if(post.draft) {
         dispatch(storeFullPostEdit(data));
       }
       return dispatch(fetchAllPosts()); 
+    })
+    .then(function(data) {
+      if(!post.draft) {
+        dispatch(resetForm());
+      }
     }); 
   }
 };
@@ -296,6 +300,11 @@ var updatePost = function(post) {
     fetch(url, {method: "PUT", headers: headers, body:data})
     .then(function(response) {
       return response.json();
+    })
+    .then(function(data) {
+      if(!post.draft) {
+        dispatch(resetForm());
+      }
     })
     .then(function() {
         dispatch(fetchAllPosts()); 

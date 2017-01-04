@@ -27,7 +27,8 @@ var PostForm = React.createClass({
       formImg: this.refs.img.value
     })
   },
-  formReset: function() {
+  formClear: function(e) {
+    e.preventDefault();
     this.props.dispatch(actions.resetForm());
     this.setState({
       formSubject: "",
@@ -35,10 +36,6 @@ var PostForm = React.createClass({
       formImg: "",
       postId: null
     });
-  },
-  formClear: function(e) {
-    e.preventDefault();
-    this.formReset();
   },
   formSubmit: function(post) {
     if (post.subject == "") {
@@ -63,7 +60,6 @@ var PostForm = React.createClass({
       draft: false
     };
     this.formSubmit(post);
-    this.formReset();
   },
   saveDraft: function(e) {
     e.preventDefault();
