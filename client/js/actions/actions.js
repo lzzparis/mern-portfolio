@@ -272,6 +272,11 @@ var createPost = function(post) {
 
     fetch(url, {method: "POST", headers: headers, body:body})
     .then(function(response) {
+      if(response.status < 200 || response.status >= 300) {
+        var error = new Error(response.statusText);
+        error.response = response;
+        throw error;
+      }
       return response.json();
     })
     .then(function(data) {
@@ -284,6 +289,11 @@ var createPost = function(post) {
       if(!post.draft) {
         dispatch(resetForm());
       }
+    })
+    .catch(function(error) {
+      alert("WARNING - Could not connect to the database. "+
+        "(Perhaps you are disconnected from the internet.) "+
+        "Please save your work locally and resubmit later.");
     }); 
   }
 };
@@ -299,6 +309,11 @@ var updatePost = function(post) {
 
     fetch(url, {method: "PUT", headers: headers, body:data})
     .then(function(response) {
+      if(response.status < 200 || response.status >= 300) {
+        var error = new Error(response.statusText);
+        error.response = response;
+        throw error;
+      }
       return response.json();
     })
     .then(function(data) {
@@ -308,6 +323,11 @@ var updatePost = function(post) {
     })
     .then(function() {
         dispatch(fetchAllPosts()); 
+    })
+    .catch(function(error){
+      alert("WARNING - Could not connect to the database. "+
+        "(Perhaps you are disconnected from the internet.) "+
+        "Please save your work locally and resubmit later.");
     }); 
   };
 };
