@@ -5,6 +5,8 @@ var PostSchema = new mongoose.Schema({
   body: {type:String},
   img: {type:String},
   timestamp: {type:Date},
+  created: {type:Date, required: true},
+  modified: {type:Date, required: true},
   draft: {type: Boolean, required: true}
 });
 
