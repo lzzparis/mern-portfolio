@@ -11,9 +11,16 @@ POSTS.forEach(function(post, i) {
   date.setMonth(0);
   date.setFullYear(2020 + i);
   POSTS[i].timestamp = date;
-  POSTS[i].created = date;
-  date.setMonth(4);
-  POSTS[i].modified = date;
+
+  var createdDate = new Date();
+  createdDate.setMonth(0);
+  createdDate.setFullYear(2020 + i);
+  POSTS[i].created = createdDate;
+
+  var modifiedDate = new Date();
+  modifiedDate.setMonth(4);
+  modifiedDate.setFullYear(2020 + i);
+  POSTS[i].modified = modifiedDate;
 });
 
 module.exports = POSTS;
