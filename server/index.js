@@ -78,16 +78,16 @@ app.get("/post/published", function(req,res){
   var sort = null;
   switch(req.body.sort) {
     case "newest":
-      sort = {timestamp: -1};
+      sort = {created: -1};
       break;
     case "oldest":
-      sort = {timestamp: 1};
+      sort = {created: 1};
       break;
     case "subject":
       sort = {subject: 1};
       break;
     default:
-      sort = {timestamp: -1};
+      sort = {created: -1};
       break;
   }
   Post.find({draft: false}).sort(sort).exec(function(err, posts) {
@@ -100,7 +100,7 @@ app.get("/post/published", function(req,res){
 });
 
 app.get("/post/drafts", function(req,res){
-  var sort = {timestamp: -1};
+  var sort = {created: -1};
   Post.find({draft: true}).sort(sort).exec(function(err, posts) {
     if(err || !posts) {
       res.status(500).json({message:"Internal server error"}); 
@@ -141,7 +141,6 @@ app.post("/post", function(req,res){
     subject: req.body.subject,
     body: req.body.body,
     img: req.body.img,
-    timestamp: new Date(),
     created: new Date(),
     modified: new Date(),
     draft: req.body.draft
@@ -161,7 +160,6 @@ app.put("/post/:id", function(req,res){
     subject: req.body.subject,
     body: req.body.body,
     img: req.body.img,
-    timestamp: new Date(),
     modified: new Date(),
     draft: req.body.draft
   };

@@ -14,7 +14,6 @@ var PostSummary = React.createClass({
     this.props.deleteHandler(this.props.post._id);
   },
   render: function() {
-    var prettyTime = moment(this.props.post.timestamp).format("MM-DD-YYYY @ h:mm a");
     var prettyTimeCreated = moment(this.props.post.created).format("MM-DD-YY @ h:mm a");
     var prettyTimeModified = moment(this.props.post.modified).format("MM-DD-YY @ h:mm a");
     return(

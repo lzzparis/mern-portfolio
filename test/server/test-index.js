@@ -43,12 +43,13 @@ describe("App name", function() {
         actualPost._id.should.not.equal(null);  
         actualPost.subject.should.equal(expectedPost.subject);  
         actualPost.body.should.equal(expectedPost.body);  
-        actualPost.timestamp.should.equal(expectedPost.timestamp.toISOString());  
+        actualPost.created.should.equal(expectedPost.created.toISOString());  
+        actualPost.modified.should.equal(expectedPost.modified.toISOString());  
       }
       done();
     });
   });
-  it("should return all posts on GET /post/published with default sort (newest)", function(done) {
+  it("should return all published posts on GET /post/published with default sort (newest)", function(done) {
     chai.request(app)
     .get("/post/published")
     .end(function(err, res) {
@@ -60,7 +61,8 @@ describe("App name", function() {
         actualPost._id.should.not.equal(null);  
         actualPost.subject.should.equal(expectedPost.subject);  
         actualPost.body.should.equal(expectedPost.body);  
-        actualPost.timestamp.should.equal(expectedPost.timestamp.toISOString());  
+        actualPost.created.should.equal(expectedPost.created.toISOString());  
+        actualPost.modified.should.equal(expectedPost.modified.toISOString());  
       }
       done();
     });
@@ -77,7 +79,8 @@ describe("App name", function() {
         actualPost._id.should.not.equal(null);  
         actualPost.subject.should.equal(expectedPost.subject);  
         actualPost.body.should.equal(expectedPost.body);  
-        actualPost.timestamp.should.equal(expectedPost.timestamp.toISOString());  
+        actualPost.created.should.equal(expectedPost.created.toISOString());  
+        actualPost.modified.should.equal(expectedPost.modified.toISOString());  
       }
       done();
     });
@@ -94,7 +97,8 @@ describe("App name", function() {
         actualPost._id.should.not.equal(null);  
         actualPost.subject.should.equal(expectedPost.subject);  
         actualPost.body.should.equal(expectedPost.body);  
-        actualPost.timestamp.should.equal(expectedPost.timestamp.toISOString());  
+        actualPost.created.should.equal(expectedPost.created.toISOString());  
+        actualPost.modified.should.equal(expectedPost.modified.toISOString());  
       }
       done();
     });
@@ -138,7 +142,7 @@ describe("App name", function() {
         .end(function(err,res) {
           res.body.subject.should.equal("Biscuit recipe");
           res.body.body.should.equal("In a large bowl combine flour, sugar, baking powder and salt together. Cut butter into mixture until it begins to look like cornmeal. Make a well with flour mixture and slowly add milk into the middle. Knead dough with your fingers and add milk when necessary. Roll out dough onto a lightly floured surface and roll out to desired thickness. Cut with small biscuit cutter. Butter bottom of skillet and place biscuits in pan. Cover and place on top of hot coals in the fireplace. Carefully place some hot coals on top of the skillet cover. Bake for 12 minutes or until golden brown. Recipe courtesy of Paula Deen, 2008");
-          res.body.timestamp.should.not.equal("Thu Oct 06 2016 17:18:20 GMT-0700 (MST)");
+          res.body.modified.should.not.equal("Thu Oct 06 2016 17:18:20 GMT-0700 (MST)");
           done();
         });
       });
@@ -159,7 +163,7 @@ describe("App name", function() {
           res.body.subject.should.equal("Biscuit recipe");
           res.body.body.should.equal("In a large bowl combine flour, sugar, baking powder and salt together. Cut butter into mixture until it begins to look like cornmeal. Make a well with flour mixture and slowly add milk into the middle. Knead dough with your fingers and add milk when necessary. Roll out dough onto a lightly floured surface and roll out to desired thickness. Cut with small biscuit cutter. Butter bottom of skillet and place biscuits in pan. Cover and place on top of hot coals in the fireplace. Carefully place some hot coals on top of the skillet cover. Bake for 12 minutes or until golden brown. Recipe courtesy of Paula Deen, 2008");
           res.body.img.should.equal("http://thebarking.com/wp-content/uploads/2012/09/biscuit.jpg");
-          res.body.timestamp.should.not.equal("Thu Oct 06 2016 17:18:20 GMT-0700 (MST)");
+          res.body.modified.should.not.equal("Thu Oct 06 2016 17:18:20 GMT-0700 (MST)");
           done();
         });
       });
@@ -170,7 +174,7 @@ describe("App name", function() {
       var testId = post._id;
       chai.request(app)
       .put("/post/"+testId)
-      .send({subject: "Cutest kitty", body: "Look at this cat isn^t it the cutest cat i love cats they are the best animals evar", img:"", timestamp: "Thu Oct 06 2016 17:18:20 GMT-0700 (MST)"})
+      .send({subject: "Cutest kitty", body: "Look at this cat isn^t it the cutest cat i love cats they are the best animals evar", img:""})
       .end(function(err,res) {
         res.should.have.status(200);
         res.body._id.should.equal(""+testId);
@@ -180,7 +184,7 @@ describe("App name", function() {
           res.body.subject.should.equal("Cutest kitty");
           res.body.body.should.equal("Look at this cat isn^t it the cutest cat i love cats they are the best animals evar");
           res.body.img.should.equal("");
-          res.body.timestamp.should.not.equal("Thu Oct 06 2016 17:18:20 GMT-0700 (MST)");
+          res.body.modified.should.not.equal("Thu Oct 06 2016 17:18:20 GMT-0700 (MST)");
           done();
         });
       });

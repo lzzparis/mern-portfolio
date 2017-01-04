@@ -4,13 +4,15 @@ var hashHistory = router.hashHistory;
 
 var actions = require("../actions/actions");
 
+
 var EmptyPost = function() {
   return {
     _id: null,
     subject: "",
     body: "",
     img: "",
-    timestamp: null
+    created: null,
+    modified: null
   };
 };
 
@@ -20,7 +22,8 @@ var ErrorPost = function() {
     subject: "Sorry!",
     body: "I couldn't find any posts...",
     img: "https://images.unsplash.com/photo-1444005233317-7fb24f0da789",
-    timestamp: new Date()
+    created: new Date(),
+    modified: new Date()
   };
 };
 
