@@ -32,27 +32,11 @@ describe("App name", function() {
     });
   });
 
-  it("should return all posts on GET /post/all with default sort (newest)", function(done) {
-    chai.request(app)
-    .get("/post/all")
-    .end(function(err, res) {
-      for (var i = 0; i < res.body.length; i++) {
-        var actualPost = res.body[i];
-        //default is to sort by newest
-        var expectedPost = POSTS[POSTS.length-1-i];
-        actualPost._id.should.not.equal(null);  
-        actualPost.subject.should.equal(expectedPost.subject);  
-        actualPost.body.should.equal(expectedPost.body);  
-        actualPost.created.should.equal(expectedPost.created.toISOString());  
-        actualPost.modified.should.equal(expectedPost.modified.toISOString());  
-      }
-      done();
-    });
-  });
-  it("should return all published posts on GET /post/published with default sort (newest)", function(done) {
+  it("should return all published posts on GET /post/published with default sort (newest-created)", function(done) {
     chai.request(app)
     .get("/post/published")
     .end(function(err, res) {
+      res.status.should.equal(200);
       res.body.length.should.equal(PUBLISHED.length);
       for (var i = 0; i < res.body.length; i++) {
         var actualPost = res.body[i];
@@ -67,15 +51,17 @@ describe("App name", function() {
       done();
     });
   });
-  it("should return all drafts on GET /post/drafts with default sort (newest)", function(done) {
+  it("should return all published posts on GET /post/published with sort newest-modified", function(done) {
     chai.request(app)
-    .get("/post/drafts")
+    .get("/post/published")
+    .send({sort:"newest-modified"})
     .end(function(err, res) {
-      res.body.length.should.equal(DRAFTS.length);
+      res.status.should.equal(200);
+      res.body.length.should.equal(PUBLISHED.length);
       for (var i = 0; i < res.body.length; i++) {
         var actualPost = res.body[i];
         //default is to sort by newest
-        var expectedPost = DRAFTS[DRAFTS.length-1-i];
+        var expectedPost = PUBLISHED[i];
         actualPost._id.should.not.equal(null);  
         actualPost.subject.should.equal(expectedPost.subject);  
         actualPost.body.should.equal(expectedPost.body);  
@@ -85,15 +71,57 @@ describe("App name", function() {
       done();
     });
   });
-    it("should return all posts on GET /post/all with sort by oldest", function(done) {
+    it("should return all published posts on GET /post/published with sort oldest-created", function(done) {
     chai.request(app)
-    .get("/post/all")
-    .send({sort: "oldest"})
+    .get("/post/published")
+    .send({sort:"oldest-created"})
     .end(function(err, res) {
+      res.status.should.equal(200);
+      res.body.length.should.equal(PUBLISHED.length);
       for (var i = 0; i < res.body.length; i++) {
         var actualPost = res.body[i];
         //default is to sort by newest
-        var expectedPost = POSTS[i];
+        var expectedPost = PUBLISHED[i];
+        actualPost._id.should.not.equal(null);  
+        actualPost.subject.should.equal(expectedPost.subject);  
+        actualPost.body.should.equal(expectedPost.body);  
+        actualPost.created.should.equal(expectedPost.created.toISOString());  
+        actualPost.modified.should.equal(expectedPost.modified.toISOString());  
+      }
+      done();
+    });
+  });
+    it("should return all published posts on GET /post/published with sort oldest-modified", function(done) {
+    chai.request(app)
+    .get("/post/published")
+    .send({sort:"oldest-modified"})
+    .end(function(err, res) {
+      res.status.should.equal(200);
+      res.body.length.should.equal(PUBLISHED.length);
+      for (var i = 0; i < res.body.length; i++) {
+        var actualPost = res.body[i];
+        //default is to sort by newest
+        var expectedPost = PUBLISHED[PUBLISHED.length-1-i];
+        actualPost._id.should.not.equal(null);  
+        actualPost.subject.should.equal(expectedPost.subject);  
+        actualPost.body.should.equal(expectedPost.body);  
+        actualPost.created.should.equal(expectedPost.created.toISOString());  
+        actualPost.modified.should.equal(expectedPost.modified.toISOString());  
+      }
+      done();
+    });
+  });
+
+  it("should return all drafts on GET /post/drafts with default sort (newest)", function(done) {
+    chai.request(app)
+    .get("/post/drafts")
+    .end(function(err, res) {
+      res.status.should.equal(200);
+      res.body.length.should.equal(DRAFTS.length);
+      for (var i = 0; i < res.body.length; i++) {
+        var actualPost = res.body[i];
+        //default is to sort by newest
+        var expectedPost = DRAFTS[DRAFTS.length-1-i];
         actualPost._id.should.not.equal(null);  
         actualPost.subject.should.equal(expectedPost.subject);  
         actualPost.body.should.equal(expectedPost.body);  

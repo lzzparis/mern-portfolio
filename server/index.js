@@ -74,14 +74,20 @@ app.post("/login", passport.authenticate("local", {session: false}), function(re
   res.status(200).json({message:"Hooray, you have authenticated!"});  
 });
 
-app.get("/post/published", function(req,res){
+var findAllPostsByStatus = function(draftStatus, sortString, res) {
   var sort = null;
-  switch(req.body.sort) {
-    case "newest":
+  switch(sortString) {
+    case "newest-created":
       sort = {created: -1};
       break;
-    case "oldest":
+    case "oldest-created":
       sort = {created: 1};
+      break;
+    case "newest-modified":
+      sort = {modified: -1};
+      break;
+    case "oldest-modified":
+      sort = {modified: 1};
       break;
     case "subject":
       sort = {subject: 1};
@@ -90,24 +96,25 @@ app.get("/post/published", function(req,res){
       sort = {created: -1};
       break;
   }
-  Post.find({draft: false}).sort(sort).exec(function(err, posts) {
+  Post.find({draft: draftStatus}).sort(sort).exec(function(err, posts) {
     if(err || !posts) {
       res.status(500).json({message:"Internal server error"}); 
       return;
     }
     res.status(200).json(posts);
   });
+}
+
+app.get("/post/published", function(req,res){
+  var draftStatus = false;
+  var sort = req.body.sort;
+  findAllPostsByStatus(draftStatus, sort, res);
 });
 
 app.get("/post/drafts", function(req,res){
-  var sort = {created: -1};
-  Post.find({draft: true}).sort(sort).exec(function(err, posts) {
-    if(err || !posts) {
-      res.status(500).json({message:"Internal server error"}); 
-      return;
-    }
-    res.status(200).json(posts);
-  });
+  var draftStatus = true;
+  var sort = req.body.sort;
+  findAllPostsByStatus(draftStatus, sort, res);
 });
 
 app.post("/post/all", function(req,res) {

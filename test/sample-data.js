@@ -14,8 +14,12 @@ POSTS.forEach(function(post, i) {
 
   var modifiedDate = new Date();
   modifiedDate.setMonth(4);
-  modifiedDate.setFullYear(2020 + i);
-  POSTS[i].modified = modifiedDate;
+  modifiedDate.setFullYear(2024 + i);
+  POSTS[POSTS.length-1-i].modified = modifiedDate;
 });
+
+POSTS.forEach(function(post,i) {
+ console.log(POSTS[i].subject+"  \t"+POSTS[i].created+"\t"+POSTS[i].modified);
+})
 
 module.exports = POSTS;
