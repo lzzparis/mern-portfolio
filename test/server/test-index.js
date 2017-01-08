@@ -34,7 +34,7 @@ describe("App name", function() {
 
   it("should return all published posts on GET /post/published with default sort (newest-created)", function(done) {
     chai.request(app)
-    .get("/post/published")
+    .get("/post/published/created/newest")
     .end(function(err, res) {
       res.status.should.equal(200);
       res.body.length.should.equal(PUBLISHED.length);
@@ -53,8 +53,7 @@ describe("App name", function() {
   });
   it("should return all published posts on GET /post/published with sort newest-modified", function(done) {
     chai.request(app)
-    .get("/post/published")
-    .send({sort:"newest-modified"})
+    .get("/post/published/modified/newest")
     .end(function(err, res) {
       res.status.should.equal(200);
       res.body.length.should.equal(PUBLISHED.length);
@@ -73,8 +72,7 @@ describe("App name", function() {
   });
     it("should return all published posts on GET /post/published with sort oldest-created", function(done) {
     chai.request(app)
-    .get("/post/published")
-    .send({sort:"oldest-created"})
+    .get("/post/published/created/oldest")
     .end(function(err, res) {
       res.status.should.equal(200);
       res.body.length.should.equal(PUBLISHED.length);
@@ -93,8 +91,7 @@ describe("App name", function() {
   });
     it("should return all published posts on GET /post/published with sort oldest-modified", function(done) {
     chai.request(app)
-    .get("/post/published")
-    .send({sort:"oldest-modified"})
+    .get("/post/published/modified/oldest")
     .end(function(err, res) {
       res.status.should.equal(200);
       res.body.length.should.equal(PUBLISHED.length);
@@ -112,9 +109,9 @@ describe("App name", function() {
     });
   });
 
-  it("should return all drafts on GET /post/drafts with default sort (newest)", function(done) {
+  it("should return all drafts posts on GET /post/drafts with default sort (newest-created)", function(done) {
     chai.request(app)
-    .get("/post/drafts")
+    .get("/post/drafts/created/newest")
     .end(function(err, res) {
       res.status.should.equal(200);
       res.body.length.should.equal(DRAFTS.length);
@@ -131,6 +128,64 @@ describe("App name", function() {
       done();
     });
   });
+  it("should return all drafts posts on GET /post/drafts with sort newest-modified", function(done) {
+    chai.request(app)
+    .get("/post/drafts/modified/newest")
+    .end(function(err, res) {
+      res.status.should.equal(200);
+      res.body.length.should.equal(DRAFTS.length);
+      for (var i = 0; i < res.body.length; i++) {
+        var actualPost = res.body[i];
+        //default is to sort by newest
+        var expectedPost = DRAFTS[i];
+        actualPost._id.should.not.equal(null);  
+        actualPost.subject.should.equal(expectedPost.subject);  
+        actualPost.body.should.equal(expectedPost.body);  
+        actualPost.created.should.equal(expectedPost.created.toISOString());  
+        actualPost.modified.should.equal(expectedPost.modified.toISOString());  
+      }
+      done();
+    });
+  });
+    it("should return all drafts posts on GET /post/drafts with sort oldest-created", function(done) {
+    chai.request(app)
+    .get("/post/drafts/created/oldest")
+    .end(function(err, res) {
+      res.status.should.equal(200);
+      res.body.length.should.equal(DRAFTS.length);
+      for (var i = 0; i < res.body.length; i++) {
+        var actualPost = res.body[i];
+        //default is to sort by newest
+        var expectedPost = DRAFTS[i];
+        actualPost._id.should.not.equal(null);  
+        actualPost.subject.should.equal(expectedPost.subject);  
+        actualPost.body.should.equal(expectedPost.body);  
+        actualPost.created.should.equal(expectedPost.created.toISOString());  
+        actualPost.modified.should.equal(expectedPost.modified.toISOString());  
+      }
+      done();
+    });
+  });
+    it("should return all drafts posts on GET /post/drafts with sort oldest-modified", function(done) {
+    chai.request(app)
+    .get("/post/drafts/modified/oldest")
+    .end(function(err, res) {
+      res.status.should.equal(200);
+      res.body.length.should.equal(DRAFTS.length);
+      for (var i = 0; i < res.body.length; i++) {
+        var actualPost = res.body[i];
+        //default is to sort by newest
+        var expectedPost = DRAFTS[DRAFTS.length-1-i];
+        actualPost._id.should.not.equal(null);  
+        actualPost.subject.should.equal(expectedPost.subject);  
+        actualPost.body.should.equal(expectedPost.body);  
+        actualPost.created.should.equal(expectedPost.created.toISOString());  
+        actualPost.modified.should.equal(expectedPost.modified.toISOString());  
+      }
+      done();
+    });
+  });
+
 
   it("should return a post on GET with id", function(done) {
     Post.findOne({subject:"Trapped"},function(err,post) {

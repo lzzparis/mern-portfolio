@@ -5,7 +5,7 @@ var FullPostContainer = require("./full-post-container");
 
 var LatestPosts = React.createClass({
   componentWillMount: function() {
-    this.props.dispatch(actions.fetchAllPosts());
+    this.props.dispatch(actions.fetchAllPosts("created/newest"));
   },
   render: function() {
     var list = [];

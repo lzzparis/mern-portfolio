@@ -15,7 +15,7 @@ var Admin = React.createClass({
     if(!this.props.isAuthenticated) {
       hashHistory.push("/login");
     }
-    this.props.dispatch(actions.fetchAllPosts());
+    this.props.dispatch(actions.fetchAllPosts("modified/newest"));
   },
   render: function() {
     return(

@@ -74,47 +74,100 @@ app.post("/login", passport.authenticate("local", {session: false}), function(re
   res.status(200).json({message:"Hooray, you have authenticated!"});  
 });
 
-var findAllPostsByStatus = function(draftStatus, sortString, res) {
-  var sort = null;
-  switch(sortString) {
-    case "newest-created":
-      sort = {created: -1};
-      break;
-    case "oldest-created":
-      sort = {created: 1};
-      break;
-    case "newest-modified":
-      sort = {modified: -1};
-      break;
-    case "oldest-modified":
-      sort = {modified: 1};
-      break;
-    case "subject":
-      sort = {subject: 1};
-      break;
-    default:
-      sort = {created: -1};
-      break;
-  }
-  Post.find({draft: draftStatus}).sort(sort).exec(function(err, posts) {
+app.get("/post/published/created/newest", function(req,res){
+  var query = {draft: false}; 
+  var sort = {created: -1};
+  Post.find(query).sort(sort).exec(function(err, posts) {
     if(err || !posts) {
       res.status(500).json({message:"Internal server error"}); 
       return;
     }
     res.status(200).json(posts);
   });
-}
-
-app.get("/post/published", function(req,res){
-  var draftStatus = false;
-  var sort = req.body.sort;
-  findAllPostsByStatus(draftStatus, sort, res);
 });
 
-app.get("/post/drafts", function(req,res){
-  var draftStatus = true;
-  var sort = req.body.sort;
-  findAllPostsByStatus(draftStatus, sort, res);
+app.get("/post/published/created/oldest", function(req,res){
+  var query = {draft: false}; 
+  var sort = {created: 1};
+  Post.find(query).sort(sort).exec(function(err, posts) {
+    if(err || !posts) {
+      res.status(500).json({message:"Internal server error"}); 
+      return;
+    }
+    res.status(200).json(posts);
+  });
+});
+
+app.get("/post/published/modified/newest", function(req,res){
+  var query = {draft: false}; 
+  var sort = {modified: -1};
+  Post.find(query).sort(sort).exec(function(err, posts) {
+    if(err || !posts) {
+      res.status(500).json({message:"Internal server error"}); 
+      return;
+    }
+    res.status(200).json(posts);
+  });
+});
+
+app.get("/post/published/modified/oldest", function(req,res){
+  var query = {draft: false}; 
+  var sort = {modified: 1};
+  Post.find(query).sort(sort).exec(function(err, posts) {
+    if(err || !posts) {
+      res.status(500).json({message:"Internal server error"}); 
+      return;
+    }
+    res.status(200).json(posts);
+  });
+});
+
+app.get("/post/drafts/created/newest", function(req,res){
+  var query = {draft: true}; 
+  var sort = {created: -1};
+  Post.find(query).sort(sort).exec(function(err, posts) {
+    if(err || !posts) {
+      res.status(500).json({message:"Internal server error"}); 
+      return;
+    }
+    res.status(200).json(posts);
+  });
+});
+
+app.get("/post/drafts/created/oldest", function(req,res){
+  var query = {draft: true}; 
+  var sort = {created: 1};
+  Post.find(query).sort(sort).exec(function(err, posts) {
+    if(err || !posts) {
+      res.status(500).json({message:"Internal server error"}); 
+      return;
+    }
+    res.status(200).json(posts);
+  });
+});
+
+app.get("/post/drafts/modified/newest", function(req,res){
+  var query = {draft: true}; 
+  var sort = {modified: -1};
+  Post.find(query).sort(sort).exec(function(err, posts) {
+    if(err || !posts) {
+      res.status(500).json({message:"Internal server error"}); 
+      return;
+    }
+    res.status(200).json(posts);
+  });
+});
+
+app.get("/post/drafts/modified/oldest", function(req,res){
+  var query = {draft: true}; 
+  var sort = {modified: 1};
+  Post.find(query).sort(sort).exec(function(err, posts) {
+    if(err || !posts) {
+      res.status(500).json({message:"Internal server error"}); 
+      return;
+    }
+    res.status(200).json(posts);
+  });
 });
 
 app.post("/post/all", function(req,res) {
