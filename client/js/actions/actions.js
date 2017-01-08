@@ -206,29 +206,6 @@ var fetchAllPosts = function() {
   }
 }
 
-var createPost = function(post) {
-  return function(dispatch) {
-    var body = JSON.stringify(post);
-
-    var url = "/post";
-    var headers = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    };
-
-    fetch(url, {method: "POST", headers: headers, body:body})
-    .then(function(response) {
-
-      return response.json();
-    })
-    .then(function(data) {
-      if(data.draft) {
-        dispatch(storeFullPostEdit(data));
-      }
-      return dispatch(fetchAllPosts()); 
-    }); 
-  }
-};
 
 var FETCH_FULL_POST_DISPLAY = "FETCH_FULL_POST_DISPLAY";
 var STORE_FULL_POST_DISPLAY = "STORE_FULL_POST_DISPLAY";
@@ -282,6 +259,45 @@ var fetchFullPost = function(id, type) {
   }
 }
 
+
+var createPost = function(post) {
+  return function(dispatch) {
+    var body = JSON.stringify(post);
+
+    var url = "/post";
+    var headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+
+    fetch(url, {method: "POST", headers: headers, body:body})
+    .then(function(response) {
+      if(response.status < 200 || response.status >= 300) {
+        var error = new Error(response.statusText);
+        error.response = response;
+        throw error;
+      }
+      return response.json();
+    })
+    .then(function(data) {
+      if(post.draft) {
+        dispatch(storeFullPostEdit(data));
+      }
+      return dispatch(fetchAllPosts()); 
+    })
+    .then(function(data) {
+      if(!post.draft) {
+        dispatch(resetForm());
+      }
+    })
+    .catch(function(error) {
+      alert("WARNING - Could not connect to the database. "+
+        "(Perhaps you are disconnected from the internet.) "+
+        "Please save your work locally and resubmit later.");
+    }); 
+  }
+};
+
 var updatePost = function(post) {
   return function(dispatch) {
     var data = JSON.stringify(post);
@@ -293,10 +309,25 @@ var updatePost = function(post) {
 
     fetch(url, {method: "PUT", headers: headers, body:data})
     .then(function(response) {
+      if(response.status < 200 || response.status >= 300) {
+        var error = new Error(response.statusText);
+        error.response = response;
+        throw error;
+      }
       return response.json();
+    })
+    .then(function(data) {
+      if(!post.draft) {
+        dispatch(resetForm());
+      }
     })
     .then(function() {
         dispatch(fetchAllPosts()); 
+    })
+    .catch(function(error){
+      alert("WARNING - Could not connect to the database. "+
+        "(Perhaps you are disconnected from the internet.) "+
+        "Please save your work locally and resubmit later.");
     }); 
   };
 };
