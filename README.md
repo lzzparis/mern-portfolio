@@ -43,11 +43,28 @@ When the user loads the page, the list of existing posts from the database is po
   * Success: status 200, single post object
   * Error: status 500, "Internal server error"
 
-####GET all posts
-* URL: "/post/all"
+####GET all published posts
+* URL: "/post/published/\*"
+  * Where \* is the sort scheme:
+    * created/newest
+    * created/oldest
+    * modified/newest
+    * modified/oldest
 * Parameters: none
 * Response: 
-  * Success: status 200, array of all posts in database
+  * Success: status 200, array of all published posts in database
+  * Error: status 500, "Internal server error"
+
+####GET all drafts posts
+* URL: "/post/drafts/\*"
+  * Where \* is the sort scheme:
+    * created/newest
+    * created/oldest
+    * modified/newest
+    * modified/oldest
+* Parameters: none
+* Response: 
+  * Success: status 200, array of all drafts posts in database
   * Error: status 500, "Internal server error"
 
 ####POST all posts

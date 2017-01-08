@@ -5,13 +5,15 @@ var actions = require("../../client/js/actions/actions");
 var reducer = require("../../client/js/reducers/reducer");
 var POSTS = require("../sample-data");
 
+
 var EmptyPost = function() {
   return {
     _id: null,
     subject: "",
     body: "",
     img: "",
-    timestamp: null
+    created: null,
+    modified: null
   };
 };
 
@@ -21,7 +23,8 @@ var ErrorPost = function() {
     subject: "Sorry!",
     body: "I couldn't find any posts...",
     img: "https://images.unsplash.com/photo-1444005233317-7fb24f0da789",
-    timestamp: new Date()
+    created: new Date(),
+    modified: new Date()
   };
 };
 
@@ -47,14 +50,7 @@ describe("reducer", function() {
   });
   it("should handle RESET_FORM", function() {
     var actualState = reducer({}, actions.resetForm());
-    actualState.formData.timestamp = Math.floor(actualState.formData.timestamp);
     var expectedState = {formData: new EmptyPost(), editMode: false};
-    expectedState.formData.timestamp = Math.floor(expectedState.formData.timestamp);
-    //compensate for creation time delta
-    if( Math.abs(expectedState.formData.timestamp - actualState.formData.timestamp) < 2) {
-      console.log("had to compensate");
-      expectedState.formData.timestamp = actualState.formData.timestamp;
-    }
 
     actualState = JSON.stringify(actualState);
     expectedState = JSON.stringify(expectedState);
@@ -74,15 +70,20 @@ describe("reducer", function() {
   });
   it("should handle FETCH_ALL_POSTS_FAILURE", function() {
     var actualState = reducer({}, actions.fetchAllPostsFailure());
-    actualState.posts[0].timestamp = Math.floor(actualState.posts[0].timestamp);
+    actualState.posts[0].created = Math.floor(actualState.posts[0].created);
+    actualState.posts[0].modified = Math.floor(actualState.posts[0].modified);
     var expectedState = {posts: [new ErrorPost()]};
-    expectedState.posts[0].timestamp = Math.floor(expectedState.posts[0].timestamp);
+    expectedState.posts[0].created = Math.floor(expectedState.posts[0].created);
+    expectedState.posts[0].modified = Math.floor(expectedState.posts[0].modified);
     //compensate for creation time delta
-    if( Math.abs(expectedState.posts[0].timestamp - actualState.posts[0].timestamp) < 2) {
+    if( Math.abs(expectedState.posts[0].created - actualState.posts[0].created) < 2) {
       console.log("had to compensate");
-      expectedState.posts[0].timestamp = actualState.posts[0].timestamp;
+      expectedState.posts[0].created = actualState.posts[0].created;
     }
-
+    if( Math.abs(expectedState.posts[0].modified - actualState.posts[0].modified) < 2) {
+      console.log("had to compensate");
+      expectedState.posts[0].modified = actualState.posts[0].modified;
+    }
     actualState = JSON.stringify(actualState);
     expectedState = JSON.stringify(expectedState);
     actualState.should.equal(expectedState);

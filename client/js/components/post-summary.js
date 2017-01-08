@@ -14,13 +14,14 @@ var PostSummary = React.createClass({
     this.props.deleteHandler(this.props.post._id);
   },
   render: function() {
-    var prettyTime = moment(this.props.post.timestamp).format("MM-DD-YYYY @ h:mm a");
+    var prettyTimeCreated = moment(this.props.post.created).format("MM-DD-YY @ h:mm a");
+    var prettyTimeModified = moment(this.props.post.modified).format("MM-DD-YY @ h:mm a");
     return(
       <li className="post-summary" id={this.props.post._id} >
         <button className="button post-summary-button post-summary-button-edit" onClick={this.editPost}>&#x270e;</button>
         <button className="button post-summary-button post-summary-button-delete" onClick={this.deletePost}>&times;</button>
         <p className="post-summary-content" onClick={this.displayPost}>
-          {this.props.post.subject} <span className="post-summary-timestamp"> ..... {prettyTime} </span>
+          {this.props.post.subject} <span className="post-summary-timestamp"> .. {prettyTimeCreated} .. {prettyTimeModified}</span>
         </p>
       </li>
     );

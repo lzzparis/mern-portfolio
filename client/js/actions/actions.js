@@ -157,14 +157,14 @@ var fetchAllPostsFailure = function() {
 
 
 
-var fetchAllPublished = function() {
+var fetchAllPublished = function(sortUri) {
   return function(dispatch) {
-    var url = "/post/published";
+    var url = "/post/published/"+sortUri;
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     };
-
+    
     fetch(url, {method: "GET", headers: headers})
     .then(function(response) {
       return response.json();
@@ -178,9 +178,9 @@ var fetchAllPublished = function() {
   }
 }
 
-var fetchAllDrafts = function() {
+var fetchAllDrafts = function(sortUri) {
   return function(dispatch) {
-    var url = "/post/drafts";
+    var url = "/post/drafts/"+sortUri;
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -199,10 +199,13 @@ var fetchAllDrafts = function() {
   }
 }
 
-var fetchAllPosts = function() {
+var fetchAllPosts = function(sortUri) {
   return function(dispatch) {
-    dispatch(fetchAllPublished());
-    dispatch(fetchAllDrafts());
+    if(sortUri == null) {
+      sortUri = "modified/newest";
+    }
+    dispatch(fetchAllPublished(sortUri));
+    dispatch(fetchAllDrafts(sortUri));
   }
 }
 
