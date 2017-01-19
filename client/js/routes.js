@@ -7,7 +7,7 @@ var Redirect = router.Redirect;
 var hashHistory = router.hashHistory;
 var Link = router.Link;
 
-var AppContainer = require("./components/app-container");
+var BlogAppContainer = require("./components/blog-app-container");
 var BlogContainer = require("./components/blog-container");
 var LatestPostsContainer = require("./components/latest-posts-container");
 var FullPostContainer = require("./components/full-post-container"); 
@@ -19,7 +19,7 @@ var routes = (
   <Router history={hashHistory}>
     <Redirect from="/" to="blog/latest" />
     <Redirect from="/blog" to="blog/latest" />
-    <Route path="/" component={AppContainer}>
+    <Route path="/" component={BlogAppContainer}>
       <Route path="blog" component={BlogContainer}>
         <Route path="latest" component={LatestPostsContainer} />
         <Route path="full/:id" component={FullPostContainer} />

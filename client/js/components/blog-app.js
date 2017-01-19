@@ -5,21 +5,21 @@ var hashHistory = router.hashHistory;
 
 var actions = require("../actions/actions");
 
-var App = React.createClass({
+var BlogApp = React.createClass({
   componentDidMount: function() {
     this.props.dispatch(actions.fetchUserStatus());
   }, 
   render: function() {
     return(
-      <div className="app">
-        <div className="app-toolbar">
-          <p className="app-toolbar-text hide-for-narrow-views"> 
+      <div className="blog-app">
+        <div className="blog-app-toolbar">
+          <p className="blog-app-toolbar-text hide-for-narrow-views"> 
             Manage and view your blog using this MERN stack tool.
           </p>
-          <p className="app-toolbar-text"> 
+          <p className="blog-app-toolbar-text"> 
             Demo credentials are username "user" and password "pass".
           </p>
-          <p className="app-toolbar-text"> 
+          <p className="blog-app-toolbar-text"> 
              Created by <a href="http://lizzieparis.herokuapp.com/" target="_blank">Lizzie Paris.</a> 
           </p>
         </div>
@@ -29,4 +29,4 @@ var App = React.createClass({
   }
 });
 
-module.exports = App;
+module.exports = BlogApp;

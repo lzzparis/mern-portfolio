@@ -17,11 +17,11 @@ describe("(Component) Admin", function() {
 });
 
 
-var App = require("../../client/js/components/app");
-var AppWrapper = shallow(<App />);
-describe("(Component) App", function() {
+var BlogApp = require("../../client/js/components/blog-app");
+var BlogAppWrapper = shallow(<BlogApp />);
+describe("(Component) BlogApp", function() {
 	it("renders", function() {
-		AppWrapper.should.have.length(1);
+		BlogAppWrapper.should.have.length(1);
 	});
 });
 
