@@ -78,21 +78,21 @@ a {
   font-style: italic;
 }
 
-#app {
+#blog-app {
   margin: 0;
 }
 
-.app-toolbar {
+.blog-app-toolbar {
   background-color: #424264;
   color: #fafafa;
   text-align: center;
 }
-.app-toolbar-text {
+.blog-app-toolbar-text {
   margin: 0;
   padding: 0.5rem;
   display: inline-block;
 }
-.app-toolbar-text a {
+.blog-app-toolbar-text a {
   color: #fafafa;
   font-weight: bold;
 }
