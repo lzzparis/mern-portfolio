@@ -1,0 +1,316 @@
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: "Libre Franklin", sans-serif;
+  background-color: #ccc;
+  background-attachment: fixed;
+  background-image: url("../assets/paper-light-detail.jpg");
+  background-size: cover;
+
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+h1 {
+  margin: 1rem 0;
+  color: #424264;
+  font-size: 3rem;
+  font-weight: normal
+}
+h2 {
+  margin: 2%;
+  font-size: 2rem;
+  font-weight: normal;
+}
+p {
+  margin: 2%;
+}
+a {
+  color: #424264;
+  text-decoration: none;
+}
+
+/*Generic helpers*/
+
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.clear-fix {
+  clear: both;
+}
+.link-home {
+  margin: 0 1rem;
+  color: #444;
+  font-size: 1rem;
+  font-style: italic;
+}
+.form-field {
+  background-color: #fafafa;
+  font-family: "Libre Franklin", sans-serif;
+  border: none;
+  border-radius: 2px;
+}
+
+.header {
+  font-family: "Patua One", serif;
+}
+
+.button {
+  margin: 0.5rem;
+  padding: 0.25em 0.5em;
+  color: #EAD8FF;
+  background-color: #424264;
+  font-family: "Patua One", serif;
+  border: none;
+  border-radius: 4px;
+}
+
+.form-error {
+  color: red;
+  font-style: italic;
+}
+
+#blog-app {
+  margin: 0;
+}
+
+.blog-app-toolbar {
+  background-color: #424264;
+  color: #fafafa;
+  text-align: center;
+}
+.blog-app-toolbar-text {
+  margin: 0;
+  padding: 0.5rem;
+  display: inline-block;
+}
+.blog-app-toolbar-text a {
+  color: #fafafa;
+  font-weight: bold;
+}
+
+/*Public view*/
+.blog {
+  margin: 2rem auto;
+  width: 64%;
+  background-color: #fafafa;
+  -webkit-box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);
+  -moz-box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);
+  box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);
+}
+
+.blog-header {
+  text-align: center;
+}
+
+.blog-header-image {
+  margin: 2rem;
+  width: 64%;
+}
+
+.blog-nav {
+  margin: 0;
+  margin-top: -6rem;
+  padding: 0;
+  text-align: center;
+  z-index: 2;
+}
+.blog-nav-item {
+  margin: 2rem;
+  font-family: "Patua One", serif;
+  font-size: 2rem;
+  text-transform: uppercase;
+  display: inline-block;
+}
+.blog-nav-link {
+  color: #424264;
+}
+
+/*Login view*/
+.login {
+  margin: 4rem auto;
+  width: 90%;
+  text-align: center;
+}
+
+.login-image {
+  width: 50%;
+}
+
+.login-form {
+  margin: 1rem 0;
+  font-size: 1rem; 
+}
+
+.login-form-field {
+  margin: 0.5rem auto;
+  padding: 0.5rem;
+  width: 50%;
+  font-size: 2rem; 
+  letter-spacing: 0.2rem;
+  text-align: center;
+}
+
+.login-form-button {
+  font-size: 2rem;
+  width: 50%;
+  padding: 0.5rem;
+}
+
+
+.form-field:focus {
+  -webkit-box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);
+  -moz-box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);
+  box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);
+
+  outline: none;
+}
+
+.full-post {
+  padding: 3rem;
+}
+
+/*Full post*/
+.full-post-content-subject {
+  font-family: "Patua One", serif;
+  font-weight: normal;
+}
+.full-post-content-body p {
+  font-family: "Libre Franklin", sans-serif;
+  line-height: 1.5rem;
+  letter-spacing: 0.01rem;
+}
+
+/*Admin view*/
+
+.post-form-wrapper, .post-list-wrapper {
+  width: 50%;
+  padding: 2%;
+}
+
+.post-form-field {
+  width: 98%;
+  margin: 1%;
+  font-size: 1.25rem;
+  font-family: Georgia;
+}
+
+.post-form-body {
+  height: 50vh;
+}
+
+.post-list {
+  margin: 0;
+  padding: 0.5rem;
+}
+
+.post-summary {
+  font-size: 1rem;
+  list-style: none;
+}
+
+.post-summary button {
+  font-size: 1.25rem;
+  margin: 0.25rem;
+}
+
+.post-summary:hover {
+  cursor: pointer
+}
+
+.post-summary-content {
+  display: inline-block;
+}
+
+.post-preview {
+  position: fixed;
+  top: 2%;
+  left: 15%;
+  width: 70%;
+  height: 96vh;
+  z-index: 999;
+  background-color: aliceblue;
+  border: 1px solid #ddd;
+  overflow: auto;
+
+}
+
+.full-post-content-image {
+  margin: 1% auto;
+  max-height: 40vh;
+  max-width: 98%;
+  display: block;
+}
+
+.post-preview-close {
+  margin: 1%;
+  font-size: 5rem;
+  line-height: 0.5em;
+}
+
+.close-x:hover {
+  cursor: pointer;
+}
+
+
+@media (max-width: 760px) {
+  .login-image, .login-form-field, .login-form-button {
+    width: 80%;
+  } 
+
+}
+
+
+@media (max-width: 500px) {
+  .hide-for-narrow-views {
+    display: none;
+  }
+
+  .blog {
+    width: 80%;
+  }
+  .blog-header-image {
+    width: 80%;
+  }
+
+  .blog-nav {
+    margin-top: -4rem;
+  }
+  .blog-nav-item {
+    margin: 0.5rem;
+    font-size: 1.5rem;
+  }
+  .full-post {
+    padding: 1rem;
+  }
+
+  .full-post-content-body {
+    font-size: 0.75rem;
+  }
+  
+  .login-image, .login-form-field, .login-form-button {
+    width: 100%;
+  }
+
+  .login-form-button {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .post-form-wrapper, .post-list-wrapper {
+    width: 100%;
+  }
+
+  .post-summary-timestamp {
+    display: none;
+  }
+
+}

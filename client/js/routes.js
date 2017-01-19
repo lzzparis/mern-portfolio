@@ -11,6 +11,13 @@ var App = require("./components/app");
 var BusinessCard = require("./components/business-card");
 var ProjectList = require("./components/project-list");
 var Connect = require("./components/connect");
+var BlogAppContainer = require("./components/blog-app-container");
+var BlogContainer = require("./components/blog-container");
+var LatestPostsContainer = require("./components/latest-posts-container");
+var FullPostContainer = require("./components/full-post-container"); 
+var LoginContainer = require("./components/login-container");
+var AdminContainer = require("./components/admin-container");
+var PreviewPost = require("./components/preview-post");
 
 var routes = (
   <Router history={hashHistory}>
@@ -18,6 +25,19 @@ var routes = (
       <IndexRoute component={BusinessCard} />
       <Route path="/projects" component={ProjectList} />
       <Route path="/connect" component={Connect} />
+    <Redirect from="/" to="blog/latest" />
+    <Redirect from="/blog" to="blog/latest" />
+    <Route path="/" component={BlogAppContainer}>
+      <Route path="blog" component={BlogContainer}>
+        <Route path="latest" component={LatestPostsContainer} />
+        <Route path="full/:id" component={FullPostContainer} />
+      </Route>
+      <Route path="login" component={LoginContainer} />
+      <Route path="admin" component={AdminContainer}>
+        <Route path="preview/:id" component={PreviewPost}>
+          <IndexRoute component={FullPostContainer} />
+        </Route>
+      </Route>
     </Route>
   </Router>
 );
