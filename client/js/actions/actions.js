@@ -2,6 +2,13 @@ var fetch = require("isomorphic-fetch");
 var router = require("react-router");
 var hashHistory = router.hashHistory; 
 
+var MODIFY_NAV_ITEM_CLASS = "MODIFY_NAV_ITEM_CLASS";
+var modifyNavItemClass = function(item) {
+  return {
+    type: MODIFY_NAV_ITEM_CLASS,
+    item: item
+  }
+};
 
 var INIT_USER_SUCCESS = "INIT_USER_SUCCESS";
 var initUserSuccess = function() {
@@ -352,6 +359,10 @@ var deletePost = function(id) {
     }); 
   };
 };
+
+exports.MODIFY_NAV_ITEM_CLASS = MODIFY_NAV_ITEM_CLASS;
+exports.modifyNavItemClass = modifyNavItemClass;
+
 
 exports.fetchUserStatusSuccess = fetchUserStatusSuccess;
 exports.FETCH_USER_STATUS_SUCCESS = FETCH_USER_STATUS_SUCCESS;

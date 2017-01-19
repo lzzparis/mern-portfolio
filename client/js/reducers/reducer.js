@@ -27,7 +27,18 @@ var ErrorPost = function() {
   };
 };
 
+var InactiveNavClasses = function() {
+  return {
+    home: "inactive-nav-bar-list-item",
+    projects: "inactive-nav-bar-list-item",
+    connect: "inactive-nav-bar-list-item",
+    blog: "inactive-nav-bar-list-item",
+    admin: "inactive-nav-bar-list-item"
+  }
+}
+
 var initialState = {
+  navClasses: new InactiveNavClasses(),
   userInitialized: false,
   isAuthenticated: false,
   failedAuthentication: false,
@@ -38,10 +49,20 @@ var initialState = {
   editMode: false
 };
 
+var activateClass = function(item) {
+  var activatedClass = new InactiveNavClasses();
+  activatedClass[item] = "active-nav-bar-list-item";
+  return activatedClass;
+}
+
 var reducer = function(state, action) {
   state = state || initialState;
   console.log(action.type);
   switch(action.type) {
+    case actions.MODIFY_NAV_ITEM_CLASS:
+      var myState = Object.assign({}, state, {navClasses: activateClass(action.item)});
+      console.log(myState.navClasses);
+      return myState;
     case actions.FETCH_USER_STATUS_SUCCESS:
       return Object.assign({}, state, {userInitialized: action.value});
     case actions.AUTHENTICATE_USER_SUCCESS:

@@ -3,13 +3,13 @@ var connect = require("react-redux").connect;
 var router = require("react-router");
 var hashHistory = router.hashHistory; 
 
-var NavBar = require("./nav-bar"); 
+var NavBarContainer = require("./nav-bar-container"); 
 
 var App = React.createClass({
   render: function() {
     return (
       <div className="app">
-        <NavBar className="nav-bar" />
+        <NavBarContainer className="nav-bar" />
         {this.props.children}
       </div>
     );
