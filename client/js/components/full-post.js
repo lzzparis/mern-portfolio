@@ -16,7 +16,7 @@ var FullPost = React.createClass({
     var header = null;
     if(this.props.multiPostView) {
       //multi-post view 
-      header = (<h2 className="full-post-content-subject"><Link className="full-post-content-subject-link" to={"/blog/full/"+postToRender._id}>{postToRender.subject}</Link></h2>);
+      header = (<h2 className="full-post-content-subject"><Link className="full-post-content-subject-link" to={"/blog/posts/full/"+postToRender._id}>{postToRender.subject}</Link></h2>);
     } else {
       //admin view - don't link to full blog view
       header = (<h2 className="full-post-content-subject">{postToRender.subject}</h2>);
