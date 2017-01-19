@@ -1,20 +1,5 @@
-html, body {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 
-  font-family: "Libre Franklin", sans-serif;
-  background-color: #ccc;
-  background-attachment: fixed;
-  background-image: url("../assets/paper-light-detail.jpg");
-  background-size: cover;
 
-}
-
-*, *:before, *:after {
-  box-sizing: inherit;
-}
 
 h1 {
   margin: 1rem 0;
@@ -37,15 +22,7 @@ a {
 
 /*Generic helpers*/
 
-.left {
-  float: left;
-}
-.right {
-  float: right;
-}
-.clear-fix {
-  clear: both;
-}
+
 .link-home {
   margin: 0 1rem;
   color: #444;
@@ -78,8 +55,8 @@ a {
   font-style: italic;
 }
 
-#blog-app {
-  margin: 0;
+.blog-app {
+  margin-top: 6rem;
 }
 
 .blog-app-toolbar {

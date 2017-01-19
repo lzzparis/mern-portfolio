@@ -4,7 +4,10 @@ html, body {
   padding: 0;
   box-sizing: border-box;
 
-  background-color: #eee;
+  background-color: #ccc;
+  background-attachment: fixed;
+  background-image: url("../assets/marble-compressor.jpg");
+  background-size: cover;
 }
 
 *, *:before, *:after {
@@ -16,18 +19,19 @@ a {
   text-decoration: none;
 }
 
-#app {
-  padding: 0;
-  background-color: #eee;
-}
-
 .left {
   float: left;
+}
+
+.text-left {
   text-align: left;
 }
 
 .right {
   float: right;
+}
+
+.text-right {
   text-align: right;
 }
 
@@ -86,10 +90,6 @@ a {
 .projects {
   justify-content: flex-start;
   height: auto;
-}
-
-.business-card, .projects, .connect {
-  background-image: url("../assets/marble-compressor.jpg");
 }
 
 .business-card-name, .project-content-name, .connect-header {
