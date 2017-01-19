@@ -9,7 +9,7 @@ var actions = require("../actions/actions");
 var Login = React.createClass({
   componentWillReceiveProps: function(nextProps) {
     if(nextProps.isAuthenticated) {
-      hashHistory.replace("/admin");
+      hashHistory.replace("/blog/admin");
     }
   },
   authenticate: function(event) {

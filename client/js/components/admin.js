@@ -13,7 +13,7 @@ var DraftListContainer = require("./draft-list-container");
 var Admin = React.createClass({
   componentDidMount:function() {
     if(!this.props.isAuthenticated) {
-      hashHistory.push("/login");
+      hashHistory.push("/blog/login");
     }
     this.props.dispatch(actions.fetchAllPosts("modified/newest"));
   },

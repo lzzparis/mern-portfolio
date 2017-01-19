@@ -7,7 +7,7 @@ var PostSummary = require("./post-summary");
 
 var PostList = React.createClass({
   displayPost: function(id) {
-    hashHistory.push("/admin/preview/"+id);
+    hashHistory.push("/blog/admin/preview/"+id);
   },
   editPost: function(id) {
     this.props.dispatch(actions.fetchFullPost(id, actions.FETCH_FULL_POST_EDIT));

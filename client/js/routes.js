@@ -25,17 +25,16 @@ var routes = (
       <IndexRoute component={BusinessCard} />
       <Route path="/projects" component={ProjectList} />
       <Route path="/connect" component={Connect} />
-    <Redirect from="/" to="blog/latest" />
-    <Redirect from="/blog" to="blog/latest" />
-    <Route path="/" component={BlogAppContainer}>
-      <Route path="blog" component={BlogContainer}>
-        <Route path="latest" component={LatestPostsContainer} />
-        <Route path="full/:id" component={FullPostContainer} />
-      </Route>
-      <Route path="login" component={LoginContainer} />
-      <Route path="admin" component={AdminContainer}>
-        <Route path="preview/:id" component={PreviewPost}>
-          <IndexRoute component={FullPostContainer} />
+      <Route path="/blog" component={BlogAppContainer}>
+        <Route path="posts" component={BlogContainer}>
+          <Route path="latest" component={LatestPostsContainer} />
+          <Route path="full/:id" component={FullPostContainer} />
+        </Route>
+        <Route path="login" component={LoginContainer} />
+        <Route path="admin" component={AdminContainer}>
+          <Route path="preview/:id" component={PreviewPost}>
+            <IndexRoute component={FullPostContainer} />
+          </Route>
         </Route>
       </Route>
     </Route>
