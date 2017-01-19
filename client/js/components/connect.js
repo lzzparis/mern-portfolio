@@ -1,7 +1,12 @@
 var React = require("react");
 var Link = require("react-redux").Link;
 
+var actions = require("../actions/actions");
+
 var Connect = React.createClass({
+  componentWillMount: function() {
+    this.props.dispatch(actions.modifyNavItemClass("connect"));
+  },
   render: function() {
     return (
       <div className="connect">

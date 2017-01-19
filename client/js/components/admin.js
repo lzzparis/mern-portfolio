@@ -15,6 +15,7 @@ var Admin = React.createClass({
     if(!this.props.isAuthenticated) {
       hashHistory.push("/blog/login");
     }
+    this.props.dispatch(actions.modifyNavItemClass("admin"));
     this.props.dispatch(actions.fetchAllPosts("modified/newest"));
   },
   render: function() {

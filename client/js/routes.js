@@ -8,9 +8,9 @@ var hashHistory = router.hashHistory;
 var Link = router.Link;
 
 var App = require("./components/app");
-var BusinessCard = require("./components/business-card");
-var ProjectList = require("./components/project-list");
-var Connect = require("./components/connect");
+var BusinessCardContainer = require("./components/business-card-container");
+var ProjectListContainer = require("./components/project-list-container");
+var ConnectContainer = require("./components/connect-container");
 var BlogAppContainer = require("./components/blog-app-container");
 var BlogContainer = require("./components/blog-container");
 var LatestPostsContainer = require("./components/latest-posts-container");
@@ -22,9 +22,9 @@ var PreviewPost = require("./components/preview-post");
 var routes = (
   <Router history={hashHistory}>
     <Route path="/" component={App}>
-      <IndexRoute component={BusinessCard} />
-      <Route path="/projects" component={ProjectList} />
-      <Route path="/connect" component={Connect} />
+      <IndexRoute component={BusinessCardContainer} />
+      <Route path="/projects" component={ProjectListContainer} />
+      <Route path="/connect" component={ConnectContainer} />
       <Route path="/blog" component={BlogAppContainer}>
         <Route path="posts" component={BlogContainer}>
           <Route path="latest" component={LatestPostsContainer} />

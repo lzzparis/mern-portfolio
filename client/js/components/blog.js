@@ -7,7 +7,8 @@ var BlogNav = require("./blog-nav");
 var BlogMain = require("./blog-main");
 
 var Blog = React.createClass({
-  componentDidMount: function() {
+  componentWillMount: function() {
+    this.props.dispatch(actions.modifyNavItemClass("blog"));
     this.props.dispatch(actions.resetForm());
   },
   render: function() {

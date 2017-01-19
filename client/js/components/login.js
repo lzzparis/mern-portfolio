@@ -7,6 +7,9 @@ var Link = router.Link;
 var actions = require("../actions/actions");
 
 var Login = React.createClass({
+  componentWillMount: function() {
+    this.props.dispatch(actions.modifyNavItemClass("admin"));
+  },
   componentWillReceiveProps: function(nextProps) {
     if(nextProps.isAuthenticated) {
       hashHistory.replace("/blog/admin");
