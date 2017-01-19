@@ -14,7 +14,6 @@ var Blog = React.createClass({
     return (
       <div className="blog">
         <BlogHeader />
-        <BlogNav />
         <BlogMain children={this.props.children} />
       </div>
     );
