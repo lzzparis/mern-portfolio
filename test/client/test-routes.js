@@ -15,7 +15,7 @@ describe("Routes", function(){
       };
       var results = renderProps.components;      
       results[1].displayName.should.equal("App");
-      results[2].displayName.should.equal("BusinessCard");
+      results[2].WrappedComponent.displayName.should.equal("BusinessCard");
     })
     done();
   })
@@ -27,7 +27,7 @@ describe("Routes", function(){
       };
       var results = renderProps.components;      
       results[1].displayName.should.equal("App");
-      results[2].displayName.should.equal("ProjectList");
+      results[2].WrappedComponent.displayName.should.equal("ProjectList");
     })
     done();
   })
@@ -39,7 +39,7 @@ describe("Routes", function(){
       };
       var results = renderProps.components;      
       results[1].displayName.should.equal("App");
-      results[2].displayName.should.equal("Connect");
+      results[2].WrappedComponent.displayName.should.equal("Connect");
     })
     done();
   })
