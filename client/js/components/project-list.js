@@ -1,6 +1,8 @@
 var React = require("react");
 var Carousel = require("react-responsive-carousel").Carousel;
 
+var actions = require("../actions/actions");
+
 var Project = require("./project");
 
 var PROJECTS = [
@@ -39,6 +41,9 @@ var ProjectList = React.createClass({
     return {
       projects: PROJECTS
     }
+  },
+  componentWillMount: function() {
+    this.props.dispatch(actions.modifyNavItemClass("projects"));
   },
   render: function() {
     var list = [];

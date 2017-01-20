@@ -1,7 +1,9 @@
 var React = require("react");
 
+var actions = require("../actions/actions");
+
 var BusinessCard = React.createClass({
-  getInitialState: function(){
+  getInitialState: function() {
     return {
       image: "http://gravatar.com/avatar/de0e6cc0e078cd704014b08123c385e9",
       imageSize: 400,
@@ -9,6 +11,9 @@ var BusinessCard = React.createClass({
       title: "Frontend Web Development",
       description: "I am a human person like you (probably). Like many other human people, I prefer to interact with beautiful, simple, intuitive interfaces. So I make that my goal in my projects, both in design and in development."
     };
+  },
+  componentWillMount: function() {
+    this.props.dispatch(actions.modifyNavItemClass("home"));
   },
   render: function() {
     return (
