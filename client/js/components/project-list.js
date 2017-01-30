@@ -8,30 +8,36 @@ var Project = require("./project");
 var PROJECTS = [
   { 
     name: "Etsy Near Me", 
-    description: "Store locator built on HTML, CSS, and jQuery.  This was my frontend unit capstone, so the emphasis was third-party API integration and clean, responsive styling.", 
+    description:  "Store locator built with HTML, CSS, and jQuery, using AJAX to "+
+                  "interface with the Etsy Developer API.", 
     thumbnail: "../../assets/etsynearme.jpg",
     url: "http://lzzparis.github.io/etsynearme"
   },
   { 
+    name: "Blog Tool", 
+    description:  "Lightweight content manager comprising of a NodeJS server, an "+
+                  "Express API, and a MongoDB database, as well as a simple "+
+                  "administrative frontend built in HTML, CSS and jQuery.", 
+    thumbnail: "../../assets/blog-tool.jpg",
+    url: "https://hidden-crag-51505.herokuapp.com/"
+  },
+
+  { 
     name: "MERN blog", 
-    description: "Extended content manager built on a MongoDB/Express/React/Node.js (MERN) stack.  This was my final course capstone, so emphasis was integrating all technologies together to create an interesting, functional, full-stack app.", 
+    description:  "Extended content manager using the same backend as Blog Tool, "+
+                  "with an updated React/Redux frontend and additional features, "+
+                  "including public and Passport-authenticated views, draft "+
+                  "support, and Markdown formatting.", 
     thumbnail: "../../assets/blog-tool-extended.jpg",
     url: "https://blog-tool.herokuapp.com/#/"
   },
   { 
     name: "Artist Hunter", 
-    description: "Spotify recommendation engine build on React and Redux.  This was my React unit capstone, so emphasis was on effective use of React/Redux/React-Router.", 
+    description:  "Music recommendation engine built with React/Redux, using "+
+                  "asynchronous actions and fetch to interface with the Spotify Web API.", 
     thumbnail: "../../assets/artist-hunter.jpg",
     url: "https://arcane-bastion-54494.herokuapp.com"
-  },
-
-  { 
-    name: "Blog Tool", 
-    description: "Simple content manager built on Node.js and MongoDB.  This was my backend unit capstone project so emphasis was building my own API to the server and database layers, with minimal styling.", 
-    thumbnail: "../../assets/blog-tool.jpg",
-    url: "https://hidden-crag-51505.herokuapp.com/"
-  },
-
+  }
 ];
 
 

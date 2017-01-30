@@ -9,7 +9,10 @@ var BusinessCard = React.createClass({
       imageSize: 400,
       name: "Lizzie Paris",
       title: "Frontend Web Development",
-      description: "I am a human person like you (probably). Like many other human people, I prefer to interact with beautiful, simple, intuitive interfaces. So I make that my goal in my projects, both in design and in development."
+      description:  "I am a human person like you (probably). Like many other "+
+                    "human people, I prefer to interact with beautiful, simple, "+
+                    "intuitive interfaces. So I make that my goal in my "+
+                    "projects, both in design and in development."
     };
   },
   componentWillMount: function() {
