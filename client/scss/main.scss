@@ -68,7 +68,7 @@ a {
 
 
 .nav-bar-list-item {
-  margin: 0 1rem;
+  /*margin: 0 1rem;*/
   padding: 0.5rem 0rem 0.3rem 0rem;
   font-family: Oswald, sans-serif;
   letter-spacing: 0.15rem;
@@ -291,7 +291,8 @@ a {
 @media (max-width: 730px) {
 
   .nav-bar-list-item {
-    font-size: 1rem;
+    font-size: 0.75rem;
+    letter-spacing: normal;
   }
 
   .carousel .control-arrow:before, .carousel.carousel-slider .control-arrow:before {
@@ -312,11 +313,8 @@ a {
 }
 
 
-
 @media (max-width: 650px) {
-  .nav-bar-list-item {
-    margin: 0 2rem;
-  } 
+
   .business-card-description, .project-content-description {
     font-size: 0.9rem;
   } 
