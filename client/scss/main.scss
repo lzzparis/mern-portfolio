@@ -43,7 +43,7 @@ a {
   display: none;
 }
 
-.nav-bar-list {
+.nav-bar {
   position: fixed;
   top: 0;
   padding: 0;
@@ -53,35 +53,43 @@ a {
   z-index: 4;
 }
 
+.nav-bar-list {
+  margin: 0 auto;
+  padding: 0;
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+}
+
 .nav-bar-list a {
   color: #eee; 
 }
 
 
 .nav-bar-list-item {
-  margin: 0 3rem;
+  margin: 0 1rem;
   padding: 0.5rem 0rem 0.3rem 0rem;
-  display: inline-block;
-  font-family: Oswald, cursive;
-  font-weight: 700;
-  font-size: 1.25rem;
+  font-family: Oswald, sans-serif;
+  letter-spacing: 0.15rem;
   text-transform: uppercase;
+  list-style: none;
 }
 
 .active-nav-bar-list-item {
-  border-bottom: 0.4rem solid rgba(255, 255, 255, 1);
+  border-bottom: 0.2rem solid rgba(255, 255, 255, 1);
 }
 
 .inactive-nav-bar-list-item:hover {
-  border-bottom: 0.4rem solid rgba(255, 255, 255, 0.6);
+  border-bottom: 0.2rem solid rgba(255, 255, 255, 0.6);
 }
 
-.business-card, .projects, .connect, .slide-wrapper {
+.business-card, .projects, .connect {
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   text-align: center;
   background-size: cover;
   background-attachment: fixed;
@@ -120,11 +128,12 @@ a {
 
 .business-card-description  {
   margin: 0 auto;
-  width: 80%;
+  width: 60%;
   color: #001;
   font-family: "Roboto Condensed", sans-serif;
   font-size: 1.5rem;
   font-weight: 100;
+  text-align: justify;
 }
 
 .project-content-description  {
@@ -237,9 +246,9 @@ a {
   }
 }
 @media (max-width: 970px) {
-  .nav-bar-list-item {
+/*  .nav-bar-list-item {
     margin: 0rem 3rem;
-  }
+  }*/
 
   .business-card-name {
     font-size: 5rem;
@@ -251,10 +260,12 @@ a {
     line-height: 2rem;
   } 
 
+  .nav-bar-list, .business-card-description {
+    width: 80%;
+  }
+
   .business-card-description {
-    padding: 1rem 2rem;
     font-size: 1.25rem;
-    text-align: justify;
   }
 
   .business-card-image {
