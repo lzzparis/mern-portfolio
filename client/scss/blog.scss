@@ -3,7 +3,7 @@
 
 h1 {
   margin: 1rem 0;
-  color: #424264;
+  color: #080848;
   font-size: 3rem;
   font-weight: normal
 }
@@ -16,13 +16,13 @@ p {
   margin: 2%;
 }
 a {
-  color: #424264;
+  color: #080848;
   text-decoration: none;
 }
 
 hr {
   border: 0;
-  border-top: 4px double #bbb;
+  border-top: 4px double #ccc;
 }
 
 /*Generic helpers*/
@@ -37,7 +37,7 @@ hr {
 .form-field {
   background-color: #fafafa;
   font-family: "Libre Franklin", sans-serif;
-  border: none;
+  border: 1px solid #ccc;
   border-radius: 2px;
 }
 
@@ -49,7 +49,7 @@ hr {
   margin: 0.5rem;
   padding: 0.25em 0.5em;
   color: #EAD8FF;
-  background-color: #424264;
+  background-color: #080848;
   font-family: "Patua One", serif;
   border: none;
   border-radius: 4px;
@@ -60,12 +60,8 @@ hr {
   font-style: italic;
 }
 
-.blog-app {
-  margin-top: 6rem;
-}
-
 .blog-app-toolbar {
-  background-color: #424264;
+  background-color: #080848;
   color: #fafafa;
   text-align: center;
 }
@@ -81,22 +77,25 @@ hr {
 
 /*Public view*/
 .blog {
-  margin: 2rem auto;
   width: 64%;
   background-color: #fafafa;
-  -webkit-box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);
-  -moz-box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);
-  box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);
 }
 
 .blog-header {
   text-align: center;
+  background-color: #eee;
+  border: 4px double #002;
 }
 
 .blog-header-image {
-  margin-top: 1.5rem;
-  margin-bottom: -3rem;
-  width: 64%;
+  margin: 3rem 0;
+  width: 80%;
+  max-width: 300px; 
+}
+
+.blog-main {
+  border: 1px solid #002;
+  border-top: 0;
 }
 
 .blog-nav {
@@ -114,29 +113,34 @@ hr {
   display: inline-block;
 }
 .blog-nav-link {
-  color: #424264;
+  color: #080848;
 }
 
 /*Login view*/
 .login {
-  margin: 4rem auto;
-  width: 90%;
+  /*margin: 4rem auto;*/
+  padding: 2rem;
+  width: 50%;
   text-align: center;
+  background-color: #eee;
+  border: 4px double #002;
 }
 
 .login-image {
-  width: 50%;
+  margin: 1rem;
+  width: 80%;
+  max-width: 300px;
 }
 
 .login-form {
-  margin: 1rem 0;
+  margin: 0;
   font-size: 1rem; 
 }
 
 .login-form-field {
   margin: 0.5rem auto;
   padding: 0.5rem;
-  width: 50%;
+  width: 60%;
   font-size: 2rem; 
   letter-spacing: 0.2rem;
   text-align: center;
@@ -144,16 +148,12 @@ hr {
 
 .login-form-button {
   font-size: 2rem;
-  width: 50%;
+  width: 60%;
   padding: 0.5rem;
 }
 
 
 .form-field:focus {
-  -webkit-box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);
-  -moz-box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);
-  box-shadow: 0px 0px 10px 4px rgba(170,170,170,1);
-
   outline: none;
 }
 
@@ -244,8 +244,13 @@ hr {
 }
 
 
-@media (max-width: 760px) {
-  .login-image, .login-form-field, .login-form-button {
+
+@media (max-width: 800px) {
+  .blog-header-image {
+    margin: 1rem 0;
+  }
+
+  .login-form-field, .login-form-button {
     width: 80%;
   } 
 
@@ -258,9 +263,6 @@ hr {
   }
 
   .blog {
-    width: 80%;
-  }
-  .blog-header-image {
     width: 80%;
   }
 
@@ -279,7 +281,11 @@ hr {
     font-size: 0.75rem;
   }
   
-  .login-image, .login-form-field, .login-form-button {
+  .login {
+    width: 90%;
+  }
+
+  .login-form-field, .login-form-button {
     width: 100%;
   }
 
