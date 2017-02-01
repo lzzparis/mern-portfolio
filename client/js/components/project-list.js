@@ -55,8 +55,9 @@ var ProjectList = React.createClass({
     var list = [];
       for (var i=0; i < this.state.projects.length; i++) {
         var currentProject = this.state.projects[i];
+        var timeout = (i + 1) * 200;
         list.push(
-            <Project key={i} name={currentProject.name} description={currentProject.description} thumbnail={currentProject.thumbnail} url={currentProject.url}/>
+            <Project key={i} timeout={timeout} name={currentProject.name} description={currentProject.description} thumbnail={currentProject.thumbnail} url={currentProject.url}/>
         );
       }
     return (
