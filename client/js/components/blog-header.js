@@ -6,7 +6,7 @@ var BlogHeader = function() {
   return (
     <Link to="/blog/posts/latest"> 
     <div className="blog-header">
-      <img className="blog-header-image" src="../../assets/name-stamped.png" />
+      <img className="blog-header-image" src="../../assets/name-stamped-hd.png" />
     </div>
     </Link>
   );

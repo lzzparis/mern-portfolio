@@ -43,7 +43,7 @@ var Login = React.createClass({
     if(!this.props.isAuthenticated) {
       return (
         <div className="login">
-          <img className="login-image" src="../../assets/name-stamped.png" />
+          <img className="login-image" src="../../assets/name-stamped-hd.png" />
           <form className="form login-form" onSubmit={this.authenticate}>
             {authError}
             <input className="form-field login-form-field login-form-field-username" type="text" ref="username" placeholder="Username" /><br />
