@@ -57,11 +57,9 @@ var activateClass = function(item) {
 
 var reducer = function(state, action) {
   state = state || initialState;
-  console.log(action.type);
   switch(action.type) {
     case actions.MODIFY_NAV_ITEM_CLASS:
       var myState = Object.assign({}, state, {navClasses: activateClass(action.item)});
-      console.log(myState.navClasses);
       return myState;
     case actions.FETCH_USER_STATUS_SUCCESS:
       return Object.assign({}, state, {userInitialized: action.value});

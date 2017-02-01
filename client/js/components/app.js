@@ -13,7 +13,8 @@ var App = React.createClass({
       <div className="app">
         <ReactCSSTransitionGroup transitionName="slide"
           component="div" transitionAppear={true}
-          transitionAppearTimeout={1000}>
+          transitionAppearTimeout={1000}
+          transitionEnter={false} transitionLeave={false}>
           <NavBarContainer className="nav-bar" />
         </ReactCSSTransitionGroup>
         <ReactCSSTransitionGroup transitionName="fade" 
