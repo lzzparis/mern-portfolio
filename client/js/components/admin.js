@@ -19,16 +19,20 @@ var Admin = React.createClass({
     this.props.dispatch(actions.fetchAllPosts("modified/newest"));
   },
   render: function() {
-    return(
-      <div className="admin">
-        {this.props.children}
-        <PostFormContainer />
-        <DraftListContainer />
-        <PostListContainer />
-        <div className="clear-fix"></div>
-        <Link className="link-home admin-link-home" to="/">&#8606; home</Link> 
-      </div>
-    );
+    if(this.props.isAuthenticated){
+      return(
+        <div className="admin">
+          {this.props.children}
+          <PostFormContainer />
+          <DraftListContainer />
+          <PostListContainer />
+          <div className="clear-fix"></div>
+          <Link className="link-home admin-link-home" to="/">&#8606; home</Link> 
+        </div>
+      );
+    } else {
+      return (<div></div>);
+    }
   }
 });
 

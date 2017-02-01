@@ -40,18 +40,22 @@ var Login = React.createClass({
       );
     }
 
-    return (
-      <div className="login">
-        <img className="login-image" src="../../assets/name-stamped.png" />
-        <form className="form login-form" onSubmit={this.authenticate}>
-          {authError}
-          <input className="form-field login-form-field login-form-field-username" type="text" ref="username" placeholder="Username" /><br />
-          <input className="form-field login-form-field login-form-field-password" type="password" ref="password" placeholder="Password" /><br />
-          <input className="button form-button login-form-button login-form-button-submit" type="submit" value="Login" /><br />
-          <Link className="link-home login-form-link-home" to="/">cancel</Link> 
-        </form>
-      </div>
-    );
+    if(!this.props.isAuthenticated) {
+      return (
+        <div className="login">
+          <img className="login-image" src="../../assets/name-stamped.png" />
+          <form className="form login-form" onSubmit={this.authenticate}>
+            {authError}
+            <input className="form-field login-form-field login-form-field-username" type="text" ref="username" placeholder="Username" /><br />
+            <input className="form-field login-form-field login-form-field-password" type="password" ref="password" placeholder="Password" /><br />
+            <input className="button form-button login-form-button login-form-button-submit" type="submit" value="Login" /><br />
+            <Link className="link-home login-form-link-home" to="/">cancel</Link> 
+          </form>
+        </div>
+      );
+    } else {
+      return (<div></div>);
+    }
   }
 });
 
