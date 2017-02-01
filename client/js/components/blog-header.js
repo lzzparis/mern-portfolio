@@ -1,8 +1,14 @@
 var React = require("react");
+var router = require("react-router");
+var Link = router.Link;
 
 var BlogHeader = function() {
   return (
-    <div className="blog-header"><img className="blog-header-image" src="../../assets/name-inline.png" /></div>
+    <Link to="/blog/posts/latest"> 
+    <div className="blog-header">
+      <img className="blog-header-image" src="../../assets/name-stamped.png" />
+    </div>
+    </Link>
   );
 };
 

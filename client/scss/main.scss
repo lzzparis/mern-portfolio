@@ -84,17 +84,29 @@ a {
   border-bottom: 0.2rem solid rgba(255, 255, 255, 0.6);
 }
 
-.business-card, .projects, .connect {
+.business-card, .projects, .connect, .blog-app {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.blog {
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.admin {
+  text-align: left;
 }
 
 .business-card-name, .project-content-name, .connect-header {
