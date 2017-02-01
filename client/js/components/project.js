@@ -5,7 +5,7 @@ var Project = React.createClass({
     return {hidden: "hidden"};
   },
   componentWillMount: function() {
-    setTimeout(this.show(), this.props.timeout);
+    setTimeout(this.show, this.props.timeout);
   },
   show: function() {
     this.setState({hidden: ""});
