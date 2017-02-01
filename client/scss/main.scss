@@ -50,7 +50,7 @@ a {
   top: 0;
   padding: 0;
   width: 100%;
-  background-color: rgba(0, 0, 34, 0.7);
+  background-color: #080848;
   text-align: center;
   z-index: 4;
 }
@@ -111,7 +111,7 @@ a {
 
 .business-card-name, .project-content-name, .connect-header {
   margin: 0;
-  color: #002;
+  color: #080848;
   font-family: "Playfair Display", serif;
   font-size: 6rem;
   font-weight: 700;
@@ -126,7 +126,7 @@ a {
 
 .business-card-title {
   padding: 1rem;
-  color: #000036;
+  color: #448;
   font-family: Oswald, cursive;
   font-size: 1.5rem;
   font-weight: 100;
@@ -150,7 +150,7 @@ a {
   max-width: 300px;
   height: auto;
   border-radius: 1000px;
-  border: 4px double #002;
+  border: 4px double #080848;
 
 }
 
@@ -184,7 +184,7 @@ a {
 .project-thumbnail {
   width: 100%;
   padding: 2px;
-  border: 1px solid #424264;
+  border: 1px solid #080848;
 }
 
 .project-content {
@@ -234,7 +234,7 @@ a {
 
 .connect-list-item-link {
   margin: 0;
-  color: #002;
+  color: #448;
   font-family: "Roboto Condensed", serif;
   font-size: 4rem;
   font-weight: 100;
@@ -243,14 +243,14 @@ a {
 }
 
 .connect-list-item-link:hover {
-  color: #448;
+  color: #080848;
 }
 
 /*.hover-bottom:hover {
-  border-bottom: 6px solid #002;
+  border-bottom: 6px solid #080848;
 }
 .hover-top:hover {
-  border-top: 6px solid #002;
+  border-top: 6px solid #080848;
 }*/
 
 @media (max-width: 1400px) {
