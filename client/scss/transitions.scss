@@ -1,6 +1,7 @@
 .slide-appear {
   top: -100px;
   transition: top 1s ease-out;
+  transition-delay: 3s;
 }
 .slide-appear.slide-appear-active {
   top: 0;
@@ -11,7 +12,11 @@
 .fade-appear {
   opacity: 0.01;
   transition: opacity 1s ease-in; 
-  transition-delay: 1s;
+  transition-delay: 4s;
+}
+
+.fade-appear.fade-appear-active {
+  opacity: 1;
 }
 
 
@@ -21,8 +26,7 @@
   transition-delay: 0.5s;
 }
 
-.fade-enter.fade-enter-active, 
-.fade-appear.fade-appear-active {
+.fade-enter.fade-enter-active { 
   opacity: 1;
 }
 
