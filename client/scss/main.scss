@@ -97,6 +97,11 @@ a {
   text-align: center;
 }
 
+//needed for IE11
+.business-card, .projects, .connect {
+  height: 100%;
+}
+
 .blog {
   margin-top: 5rem;
   display: flex;
@@ -157,6 +162,8 @@ a {
 .project-list {
   margin: 0 auto;
   width: 90%;
+// IE11 flex-box issue
+  height: 100%;
   padding-top: 4%;
   display: flex;
   flex-direction: row;
@@ -173,7 +180,8 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+// IE11 flex-box issue
+//  align-items: center;
 }
 
 .project:hover {

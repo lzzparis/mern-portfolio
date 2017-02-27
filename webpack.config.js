@@ -36,7 +36,7 @@ else {
 
 
 module.exports = {
-    entry: path.resolve(__dirname, packageData['main:client']),
+    entry: ['babel-polyfill', path.resolve(__dirname, packageData['main:client'])],
     output: {
         path: path.resolve(__dirname, outputPath),
         filename: filename,
